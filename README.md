@@ -15,7 +15,23 @@ make demo-docker # macOS / Windows / no root
 | **[DEEP_DIVE.md](DEEP_DIVE.md)** | Every decision with its alternatives, the case *for* what I rejected, industry precedent and links. |
 | **[TUTORIAL.md](TUTORIAL.md)** | The whole system from first principles: what a container actually is, why durability is hard, why credentials cannot touch the agent. |
 | **[AI_LOG.md](AI_LOG.md)** | How I used AI, where I overrode it, and where it was better than me. |
-| **[docs/diagrams/](docs/diagrams/)** | System + trust boundaries, agent lifecycle, tool call path, sandbox layers. |
+| **[docs/](docs/)** | **The full documentation set** — 35 documents, ~54k words. Every concept from first principles, with reading paths by role. |
+
+### Inside [`docs/`](docs/)
+
+| Section | Contents |
+|---|---|
+| [00 — The problem](docs/00-problem/) | What an agent actually is · use cases walked through end to end · every requirement decoded · threat model with attack trees |
+| [01 — Concepts](docs/01-concepts/) | Linux isolation · durable execution · multi-tenancy · authorization · secrets · fairness · audit · prompt injection · Kubernetes |
+| [02 — Architecture](docs/02-architecture/) | Components · data model · API · configuration · code map |
+| [03 — Operations](docs/03-operations/) | Running · deployment · observability · incident runbook · capacity planning |
+| [04 — Evidence](docs/04-evidence/) | Benchmarks (and what they do **not** support) · safety proofs · **nine real bugs and what each taught** |
+| [05 — Reference](docs/05-reference/) | Glossary · syscall denylist · reading list · FAQ |
+| [Diagrams](docs/diagrams/) | System + trust boundaries · lifecycle · tool call path · sandbox layers |
+
+**Start here:** [`docs/README.md`](docs/README.md) has reading paths for
+"I have 20 minutes", "I am reviewing the security model", "I am going to operate
+this", and "I want to challenge a decision".
 
 ---
 

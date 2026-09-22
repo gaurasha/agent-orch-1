@@ -407,7 +407,9 @@ Now `%v`, `%s`, `%q`, `%#v`, `%x`, `json.Marshal` and error wrapping all redact 
 even when the secret is nested three structs deep. Getting the real value
 requires calling `.Reveal()`, and `grep -rn '.Reveal()'` lists every place in the
 codebase where plaintext credential material is handled. Right now that is
-**one** place, and a test fails if it grows.
+**three** places — scrubbing output, injecting an HTTP header on a call the
+gateway makes, and setting `GH_TOKEN` in the broker sandbox — and a test asserts
+that exact count, so a fourth is a review event rather than a silent change.
 
 This turns "remember not to log the token" from a discipline problem into a type
 problem. Discipline does not scale across a codebase; types do.

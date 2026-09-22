@@ -138,8 +138,10 @@ narrow IAM roles) bounds the damage if our own policy is wrong.
 **Where credentials are injected:** only inside the gateway process, or in the
 environment of a broker sandbox the agent has no handle on. The `creds.Secret`
 type redacts through `fmt`, `json.Marshal`, `%#v`, `%x` and error wrapping, so
-leaking one requires calling `.Reveal()` — a single greppable token, currently
-used in exactly **one** place, guarded by a test that fails if that grows.
+leaking one requires calling `.Reveal()` — a single greppable token, used in
+exactly **three** reviewable places (scrubbing output, injecting an HTTP header
+on a call the *gateway* makes, and setting `GH_TOKEN` in the *broker* sandbox's
+environment), guarded by a test that fails if that count changes.
 
 ---
 

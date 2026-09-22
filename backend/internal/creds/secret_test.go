@@ -68,16 +68,40 @@ func TestSecret_SurvivesStructPrintingInsideAContainer(t *testing.T) {
 	}
 }
 
-// A guard against the escape hatch spreading. If this number grows, a reviewer
-// should look at why: each Reveal is a place plaintext credential material is
-// handled, and the set should stay small and obvious.
+// A guard against the escape hatch spreading.
+//
+// Every .Reveal() is a place plaintext credential material is handled, so the
+// set should stay small and each entry should be individually justifiable. If
+// this count changes, that is a review event, not a number to bump.
+//
+// The expected sites, and why each is legitimate:
+//
+//	creds.Scrub              - compares against output to redact it; discloses nothing
+//	tools.invokeHTTP         - injects the Authorization header on a call the
+//	                           GATEWAY makes; the agent never sees the request
+//	tools.invokeCLI          - places GH_TOKEN in the BROKER sandbox's environment,
+//	                           a process in a different pid/user namespace from
+//	                           the agent
 func TestSecret_RevealCallSitesAreFewAndIntentional(t *testing.T) {
-	const maxReveal = 12
+	const expected = 3
 	found := map[string]int{}
 	total := 0
 	err := walkGoFiles("..", func(path, content string) {
-		n := strings.Count(content, ".Reveal()")
-		if n > 0 && !strings.HasSuffix(path, "_test.go") {
+		if strings.HasSuffix(path, "_test.go") {
+			return
+		}
+		n := 0
+		for _, line := range strings.Split(content, "\n") {
+			trimmed := strings.TrimSpace(line)
+			// Skip comments: an earlier version of this test counted the
+			// doc comment that *describes* the grep, which made the number
+			// meaningless as a guard.
+			if strings.HasPrefix(trimmed, "//") {
+				continue
+			}
+			n += strings.Count(line, ".Reveal()")
+		}
+		if n > 0 {
 			found[path] = n
 			total += n
 		}
@@ -86,10 +110,12 @@ func TestSecret_RevealCallSitesAreFewAndIntentional(t *testing.T) {
 		t.Fatalf("walk: %v", err)
 	}
 	t.Logf("plaintext credential use sites: %d across %d files: %v", total, len(found), found)
-	if total > maxReveal {
-		t.Fatalf("there are now %d .Reveal() call sites (limit %d). "+
-			"Each one handles a plaintext credential; add it to the review list "+
-			"in DEEP_DIVE.md and raise the limit deliberately.", total, maxReveal)
+	if total != expected {
+		t.Fatalf("there are now %d .Reveal() call sites, expected %d: %v\n"+
+			"Each one handles a plaintext credential. If this change is intentional, "+
+			"justify the new site in this test's doc comment and in "+
+			"docs/01-concepts/05-secrets.md, then update the expected count.",
+			total, expected, found)
 	}
 }
 

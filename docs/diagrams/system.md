@@ -71,6 +71,6 @@ flowchart TB
 
 ## The three things that never cross a boundary
 
-1. **A credential never reaches the agent.** Not in the model context, not in the worker process, not in the agent's sandbox environment. The `creds.Secret` type redacts through `fmt`, `json.Marshal`, `%#v` and error wrapping; `grep -rn '.Reveal()'` enumerates every plaintext use site (currently **one**, guarded by a test).
+1. **A credential never reaches the agent.** Not in the model context, not in the worker process, not in the agent's sandbox environment. The `creds.Secret` type redacts through `fmt`, `json.Marshal`, `%#v` and error wrapping; `grep -rn '.Reveal()'` enumerates every plaintext use site (**three**: output scrubbing, gateway-side header injection, and the broker sandbox's environment — asserted by a test).
 2. **A tenant never reaches another tenant.** Every store query is tenant-scoped, workspaces are `<root>/<tenant>/<run>`, credential root secrets are per tenant, audit chains are per tenant, and sandbox host uids are per tenant.
 3. **A sandbox never reaches the network.** Not a firewall rule that can be misconfigured — an empty network namespace with no interface, no address and no route.

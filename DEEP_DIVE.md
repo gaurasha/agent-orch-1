@@ -369,8 +369,11 @@ workspace mount that is a genuine, if narrow, channel between the two.
 
 Beyond the architecture, one language-level control: `creds.Secret` implements
 `String`, `GoString`, `Format` and `MarshalJSON` to redact. Printing it is safe
-by default; extracting it requires `.Reveal()`, a single greppable token used in
-exactly **one** place, guarded by a test that fails if that count grows. This
+by default; extracting it requires `.Reveal()`, a single greppable token used in exactly
+**three** places — `creds.Scrub` (compares against output to redact it, and so
+discloses nothing), the HTTP header injection on a call the *gateway* makes, and
+`GH_TOKEN` in the *broker* sandbox's environment. A test asserts that exact
+count and fails if it changes, so adding a fourth is a review event. This
 converts "remember not to log the token" from a discipline problem into a type
 problem. Compare Rust's
 [`secrecy`](https://docs.rs/secrecy/latest/secrecy/) crate, which makes the same
