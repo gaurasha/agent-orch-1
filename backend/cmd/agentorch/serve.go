@@ -97,22 +97,22 @@ func envInt(k string, def int) int {
 
 // Platform holds the wired-up components.
 type Platform struct {
-	Opts     *Options
-	Log      *obs.Logger
-	Metrics  *obs.Metrics
-	Store    store.Store
-	Registry *tools.Registry
-	Broker   *creds.DerivedBroker
-	Limiter  *fairness.Limiter
-	Model    *llm.Gateway
-	Fake     *llm.FakeProvider
-	Gateway  *gateway.Gateway
-	API      *api.Server
-	GitHub   *fakegithub.Server
+	Opts      *Options
+	Log       *obs.Logger
+	Metrics   *obs.Metrics
+	Store     store.Store
+	Registry  *tools.Registry
+	Broker    *creds.DerivedBroker
+	Limiter   *fairness.Limiter
+	Model     *llm.Gateway
+	Fake      *llm.FakeProvider
+	Gateway   *gateway.Gateway
+	API       *api.Server
+	GitHub    *fakegithub.Server
 	Workspace *tools.WorkspaceManager
-	Sandbox  sandbox.Driver
-	Secret   []byte
-	closers  []func()
+	Sandbox   sandbox.Driver
+	Secret    []byte
+	closers   []func()
 }
 
 // Build assembles the platform. Every dependency is explicit and injected,

@@ -2,11 +2,11 @@
 //
 // A worker here is completely stateless and interchangeable. It:
 //
-//	1. leases a runnable Run,
-//	2. rebuilds the model context by REPLAYING that run's event log,
-//	3. advances the run by one step,
-//	4. commits the new events atomically (fenced by the lease),
-//	5. releases the lease.
+//  1. leases a runnable Run,
+//  2. rebuilds the model context by REPLAYING that run's event log,
+//  3. advances the run by one step,
+//  4. commits the new events atomically (fenced by the lease),
+//  5. releases the lease.
 //
 // Nothing about the agent lives in the worker's memory between steps. That is
 // what makes "an agent mid-task survives a pod restart, a node drain and a

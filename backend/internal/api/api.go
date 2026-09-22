@@ -614,8 +614,8 @@ func (s *Server) overview(w http.ResponseWriter, r *http.Request, p Principal) {
 		totalTokens += run.Usage.TotalTokens()
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"runs_by_state": byState,
-		"by_tenant":     byTenant,
+		"runs_by_state":  byState,
+		"by_tenant":      byTenant,
 		"total_cost_usd": totalCost,
 		"total_tokens":   totalTokens,
 		"quota":          s.limiter.Snapshot(),

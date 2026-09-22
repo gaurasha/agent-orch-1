@@ -9,16 +9,16 @@
 //
 // The defence is layered, because any single layer will eventually have a CVE:
 //
-//	1. Kernel isolation     - gVisor in production; namespaces here.
-//	2. Namespaces           - mount, pid, net, ipc, uts, user.
-//	3. Identity             - unprivileged uid inside a user namespace, so
-//	                          "root in the container" owns nothing on the host.
-//	4. Filesystem           - read-only rootfs, one writable workspace, size caps.
-//	5. Network              - empty network namespace. Not a firewall rule that
-//	                          can be misconfigured: there is no route to anywhere.
-//	6. Syscall surface      - seccomp-BPF denylist over the escape primitives.
-//	7. Resources            - cgroup cpu/memory/pids + rlimits + wall clock.
-//	8. Credentials          - never present. See internal/tools CLI shim.
+//  1. Kernel isolation     - gVisor in production; namespaces here.
+//  2. Namespaces           - mount, pid, net, ipc, uts, user.
+//  3. Identity             - unprivileged uid inside a user namespace, so
+//     "root in the container" owns nothing on the host.
+//  4. Filesystem           - read-only rootfs, one writable workspace, size caps.
+//  5. Network              - empty network namespace. Not a firewall rule that
+//     can be misconfigured: there is no route to anywhere.
+//  6. Syscall surface      - seccomp-BPF denylist over the escape primitives.
+//  7. Resources            - cgroup cpu/memory/pids + rlimits + wall clock.
+//  8. Credentials          - never present. See internal/tools CLI shim.
 //
 // What this package deliberately does NOT do is decide *whether* a command may
 // run. That is the tool gateway's job (internal/authz). This package assumes

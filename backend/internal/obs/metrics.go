@@ -70,11 +70,17 @@ func (m *Metrics) RunState(tenant string, state string, delta int64) {
 	m.runStates[labelKey{tenant, state, ""}] += delta
 }
 
-func (m *Metrics) SandboxRun(tenant, driver string)  { m.inc(m.sandboxRuns, labelKey{tenant, driver, ""}) }
-func (m *Metrics) QuotaDenied(tenant string)         { m.mu.Lock(); m.quotaDenied[tenant]++; m.mu.Unlock() }
-func (m *Metrics) AuditFailure()                     { m.mu.Lock(); m.auditFails++; m.mu.Unlock() }
-func (m *Metrics) LeaseReaped(n int)                 { m.mu.Lock(); m.leaseReaps += uint64(n); m.mu.Unlock() }
-func (m *Metrics) StepLatency(d time.Duration)       { m.mu.Lock(); m.stepLatency.observe(d.Seconds()); m.mu.Unlock() }
+func (m *Metrics) SandboxRun(tenant, driver string) {
+	m.inc(m.sandboxRuns, labelKey{tenant, driver, ""})
+}
+func (m *Metrics) QuotaDenied(tenant string) { m.mu.Lock(); m.quotaDenied[tenant]++; m.mu.Unlock() }
+func (m *Metrics) AuditFailure()             { m.mu.Lock(); m.auditFails++; m.mu.Unlock() }
+func (m *Metrics) LeaseReaped(n int)         { m.mu.Lock(); m.leaseReaps += uint64(n); m.mu.Unlock() }
+func (m *Metrics) StepLatency(d time.Duration) {
+	m.mu.Lock()
+	m.stepLatency.observe(d.Seconds())
+	m.mu.Unlock()
+}
 
 func (m *Metrics) inc(mp map[labelKey]uint64, k labelKey) {
 	m.mu.Lock()

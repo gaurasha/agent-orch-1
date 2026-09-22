@@ -252,10 +252,10 @@ type Run struct {
 	StatusReason string   `json:"status_reason,omitempty"`
 	// NextSeq is the sequence number the next appended event will take. It
 	// doubles as an optimistic-concurrency version for the run.
-	NextSeq int      `json:"next_seq"`
-	Step    int      `json:"step"`
-	Budget  Budget   `json:"budget"`
-	Usage   Usage    `json:"usage"`
+	NextSeq  int      `json:"next_seq"`
+	Step     int      `json:"step"`
+	Budget   Budget   `json:"budget"`
+	Usage    Usage    `json:"usage"`
 	Priority Priority `json:"priority"`
 
 	// LeaseOwner/LeaseExpiresAt implement at-most-one-active-worker. A worker
@@ -300,11 +300,11 @@ const (
 // Rebuilding model context, rendering the UI timeline and satisfying an audit
 // request are all the same operation: read the log.
 type Event struct {
-	RunID     string          `json:"run_id"`
-	Seq       int             `json:"seq"`
-	Type      EventType       `json:"type"`
-	Payload   EventPayload    `json:"payload"`
-	CreatedAt time.Time       `json:"created_at"`
+	RunID     string       `json:"run_id"`
+	Seq       int          `json:"seq"`
+	Type      EventType    `json:"type"`
+	Payload   EventPayload `json:"payload"`
+	CreatedAt time.Time    `json:"created_at"`
 }
 
 // EventPayload is a union. Only the fields relevant to Type are set; this keeps

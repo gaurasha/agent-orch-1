@@ -12,3 +12,7 @@ ui/node_modules/
 .DS_Store
 .idea/
 .vscode/
+ui/tsconfig.tsbuildinfo
+
+# Stray build outputs
+backend/agentorch

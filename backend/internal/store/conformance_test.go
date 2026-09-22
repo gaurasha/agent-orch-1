@@ -4,12 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"os"
 	"sync"
 	"testing"
 	"time"
 
 	"github.com/gaurasha/agent-orch/backend/internal/store"
+	"github.com/gaurasha/agent-orch/backend/internal/testsupport"
 	"github.com/gaurasha/agent-orch/backend/internal/types"
 )
 
@@ -29,9 +29,14 @@ func eachStore(t *testing.T, fn func(t *testing.T, s store.Store)) {
 		fn(t, s)
 	})
 	t.Run("postgres", func(t *testing.T) {
-		dsn := os.Getenv("AGENTORCH_TEST_DSN")
+		// A schema private to this package: `go test ./...` runs packages
+		// concurrently and every Postgres-backed package truncates on entry.
+		dsn, err := testsupport.SchemaDSN("test_store")
+		if err != nil {
+			t.Fatalf("prepare test schema: %v", err)
+		}
 		if dsn == "" {
-			t.Skip("AGENTORCH_TEST_DSN not set; skipping Postgres conformance")
+			t.Skipf("%s not set; skipping Postgres conformance", testsupport.EnvDSN)
 		}
 		ctx := context.Background()
 		pg, err := store.OpenPostgres(ctx, dsn, 8)
@@ -40,9 +45,8 @@ func eachStore(t *testing.T, fn func(t *testing.T, s store.Store)) {
 		}
 		defer pg.Close()
 		// Each subtest gets a clean slate; CASCADE handles the dependent rows.
-		if _, err := pg.DB().ExecContext(ctx,
-			`TRUNCATE audit_log, tool_calls, events, runs, agent_definitions, tenants CASCADE`); err != nil {
-			t.Fatalf("truncate: %v", err)
+		if err := testsupport.TruncateAll(pg.DB()); err != nil {
+			t.Fatalf("%v", err)
 		}
 		fn(t, pg)
 	})

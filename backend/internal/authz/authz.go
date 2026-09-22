@@ -31,9 +31,9 @@ import (
 type Effect string
 
 const (
-	Allow          Effect = "ALLOW"
-	Deny           Effect = "DENY"
-	NeedsApproval  Effect = "NEEDS_APPROVAL"
+	Allow         Effect = "ALLOW"
+	Deny          Effect = "DENY"
+	NeedsApproval Effect = "NEEDS_APPROVAL"
 )
 
 // Decision is the result of evaluating one tool call.

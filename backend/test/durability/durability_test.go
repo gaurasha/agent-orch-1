@@ -10,7 +10,6 @@ package durability_test
 import (
 	"context"
 	"fmt"
-	"os"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -24,6 +23,7 @@ import (
 	"github.com/gaurasha/agent-orch/backend/internal/obs"
 	"github.com/gaurasha/agent-orch/backend/internal/runtime"
 	"github.com/gaurasha/agent-orch/backend/internal/store"
+	"github.com/gaurasha/agent-orch/backend/internal/testsupport"
 	"github.com/gaurasha/agent-orch/backend/internal/tools"
 	"github.com/gaurasha/agent-orch/backend/internal/types"
 )
@@ -127,13 +127,17 @@ func (c *countingToolCaller) duplicated() []string {
 func newHarness(t *testing.T) *harness {
 	t.Helper()
 	var st store.Store
-	if dsn := os.Getenv("AGENTORCH_TEST_DSN"); dsn != "" {
+	dsn, err := testsupport.SchemaDSN("test_durability")
+	if err != nil {
+		t.Fatalf("prepare test schema: %v", err)
+	}
+	if dsn != "" {
 		pg, err := store.OpenPostgres(context.Background(), dsn, 12)
 		if err != nil {
 			t.Fatalf("open postgres: %v", err)
 		}
-		if _, err := pg.DB().Exec(`TRUNCATE audit_log, tool_calls, events, runs, agent_definitions, tenants CASCADE`); err != nil {
-			t.Fatalf("truncate: %v", err)
+		if err := testsupport.TruncateAll(pg.DB()); err != nil {
+			t.Fatalf("%v", err)
 		}
 		st = pg
 	} else {
@@ -199,7 +203,7 @@ func (h *harness) createRun(t *testing.T, digest string) string {
 	run := types.Run{
 		ID: id.New("run"), TenantID: "t1", AgentName: "dt", DefDigest: digest,
 		TriggeringUser: "test@example.com", State: types.StateQueued,
-		Budget: types.Budget{MaxSteps: 30, MaxToolCalls: 40, MaxTokens: 10_000_000, MaxCostUSD: 1000, MaxWallSeconds: 600},
+		Budget:   types.Budget{MaxSteps: 30, MaxToolCalls: 40, MaxTokens: 10_000_000, MaxCostUSD: 1000, MaxWallSeconds: 600},
 		Priority: types.PriorityNormal,
 	}
 	if err := h.store.CreateRun(context.Background(), run, types.Event{

@@ -16,7 +16,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"os"
 	"sort"
 	"sync"
 	"testing"
@@ -29,6 +28,7 @@ import (
 	"github.com/gaurasha/agent-orch/backend/internal/obs"
 	"github.com/gaurasha/agent-orch/backend/internal/runtime"
 	"github.com/gaurasha/agent-orch/backend/internal/store"
+	"github.com/gaurasha/agent-orch/backend/internal/testsupport"
 	"github.com/gaurasha/agent-orch/backend/internal/tools"
 	"github.com/gaurasha/agent-orch/backend/internal/types"
 )
@@ -76,14 +76,17 @@ func runLoad(t *testing.T, agents, workers int, tenants []types.Tenant) loadResu
 	defer cancel()
 
 	var st store.Store
-	dsn := os.Getenv("AGENTORCH_TEST_DSN")
+	dsn, err := testsupport.SchemaDSN("test_load")
+	if err != nil {
+		t.Fatalf("prepare test schema: %v", err)
+	}
 	if dsn != "" {
 		pg, err := store.OpenPostgres(ctx, dsn, 40)
 		if err != nil {
 			t.Fatalf("open postgres: %v", err)
 		}
-		if _, err := pg.DB().Exec(`TRUNCATE audit_log, tool_calls, events, runs, agent_definitions, tenants CASCADE`); err != nil {
-			t.Fatalf("truncate: %v", err)
+		if err := testsupport.TruncateAll(pg.DB()); err != nil {
+			t.Fatalf("%v", err)
 		}
 		st = pg
 	} else {
@@ -213,10 +216,10 @@ func runLoad(t *testing.T, agents, workers int, tenants []types.Tenant) loadResu
 	}
 	res := loadResult{
 		Agents: agents, Workers: workers, Completed: completed, Failed: failed,
-		Elapsed: elapsed.Truncate(time.Millisecond),
+		Elapsed:       elapsed.Truncate(time.Millisecond),
 		ThroughputRPS: float64(completed) / elapsed.Seconds(),
-		ToolCalls: tc.calls,
-		P50: pct(0.50).Truncate(time.Millisecond), P95: pct(0.95).Truncate(time.Millisecond),
+		ToolCalls:     tc.calls,
+		P50:           pct(0.50).Truncate(time.Millisecond), P95: pct(0.95).Truncate(time.Millisecond),
 		P99: pct(0.99).Truncate(time.Millisecond),
 	}
 	if len(latencies) > 0 {

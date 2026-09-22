@@ -84,11 +84,11 @@ var (
 type Pricing struct{ InputPerMTok, OutputPerMTok float64 }
 
 var priceTable = map[string]Pricing{
-	"claude-opus-5":        {15.00, 75.00},
-	"claude-sonnet-5":      {3.00, 15.00},
-	"claude-haiku-4-5":     {0.80, 4.00},
-	"fake-small":           {0.25, 1.25},
-	"fake-large":           {3.00, 15.00},
+	"claude-opus-5":    {15.00, 75.00},
+	"claude-sonnet-5":  {3.00, 15.00},
+	"claude-haiku-4-5": {0.80, 4.00},
+	"fake-small":       {0.25, 1.25},
+	"fake-large":       {3.00, 15.00},
 }
 
 // Price returns the cost of a call. An unknown model is priced at the most

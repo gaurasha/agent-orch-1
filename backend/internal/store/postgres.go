@@ -493,9 +493,9 @@ func insertEvents(ctx context.Context, t *sql.Tx, runID string, startSeq int, ev
 // Commit is the fenced write. Three conditions must all hold, checked inside
 // the transaction against a locked row:
 //
-//	1. the run still exists
-//	2. `worker` still owns an unexpired lease
-//	3. next_seq is exactly what the worker thinks it is
+//  1. the run still exists
+//  2. `worker` still owns an unexpired lease
+//  3. next_seq is exactly what the worker thinks it is
 //
 // If any fails we return ErrLeaseLost and the worker abandons its step. This is
 // how a partitioned or paused worker is prevented from writing stale history

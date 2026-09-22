@@ -160,7 +160,7 @@ func (g *Gateway) process(ctx context.Context, claims jwtmini.Claims, req Reques
 	def, err := g.store.GetDefinition(ctx, run.DefDigest)
 	if err != nil {
 		return Response{Decision: string(authz.Deny),
-			Reason: "the agent definition for this run is unavailable", IsError: true},
+				Reason: "the agent definition for this run is unavailable", IsError: true},
 			http.StatusFailedDependency
 	}
 
@@ -210,7 +210,7 @@ func (g *Gateway) process(ctx context.Context, claims jwtmini.Claims, req Reques
 	})
 	if err != nil {
 		return Response{Decision: string(authz.Deny),
-			Reason: "could not journal the call; refusing to execute", IsError: true},
+				Reason: "could not journal the call; refusing to execute", IsError: true},
 			http.StatusServiceUnavailable
 	}
 	if !fresh {

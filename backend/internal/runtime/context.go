@@ -62,7 +62,7 @@ func Rebuild(events []types.Event) []llm.Message {
 
 		case types.EventApprovalGiven:
 			msgs = append(msgs, llm.Message{
-				Role: llm.RoleUser,
+				Role:    llm.RoleUser,
 				Content: fmt.Sprintf("A human approved the %s call. Proceeding.", e.Payload.Tool),
 			})
 
