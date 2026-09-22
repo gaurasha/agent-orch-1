@@ -1,0 +1,28 @@
+# gVisor. This single object is the difference between "isolated from other
+# tenants by namespaces" and "isolated from the host kernel".
+#
+# gVisor implements the Linux syscall ABI in user space (a sentry process), so
+# a container's syscalls are serviced by Go code rather than by the host kernel
+# directly. A kernel privilege-escalation CVE therefore does not automatically
+# become a host compromise - the attacker first has to break the sentry.
+#
+# The cost is real and is documented in DEEP_DIVE.md "D2": roughly 2-15% CPU
+# overhead, materially worse for syscall-heavy and I/O-heavy workloads, and a
+# larger cold start than runc.
+#
+# If the cluster does not have the gVisor RuntimeClass installed, sandbox pods
+# will stay Pending with a clear message. That is deliberate: FAILING to start
+# a sandbox is correct, silently falling back to runc is not.
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: gvisor
+handler: runsc
+scheduling:
+  nodeSelector:
+    agentorch.io/workload: sandbox
+  tolerations:
+    - key: agentorch.io/workload
+      operator: Equal
+      value: sandbox
+      effect: NoSchedule

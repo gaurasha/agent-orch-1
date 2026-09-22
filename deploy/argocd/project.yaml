@@ -1,0 +1,42 @@
+# An AppProject is a guardrail, not decoration. Without one, any Application in
+# the argocd namespace can deploy anything, anywhere in the cluster - which
+# makes Argo itself the widest privilege in the system.
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: agentorch
+  namespace: argocd
+spec:
+  description: Agent orchestration platform
+
+  sourceRepos:
+    - '*'   # narrow this to your repository URL in a real deployment
+
+  # Argo may only touch these two namespaces. A manifest that tries to install
+  # something into kube-system is rejected at sync time.
+  destinations:
+    - namespace: agentorch
+      server: https://kubernetes.default.svc
+    - namespace: agentorch-sandboxes
+      server: https://kubernetes.default.svc
+
+  # Cluster-scoped kinds this project is allowed to manage. Everything else is
+  # denied, so a compromised repo cannot create a ClusterRoleBinding.
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+    - group: node.k8s.io
+      kind: RuntimeClass
+
+  namespaceResourceWhitelist:
+    - {group: '', kind: '*'}
+    - {group: apps, kind: '*'}
+    - {group: networking.k8s.io, kind: '*'}
+    - {group: policy, kind: '*'}
+    - {group: autoscaling, kind: '*'}
+    - {group: rbac.authorization.k8s.io, kind: '*'}
+
+  # Explicitly deny the two things that would let a repo escalate cluster-wide.
+  namespaceResourceBlacklist:
+    - {group: rbac.authorization.k8s.io, kind: ClusterRole}
+    - {group: rbac.authorization.k8s.io, kind: ClusterRoleBinding}

@@ -1,0 +1,71 @@
+# The Docker path: `make demo-docker`.
+#
+# This exists for macOS and Windows, where the namespace sandbox driver cannot
+# run (it needs Linux namespaces and cgroups directly). Here the platform runs
+# in a container and uses the DOCKER sandbox driver, creating a sibling
+# container per tool call through the mounted socket.
+#
+# HONEST TRADE-OFF, stated because it matters: mounting the Docker socket into
+# the platform container gives that container root-equivalent control of the
+# host daemon. That is acceptable for a local demo and is NOT acceptable in
+# production - it is precisely why the Kubernetes driver talks to the API
+# server with a narrowly scoped ServiceAccount instead. See DEEP_DIVE.md "D2".
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: agentorch
+      POSTGRES_PASSWORD: agentorch
+      POSTGRES_DB: agentorch
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentorch -d agentorch"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  sandbox-image-builder:
+    # Builds the sandbox base image so the platform has something to run tool
+    # calls in, then exits. `service_completed_successfully` below gates the
+    # platform on it.
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.sandbox
+    image: agentorch/sandbox:dev
+    command: ["/bin/bash", "-lc", "echo sandbox image built"]
+
+  platform:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile
+    image: agentorch/platform:dev
+    depends_on:
+      postgres:
+        condition: service_healthy
+      sandbox-image-builder:
+        condition: service_completed_successfully
+    environment:
+      AGENTORCH_DSN: postgres://agentorch:agentorch@postgres:5432/agentorch?sslmode=disable
+      AGENTORCH_SANDBOX_DRIVER: docker
+      AGENTORCH_SANDBOX_IMAGE: agentorch/sandbox:dev
+      AGENTORCH_SECRET: compose-demo-signing-key-not-for-production
+      AGENTORCH_LOG_LEVEL: info
+      AGENTORCH_UI_DIR: /srv/ui
+    command: ["serve", "--role=all", "--workers=4"]
+    ports:
+      - "8080:8080"   # control plane + console
+      - "8081:8081"   # tool gateway
+    volumes:
+      # See the note above: this is a local-demo convenience with real
+      # privilege implications.
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../../ui/dist:/srv/ui:ro
+    # The distroless image runs as uid 65532, which cannot use the Docker
+    # socket. Running as root here is another local-only concession.
+    user: root
+
+volumes:
+  pgdata:

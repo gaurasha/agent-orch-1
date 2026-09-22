@@ -1,0 +1,40 @@
+# The sandbox base image: the filesystem an agent's code sees.
+#
+# Contents are a deliberate allowlist. Every binary here is one an agent can
+# invoke, so "useful" and "attack surface" are the same axis. Notably absent:
+# any cloud SDK or CLI (they look for instance credentials), ssh, and any
+# package manager (an agent must not be able to install a new capability at
+# runtime).
+
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      python3 python3-pip \
+      pandoc \
+      jq \
+      ca-certificates \
+      coreutils findutils grep sed gawk \
+      bash \
+    && rm -rf /var/lib/apt/lists/* \
+    # Remove the package manager itself: an agent that can apt-get install can
+    # grant itself any capability it likes.
+    && rm -f /usr/bin/apt /usr/bin/apt-get /usr/bin/dpkg \
+    # No setuid binaries. Combined with no_new_privs this is belt and braces,
+    # but a setuid binary in the image is a standing invitation.
+    && find / -xdev -perm /6000 -type f -exec chmod a-s {} \; 2>/dev/null || true
+
+# Matches sandbox.containerUID. The workspace is mounted here and owned by this
+# uid; everything else in the image is read-only at runtime.
+RUN useradd --uid 1000 --create-home --home-dir /work --shell /bin/bash sandbox
+WORKDIR /work
+USER 1000:1000
+
+ENV HOME=/work \
+    TMPDIR=/tmp \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    AWS_EC2_METADATA_DISABLED=true
+
+# No ENTRYPOINT: the executor always supplies an explicit argv. An image that
+# runs something by default is an image that can be run by accident.
+CMD ["/bin/bash", "-lc", "echo 'agentorch sandbox base image; supply a command'"]

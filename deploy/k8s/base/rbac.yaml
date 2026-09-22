@@ -1,0 +1,58 @@
+# One ServiceAccount per component, each with the least privilege that
+# component actually needs. A shared "platform" identity would mean a bug in
+# the control plane grants everything the tool gateway can do.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: agentorch-controlplane
+  namespace: agentorch
+automountServiceAccountToken: false   # it never talks to the API server
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: agentorch-agentd
+  namespace: agentorch
+automountServiceAccountToken: false   # workers talk to Postgres and the gateway only
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: agentorch-toolgateway
+  namespace: agentorch
+# The gateway DOES need an API token: it creates sandbox pods.
+automountServiceAccountToken: true
+---
+# The only Kubernetes privilege the platform needs at all: create, watch and
+# delete Pods in the sandbox namespace. Note what is absent - no secrets, no
+# configmaps, no exec, no cluster-scoped anything.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: agentorch-sandbox-manager
+  namespace: agentorch-sandboxes
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get"]
+  # Deliberately NOT granted:
+  #   pods/exec       - would let the gateway open a shell in any sandbox
+  #   secrets         - credentials come from the broker, never from etcd
+  #   pods/portforward- would create a tunnel into a sandbox
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: agentorch-sandbox-manager
+  namespace: agentorch-sandboxes
+subjects:
+  - kind: ServiceAccount
+    name: agentorch-toolgateway
+    namespace: agentorch
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: agentorch-sandbox-manager

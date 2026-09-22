@@ -1,0 +1,14 @@
+# Build artefacts
+.make/
+ui/dist/
+ui/node_modules/
+*.test
+
+# Local state
+/var/
+*.log
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
