@@ -204,18 +204,75 @@ scripts/                preflight, kind up/test, argocd up/test
 
 ---
 
-## Where I stopped
+## Why this slice, what it retired, and what I would build second
 
-I built more than one vertical slice, because the interesting property spans
-several: the credential boundary is only meaningful if the sandbox is real, the
-sandbox is only meaningful if authorization decides what runs in it, and none of
-it matters if a node restart loses the run. Those four together are the slice.
+The brief says to pick the part whose feasibility you are least sure of, and
+that the justification is graded as hard as the code.
 
-What I did **not** do is production-harden any of it. The gaps above are real
-and are listed in the order I would fix them.
+**The risk I was least sure of** was not the scheduler or the sandbox
+individually — it was the seam between them: *can a real CLI receive a real
+credential while the agent that invoked it provably cannot read it, without
+either giving up on CLIs or hand-wrapping every subcommand as an API?* Every
+option I could think of had a hole. Environment variables are readable by the
+agent's own code. A credential-helper socket is callable by the agent's own
+code. A TLS-intercepting proxy needs a CA in the image and breaks pinning.
+Exposing `github.create_pr` as an API tool is airtight but does not generalise,
+and the brief explicitly requires arbitrary CLIs.
 
-If you only read one thing in the code, read
+**What retired it** was realising the credential does not need to be *hidden*
+from the sandbox — the CLI needs to not be *in* the agent's sandbox. Two
+sandboxes in different pid and user namespaces, sharing only the workspace,
+with argv going in after policy and stdout coming back. That is now the part of
+the design I am most confident in, because it is verified from both sides at
+once: the agent enumerates its own environment and `/proc/self/environ` and
+finds nothing, and the same run opens a pull request with a token the API
+independently verified.
+
+**What I actually learned building it** was smaller and more useful than the
+design: *the ordering of privilege drops is load-bearing and fails silently.*
+Clearing capabilities before `setuid` produced a `SIGABRT` from inside glibc
+with no useful message. Each step removes a privilege the next step needs. I
+would not have found that by reading code, and it is the kind of thing that
+would have shipped.
+
+The second lesson: **a safety test needs a negative control.** My first
+network-isolation test passed and proved nothing — it was failing on a dash/bash
+incompatibility, not on isolation, and would have passed with full network
+access.
+
+**What I would build second — in order:**
+
+1. **SPIFFE/SPIRE workload identity.** Everything else assumes the gateway can
+   tell a real agent worker from anything else holding the signing key. Today it
+   cannot. This is the one gap that changes the security argument rather than
+   just improving it.
+2. **The egress proxy with per-run domain allowlists.** The agent sandbox is
+   already airtight (empty netns); the credentialed path is where a real
+   allowlist is needed, and it is what makes `NetworkProxy` mode match its
+   description.
+3. **Workspace checkpointing to object storage at tool-call boundaries.** Today
+   a node loss recovers the run but re-does file work. This is cheap and turns
+   "recovers" into "resumes".
+4. **A thin `AgentRun` CRD** carrying identity and terminal status only —
+   reconciled *from* Postgres, with no event history in etcd. Gets
+   `kubectl get agentruns` and GitOps-expressible agents without putting the hot
+   path in etcd.
+
+---
+
+## Scope note
+
+The brief budgets 6–8 hours and is explicit that one finished slice beats two
+half-finished ones. This submission is larger than that: the requester asked for
+the full end-to-end build including the React console, Kubernetes manifests and
+ArgoCD.
+
+The slice-sized core is **sandbox + gateway + credential boundary**. Everything
+else exists to show it working in context, and I have tried to keep the extra
+surface honest — every faked component is labelled, and the deployment path that
+weakens isolation says so in the manifest that weakens it.
+
+If you only read one file of code, read
 [`internal/sandbox/init_linux.go`](backend/internal/sandbox/init_linux.go) —
-it is the whole isolation argument in one file, and the comment above the
-privilege-drop sequence explains an ordering bug that cost me a confusing
-`SIGABRT`.
+it is the whole isolation argument in one place, and the comment above the
+privilege-drop sequence explains the bug described above.
