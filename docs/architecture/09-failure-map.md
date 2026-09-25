@@ -22,7 +22,7 @@ would need a further row.
 | # | Mechanism | Where | Absorbs |
 |---|---|---|---|
 | 1 | **requeue with `wake_at`, never FAILED** | worker → `runs.wake_at` | provider outages and quota waits: `ErrQuotaUnavailable` → +2 s; provider down after retries → +10 s |
-| 2 | **lease TTL + reaper** | `runs.lease_*`; `ReapExpiredLeases` every 5 s | any worker death or stall: `RUNNING AND lease_expires_at < now()` → `QUEUED`; bound ≤ TTL 30 s + 5 s |
+| 2 | **lease TTL + reaper** | `runs.lease_*`; `ReapExpiredLeases` every 3 s (wired in `serve.go`; the package default is 5 s) | any worker death or stall: `RUNNING AND lease_expires_at < now()` → `QUEUED`; bound ≤ TTL 30 s + 3 s |
 | 3 | **fencing token in `Commit`** | `runs.lease_owner`, `next_seq` | a paused/partitioned worker that wakes later: `owner ≠ me` → `ErrLeaseLost`, nothing written |
 | 4 | **idempotency journal** | `tool_calls`, PK `idem_key = run:step:i` | duplicate deliveries, replays after a worker swap, gateway crashes mid-call (`IN_FLIGHT` → "outcome unknown") |
 | 5 | **budgets + admission control** | worker (`ExceedsReason`), gateway (`budget.exhausted`), API (`max_concurrent_runs` → 429) | poison agents and tenant bursts |
@@ -60,7 +60,7 @@ would need a further row.
 1. Find the symptom in the "what the operator sees" column.
 2. The mechanism column tells you which invariant is supposed to be holding.
 3. If the invariant is *not* holding — a run RUNNING with a dead owner for
-   longer than TTL + 5 s, a `tool_calls` row IN_FLIGHT beyond `stuck_after`,
+   longer than TTL + 3 s, a `tool_calls` row IN_FLIGHT beyond `stuck_after`,
    two audit `pre` records for one idempotency key — that is a platform bug,
    not an operational condition, and the [runbook](../03-operations/04-runbook.md)
    has the queries.

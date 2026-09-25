@@ -143,7 +143,7 @@
 </g>
 <text x="943.0" y="269.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">lease TTL + reaper</text>
 <text x="943.0" y="287.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">RUNNING AND lease_expires_at &lt; now() → QUEUED</text>
-<text x="943.0" y="301.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the ENTIRE failure detector; ≤ TTL 30 s + 5 s</text>
+<text x="943.0" y="301.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the ENTIRE failure detector; ≤ TTL 30 s + 3 s</text>
 <g filter="url(#shadow)">
 <rect x="930" y="368" width="560" height="84" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
 <rect x="930" y="368" width="5" height="84" rx="2.5" fill="#7a3fd1"/>

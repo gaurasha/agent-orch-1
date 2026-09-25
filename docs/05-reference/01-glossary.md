@@ -167,3 +167,37 @@ Proving *which service* is calling, not just what token it presents. Currently
 ### Yield
 Returning a still-unfinished run to `QUEUED` in one fenced statement. Replaces a
 bare `ReleaseLease`, which stranded runs in ownerless `RUNNING`.
+
+---
+
+## Added terms
+
+### Agent sandbox
+The jail that runs model-authored code (`exec.*`, `doc.convert`): six namespaces, empty network namespace, read-only root, cgroup limits, seccomp. → [Sandbox](../architecture/04-sandbox.md)
+
+### Reaper
+The goroutine that re-queues runs whose lease expired and marks tool calls stuck `IN_FLIGHT` as failed with an unknown outcome. Runs in every replica; safe to run concurrently. → [Failure map](../architecture/09-failure-map.md)
+
+### Trusted computing base (TCB)
+The code that can hold a plaintext credential: the tool gateway, the credential broker and the (designed) egress proxy — purple in every diagram. Everything else can be wrong without a secret leaking. → [Overall](../architecture/00-overall.md)
+
+### Interactive reserve
+The 20 % of every tenant's token bucket that batch and normal work may not draw below, so a tenant's own burst cannot starve its human-blocking agents. → [Fairness](../architecture/06-model-plane.md)
+
+### Spare pool
+The shared token bucket fed by capacity that tenants' plan caps leave unclaimed; any tenant may borrow from it after its own bucket is empty. → [Fairness](../reasoning/07-fairness.md)
+
+### Stuck call (`stuck_after`)
+A `tool_calls` row still `IN_FLIGHT` after `stuck_after` (2 min as wired); the reaper marks it FAILED and the model is told the side effect *may or may not* have happened. → [Errors and codes](06-errors-and-codes.md)
+
+### Digest (definition)
+`sha256(canonical_json(spec))` — the identity of an agent definition; a run pins it. → [Authoring definitions](../06-guides/01-authoring-agent-definitions.md)
+
+### Parameter policy
+Per-tool constraints in a definition (`allowed_hosts`, `allowed_commands`, `denied_arg_patterns`, `requires_approval`) evaluated as `params.*` rules after the grant. → [Authoring definitions](../06-guides/01-authoring-agent-definitions.md)
+
+### Egress proxy
+The designed, not built, TCB component that is the broker sandbox's only route out, enforcing a per-run domain allowlist. → [Credential plane](../architecture/05-credential-plane.md)
+
+### Replay
+Rebuilding the model's context from the run's event log (`Rebuild(events)`) at the start of every step; nothing from a previous step's memory is trusted. → [Events and states](07-events-and-states.md)

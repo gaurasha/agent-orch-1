@@ -21,7 +21,7 @@ one:
 * **agentd** — a Deployment of identical, stateless workers (3 replicas, HPA
   2–40 on CPU). Each runs `Worker.Run`: a 100 ms tick that tries to lease one
   run and, if it gets one, advances it up to four steps.
-* **Reaper** — a goroutine (any replica, every 5 s) that runs two `UPDATE`
+* **Reaper** — a goroutine (any replica, every 3 s as wired in `serve.go`; the package default is 5 s) that runs two `UPDATE`
   statements. It is the platform's entire failure detector.
 * **Postgres** — the queue, the lock and the log. `AcquireLease` *is* the
   scheduler.
@@ -110,7 +110,7 @@ write after a new holder has.
 
 | Failure | What notices | Recovery | Bound |
 |---|---|---|---|
-| worker SIGKILL mid-step | lease stops renewing | reaper → QUEUED → another worker replays; in-memory partial step lost (it was never written) | ≤ TTL 30 s + reaper 5 s |
+| worker SIGKILL mid-step | lease stops renewing | reaper → QUEUED → another worker replays; in-memory partial step lost (it was never written) | ≤ TTL 30 s + reaper 3 s |
 | worker SIGTERM (rolling deploy) | context cancelled | deferred fenced `YieldRun` → QUEUED immediately (`TestDurability_RollingDeployLosesNoWork`) | ≈ 0 |
 | worker paused (GC, SIGSTOP, partition) | its own `Commit` | fence → `ErrLeaseLost` → abandon; the replacement's writes stand | at commit |
 | run stuck RUNNING with no owner | reaper's second clause (`lease_owner IS NULL AND updated_at < now() − 60 s`) | re-queued | 60 s |

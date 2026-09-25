@@ -84,7 +84,7 @@ journal has an `IN_FLIGHT` state and the reaper has a stuck-call clause.
 
 | Failure | Noticed by | Recovery | Lost | Bound |
 |---|---|---|---|---|
-| agentd SIGKILL mid-step | lease stops renewing | reaper → QUEUED; another worker replays; idem keys make tool calls exactly-once | the in-memory partial step (never written) | ≤ TTL 30 s + reaper 5 s |
+| agentd SIGKILL mid-step | lease stops renewing | reaper → QUEUED; another worker replays; idem keys make tool calls exactly-once | the in-memory partial step (never written) | ≤ TTL 30 s + reaper 3 s |
 | agentd SIGTERM (rolling deploy) | context cancelled | deferred fenced `YieldRun` → QUEUED at once | nothing | ≈ 0 |
 | agentd paused (GC / partition) | its own `Commit` | fence: `owner ≠ me` → `ErrLeaseLost`; the replacement's writes stand | nothing; no duplicate side effect | at commit |
 | gateway dies mid tool call | `tool_calls` row stays `IN_FLIGHT` | reaper (`stuck_after`) → FAILED "MAY OR MAY NOT have taken effect" | certainty about one side effect | `stuck_after` |

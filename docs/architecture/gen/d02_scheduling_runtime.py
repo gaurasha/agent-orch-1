@@ -68,7 +68,7 @@ def build():
     d.box("defer", 670, 468, 260, 86, "deferred, always", kind="platform",
           lines=["YieldRun(run, me): fenced UPDATE", "WHERE lease_owner=me AND RUNNING",
                  "no-op if we no longer own it", "SIGKILL → lease simply expires"])
-    d.box("reaper", 670, 578, 820, 52, "Reaper (any replica, every 5 s) — the entire failure detector", kind="platform",
+    d.box("reaper", 670, 578, 820, 52, "Reaper (any replica, every 3 s) — the entire failure detector", kind="platform",
           lines=["RUNNING AND lease_expires_at < now() → QUEUED  ·  IN_FLIGHT tool_calls older than stuck_after → FAILED 'outcome unknown'"])
 
     d.arrow("tick", "lease", "", src_side="e", dst_side="w", color=GREEN)

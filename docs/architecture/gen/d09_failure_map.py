@@ -30,7 +30,7 @@ def build():
     M = [("m1", "requeue with wake_at (never FAILED)", "state",
           ["ErrQuotaUnavailable → +2 s · provider down → +10 s", "the run stays QUEUED; a delay, never a loss"]),
          ("m2", "lease TTL + reaper", "state",
-          ["RUNNING AND lease_expires_at < now() → QUEUED", "the ENTIRE failure detector; ≤ TTL 30 s + 5 s"]),
+          ["RUNNING AND lease_expires_at < now() → QUEUED", "the ENTIRE failure detector; ≤ TTL 30 s + 3 s"]),
          ("m3", "fencing token in Commit", "tcb",
           ["owner = me AND not expired AND next_seq = expected", "a stale writer gets ErrLeaseLost, writes nothing"]),
          ("m4", "idempotency journal (tool_calls)", "tcb",

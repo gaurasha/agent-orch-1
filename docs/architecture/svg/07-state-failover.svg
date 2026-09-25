@@ -164,7 +164,7 @@
 <rect x="1050" y="747.6" width="240" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
 <text x="1057.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the in-memory partial step (never written)</text>
 <rect x="1290" y="747.6" width="210" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
-<text x="1297.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">≤ TTL 30 s + reaper 5 s</text>
+<text x="1297.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">≤ TTL 30 s + reaper 3 s</text>
 <rect x="60" y="786.8000000000001" width="270" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
 <text x="67.0" y="802.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">agentd SIGTERM (rolling deploy)</text>
 <rect x="330" y="786.8000000000001" width="300" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>

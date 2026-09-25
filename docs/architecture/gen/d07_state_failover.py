@@ -71,7 +71,7 @@ def build():
     d.table(60, 722, [270, 300, 420, 240, 210], [
         [["Failure"], ["Noticed by"], ["Recovery"], ["Lost"], ["Bound"]],
         [["agentd SIGKILL mid-step"], ["lease stops renewing"], ["reaper: RUNNING+expired → QUEUED; another worker replays the log; idem keys make tool calls exactly-once"],
-         ["the in-memory partial step (never written)"], ["≤ TTL 30 s + reaper 5 s"]],
+         ["the in-memory partial step (never written)"], ["≤ TTL 30 s + reaper 3 s"]],
         [["agentd SIGTERM (rolling deploy)"], ["ctx cancelled"], ["deferred fenced YieldRun → QUEUED immediately; TestDurability_RollingDeployLosesNoWork"],
          ["nothing"], ["≈ 0 s"]],
         [["agentd paused (GC / partition)"], ["its own Commit"], ["fence: owner≠me → ErrLeaseLost → abandon; the replacement's writes stand"],

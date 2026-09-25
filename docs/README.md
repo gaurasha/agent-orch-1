@@ -47,6 +47,7 @@ Read in order — each builds on the last:
 3. [Observability](03-operations/03-observability.md)
 4. [Runbook](03-operations/04-runbook.md)
 5. [Capacity planning](03-operations/05-capacity.md)
+6. [Upgrades, backup, restore, rotation](03-operations/06-upgrades-backup-and-rotation.md) and the [hardening checklist](03-operations/07-production-hardening-checklist.md)
 
 ### "I am going to change the code"
 
@@ -55,6 +56,19 @@ Read in order — each builds on the last:
 3. [Data model](02-architecture/02-data-model.md)
 4. [API reference](02-architecture/03-api.md)
 5. [Configuration](02-architecture/04-configuration.md)
+
+### "I am going to extend it or onboard a tenant"
+
+1. [Authoring agent definitions](06-guides/01-authoring-agent-definitions.md) and the [tools catalogue](06-guides/02-tools-catalogue.md)
+2. [Adding a tool](06-guides/03-adding-a-tool.md) · [a model provider](06-guides/04-adding-a-model-provider.md) · [a sandbox driver](06-guides/05-adding-a-sandbox-driver.md)
+3. [Onboarding a tenant](06-guides/06-onboarding-a-tenant.md)
+4. [Limits and defaults](05-reference/05-limits-and-defaults.md), [errors and codes](05-reference/06-errors-and-codes.md), [events and states](05-reference/07-events-and-states.md)
+
+### "I need to check nothing is missing"
+
+1. [Coverage matrix](05-reference/08-coverage-matrix.md) — every component, requirement and reader question → the document that answers it
+2. `python3 docs/tools/check-links.py` and `python3 docs/tools/check-coverage.py`
+3. [Production hardening checklist](03-operations/07-production-hardening-checklist.md) — the holes that are real, stated
 
 ### "I want to challenge a decision"
 
@@ -109,6 +123,8 @@ Read in order — each builds on the last:
 | [Observability](03-operations/03-observability.md) | Every metric, suggested alerts, dashboard, gaps |
 | [Runbook](03-operations/04-runbook.md) | Eight incidents: symptom → diagnosis → action |
 | [Capacity planning](03-operations/05-capacity.md) | The arithmetic, with measured inputs |
+| [Upgrades, backup, restore, rotation](03-operations/06-upgrades-backup-and-rotation.md) | Rolling upgrades and the compatibility contract; additive schema rules; what a restore to T actually does to leases and the journal; DR; rotating every secret |
+| [Production hardening checklist](03-operations/07-production-hardening-checklist.md) | Every "designed, not built" item in one ordered list with effort and status |
 
 ### [04 — Evidence](04-evidence/)
 
@@ -126,6 +142,24 @@ Read in order — each builds on the last:
 | [Syscall denylist](05-reference/02-syscalls.md) | All 36, grouped by attack class — generated from source |
 | [Reading list](05-reference/03-reading-list.md) | Primary sources, grouped by the decision they inform |
 | [FAQ](05-reference/04-faq.md) | What a reviewer is likely to ask |
+| [Limits and defaults](05-reference/05-limits-and-defaults.md) | Every constant the running system uses — wired value, where it is set, why, and how to change it |
+| [Errors and codes](05-reference/06-errors-and-codes.md) | Every HTTP status, gateway decision, rule name, error sentinel, status reason and exit code |
+| [Events and states](05-reference/07-events-and-states.md) | The 14 event types with emitter, payload and model mapping; every state transition with its actor; the SSE frame |
+| [Coverage matrix](05-reference/08-coverage-matrix.md) | Where every component, requirement, concern and reader question is defined, drawn, argued, proved and operated |
+| [Test inventory](05-reference/09-test-inventory.md) | Every test, what it proves, what it needs, which bug it caught |
+
+### [06 — Guides](06-guides/)
+
+| | |
+|---|---|
+| [Authoring agent definitions](06-guides/01-authoring-agent-definitions.md) | The full schema, the six seeded examples, and the policy rules that keep an agent contained |
+| [Tools catalogue](06-guides/02-tools-catalogue.md) | All nine tools: what the model sees, what the gateway knows, which policy applies |
+| [Adding a tool](06-guides/03-adding-a-tool.md) | Registry entry, invoker obligations, policy, tests, rollout |
+| [Adding a model provider](06-guides/04-adding-a-model-provider.md) | The three-method contract, error classification, price table, wiring, tests |
+| [Adding a sandbox driver](06-guides/05-adding-a-sandbox-driver.md) | The `Spec → Result` contract and the twelve obligations the safety suite checks |
+| [Onboarding a tenant](06-guides/06-onboarding-a-tenant.md) | Row, weight, identity, credential roots, verification, offboarding |
+| [The operator console](06-guides/07-operator-console.md) | Every view, what it reads, what operators can and cannot do |
+| [The demo, assertion by assertion](06-guides/08-demo-walkthrough.md) | All 21 assertions, the mechanism each proves, and what the demo does not prove |
 
 ### [Diagrams](diagrams/)
 
