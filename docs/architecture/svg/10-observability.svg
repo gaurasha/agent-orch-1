@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1150" viewBox="0 0 1560 1150" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1150" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">10 · Observability and audit — &#x27;what is agent X doing, and what has it cost?&#x27;</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">Four signals, one source of truth. The console and the model read the same event log, so the operator sees exactly what the agent saw.</text>
+<rect x="40" y="86" width="480" height="620" rx="10" ry="10" fill="rgba(46,139,87,0.05)" stroke="#2e8b57" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="343" height="22" rx="6" fill="#2e8b57"/>
+<text x="223.4" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">SOURCES · written on the hot path</text>
+<text x="52.0" y="112" font-size="11" fill="#2e8b57" font-style="italic">every write is part of the transaction it describes</text>
+<rect x="560" y="86" width="440" height="620" rx="10" ry="10" fill="rgba(47,111,191,0.045)" stroke="#2f6fbf" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="572" y="75" width="372" height="22" rx="6" fill="#2f6fbf"/>
+<text x="757.8" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">SURFACES · how it leaves the process</text>
+<text x="572.0" y="112" font-size="11" fill="#2f6fbf" font-style="italic">no agent, no sidecar, no sampling</text>
+<rect x="1040" y="86" width="480" height="620" rx="10" ry="10" fill="rgba(110,119,129,0.05)" stroke="#6e7781" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="1052" y="75" width="381" height="22" rx="6" fill="#6e7781"/>
+<text x="1242.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">QUESTIONS · what each surface answers</text>
+<text x="1052.0" y="112" font-size="11" fill="#6e7781" font-style="italic">and the alert that should page</text>
+<path d="M 490.0 191.0 L 590.0 178.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 490.0 221.0 L 555.0 221.0 L 555.0 270.0 L 590.0 270.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 490.0 316.0 L 590.0 310.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 490.0 441.0 L 590.0 402.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 490.0 555.0 L 555.0 555.0 L 555.0 494.0 L 590.0 494.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 490.0 645.0 L 555.0 645.0 L 555.0 636.0 L 590.0 636.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 178.0 L 1070.0 178.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 270.0 L 1035.0 270.0 L 1035.0 208.0 L 1070.0 208.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 310.0 L 1070.0 290.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 402.0 L 1070.0 402.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 514.0 L 1070.0 514.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 544.0 L 1035.0 544.0 L 1035.0 606.0 L 1070.0 606.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 970.0 626.0 L 1035.0 626.0 L 1035.0 646.0 L 1070.0 646.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<g filter="url(#shadow)">
+<rect x="70" y="132" width="420" height="118" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="132" width="5" height="118" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">1 · event log (events table)</text>
+<text x="83.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">RUN_CREATED · MODEL_REQUEST/RESPONSE · TOOL_CALL · TOOL_RESULT</text>
+<text x="83.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">TOOL_DENIED · APPROVAL_NEEDED/GIVEN · HUMAN_PAUSE/RESUME</text>
+<text x="83.0" y="198.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">LEASE_LOST · RUN_FINISHED · NOTE (worker id, yields, quota waits)</text>
+<text x="83.0" y="212.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the model&#x27;s context is Rebuild(events) — same rows</text>
+<text x="83.0" y="227.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">payload carries tokens, cost, duration_ms, worker, idem_key</text>
+<g filter="url(#shadow)">
+<rect x="70" y="270" width="420" height="92" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="270" width="5" height="92" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="289.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">2 · per-run usage (runs.usage JSONB)</text>
+<text x="83.0" y="307.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">steps · tool_calls · input_tokens · output_tokens</text>
+<text x="83.0" y="321.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cost_usd (price table in code) · sandbox_ms</text>
+<text x="83.0" y="336.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">updated in the SAME commit as the events it reflects</text>
+<g filter="url(#shadow)">
+<rect x="70" y="382" width="420" height="118" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="382" width="5" height="118" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="401.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">3 · audit_log — per-tenant hash chain</text>
+<text x="83.0" y="419.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">two records per allowed tool call (pre/post), one per denial</text>
+<text x="83.0" y="433.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">who (triggering_user) · which agent · which tool · decision · rule</text>
+<text x="83.0" y="448.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">args redacted · result meta (bytes, truncated, exit code, credential_id)</text>
+<text x="83.0" y="462.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">prev_hash → hash chain; ts at µs; VerifyChain() detects edits</text>
+<g filter="url(#shadow)">
+<rect x="70" y="520" width="420" height="70" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="520" width="5" height="70" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="539.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">4 · metrics registry (in-process, hand-rolled)</text>
+<text x="83.0" y="557.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">counters/gauges/histograms keyed by tenant · tool · decision · model · state</text>
+<text x="83.0" y="571.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no client library: 11 series rendered as Prometheus text on demand</text>
+<g filter="url(#shadow)">
+<rect x="70" y="610" width="420" height="70" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="610" width="5" height="70" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="629.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">5 · structured logs (log/slog JSON)</text>
+<text x="83.0" y="647.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">every line: service · run_id · tenant_id (WithRun) · trace id when present</text>
+<text x="83.0" y="661.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">levels via AGENTORCH_LOG_LEVEL; no secrets can appear (type Secret)</text>
+<g filter="url(#shadow)">
+<rect x="590" y="132" width="380" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="590" y="132" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="603.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">GET /v1/runs/{id}/stream — SSE</text>
+<text x="603.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ListEvents(since) every 400 ms; resume from last seq</text>
+<text x="603.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the console timeline IS the event log</text>
+<text x="603.0" y="198.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">operators additionally see NOTE, worker ids, yields</text>
+<g filter="url(#shadow)">
+<rect x="590" y="244" width="380" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="590" y="244" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="603.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">GET /v1/runs · /v1/runs/{id} · /v1/overview</text>
+<text x="603.0" y="281.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">state, status_reason, usage, budget, lease owner</text>
+<text x="603.0" y="295.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">overview: runs by state, cost by tenant, quota snapshot</text>
+<text x="603.0" y="310.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tenant-scoped; operators may read across tenants</text>
+<g filter="url(#shadow)">
+<rect x="590" y="356" width="380" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="590" y="356" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="603.0" y="375.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">GET /v1/audit (+ verify)</text>
+<text x="603.0" y="393.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">filter by tenant · run · time range (idx_audit_tenant_ts)</text>
+<text x="603.0" y="407.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">VerifyChain recomputes and reports the first broken seq</text>
+<text x="603.0" y="422.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">&#x27;every command agent X ran last Tuesday&#x27; is one index scan</text>
+<g filter="url(#shadow)">
+<rect x="590" y="468" width="380" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="590" y="468" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="603.0" y="487.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">GET /metrics — Prometheus exposition</text>
+<text x="603.0" y="505.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agentorch_tool_calls_total{tenant,tool,decision}</text>
+<text x="603.0" y="519.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agentorch_model_tokens_total{tenant,model,direction}</text>
+<text x="603.0" y="534.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agentorch_runs{tenant,state} · _leases_reaped_total …</text>
+<g filter="url(#shadow)">
+<rect x="590" y="580" width="380" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="590" y="580" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="603.0" y="599.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">stdout → your log pipeline</text>
+<text x="603.0" y="617.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">JSON lines; ship with the cluster&#x27;s collector</text>
+<text x="603.0" y="631.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">join on run_id across controlplane, agentd, gateway</text>
+<text x="603.0" y="646.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">(designed) OpenTelemetry spans keyed by run_id</text>
+<g filter="url(#shadow)">
+<rect x="1070" y="132" width="420" height="92" rx="7" fill="#f3f4f6" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="1070" y="132" width="5" height="92" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="1083.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">What is agent X doing right now?</text>
+<text x="1083.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ SSE / events: the last event and its worker</text>
+<text x="1083.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">state RUNNING + lease_owner tells you WHICH pod</text>
+<text x="1083.0" y="198.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">WAITING_* tells you WHO it is waiting for</text>
+<g filter="url(#shadow)">
+<rect x="1070" y="244" width="420" height="92" rx="7" fill="#f3f4f6" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="1070" y="244" width="5" height="92" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="1083.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">What has it cost so far?</text>
+<text x="1083.0" y="281.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ runs.usage: tokens, USD, steps, tool calls, sandbox ms</text>
+<text x="1083.0" y="295.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ /v1/overview: by tenant; → metrics: by model</text>
+<text x="1083.0" y="310.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cost is committed with the step — never estimated after the fact</text>
+<g filter="url(#shadow)">
+<rect x="1070" y="356" width="420" height="92" rx="7" fill="#f3f4f6" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="1070" y="356" width="5" height="92" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="1083.0" y="375.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Who did what, and can I prove it?</text>
+<text x="1083.0" y="393.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ audit chain: user · agent · tool · decision · rule · args (redacted)</text>
+<text x="1083.0" y="407.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ VerifyChain: tamper-evidence per tenant</text>
+<text x="1083.0" y="422.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">denials are recorded as thoroughly as successes</text>
+<g filter="url(#shadow)">
+<rect x="1070" y="468" width="420" height="92" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="1070" y="468" width="5" height="92" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="1083.0" y="487.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Is the platform healthy? (page on these)</text>
+<text x="1083.0" y="505.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">audit_write_failures_total &gt; 0 — the chain is falling behind reality</text>
+<text x="1083.0" y="519.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">rate(leases_reaped_total) — workers are dying or stalling</text>
+<text x="1083.0" y="534.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">quota_denied_total rising + runs{state=QUEUED} growing — starvation</text>
+<g filter="url(#shadow)">
+<rect x="1070" y="580" width="420" height="92" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="1070" y="580" width="5" height="92" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="1083.0" y="599.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Is a tenant abusing the platform?</text>
+<text x="1083.0" y="617.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tool_calls_total{decision=DENY} by tenant — injection attempts surface here</text>
+<text x="1083.0" y="631.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">model_cost_usd_total by tenant vs plan</text>
+<text x="1083.0" y="646.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">sandbox_runs_total by driver — is anything running outside gVisor?</text>
+<rect x="40" y="1020" width="1480" height="72" rx="6" fill="#ffffff" stroke="#6e7781" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="50.0" y="1036.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6e7781" text-anchor="start">Trade-offs taken</text>
+<text x="50.0" y="1053.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">hand-rolled metrics (no client_golang) keep the dependency policy (one external module) — cost: no exemplars, no native histograms, no OpenMetrics</text>
+<text x="50.0" y="1067.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">SSE by polling Postgres (400 ms) is simple and correct — cost: read load scales with open consoles; LISTEN/NOTIFY or a replica is the designed fix</text>
+<text x="50.0" y="1081.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no distributed tracing yet — the run_id in every log line and every event is the correlation key; OTel spans would attach to it without schema changes</text>
+<rect x="40" y="730" width="380" height="25.6" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="746.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Series (all prefixed agentorch_)</text>
+<rect x="420" y="730" width="480" height="25.6" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="746.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Labels</text>
+<rect x="900" y="730" width="620" height="25.6" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="746.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Why it exists</text>
+<rect x="40" y="755.6" width="380" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="771.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">tool_calls_total</text>
+<rect x="420" y="755.6" width="480" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="771.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tenant, tool, decision (ALLOW/DENY/NEEDS_APPROVAL/ERROR)</text>
+<rect x="900" y="755.6" width="620" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="771.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the security signal: denials per tenant per tool</text>
+<rect x="40" y="781.2" width="380" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="797.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">tool_call_duration_seconds (histogram)</text>
+<rect x="420" y="781.2" width="480" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="797.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tool</text>
+<rect x="900" y="781.2" width="620" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="797.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">sandbox and third-party latency; p99 drives the wall-clock defaults</text>
+<rect x="40" y="806.8000000000001" width="380" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="822.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">model_calls_total · model_tokens_total · model_cost_usd_total</text>
+<rect x="420" y="806.8000000000001" width="480" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="822.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tenant, model, direction</text>
+<rect x="900" y="806.8000000000001" width="620" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="822.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the cost line; reconciles against the provider invoice</text>
+<rect x="40" y="832.4000000000001" width="380" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="848.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">runs (gauge)</text>
+<rect x="420" y="832.4000000000001" width="480" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="848.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tenant, state</text>
+<rect x="900" y="832.4000000000001" width="620" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="848.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">queue depth and stuck states at a glance; the HPA input the design wants</text>
+<rect x="40" y="858.0000000000001" width="380" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="874.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">sandbox_runs_total</text>
+<rect x="420" y="858.0000000000001" width="480" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="874.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tenant, driver</text>
+<rect x="900" y="858.0000000000001" width="620" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="874.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">isolation posture: anything not &#x27;kubernetes&#x27; in production is a finding</text>
+<rect x="40" y="883.6000000000001" width="380" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="899.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">quota_denied_total</text>
+<rect x="420" y="883.6000000000001" width="480" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="899.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tenant</text>
+<rect x="900" y="883.6000000000001" width="620" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="899.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">fairness at work: scheduling decisions deferred for lack of quota</text>
+<rect x="40" y="909.2000000000002" width="380" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="925.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">audit_write_failures_total · leases_reaped_total</text>
+<rect x="420" y="909.2000000000002" width="480" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="925.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">—</text>
+<rect x="900" y="909.2000000000002" width="620" height="25.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="925.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the two &#x27;page now&#x27; counters: audit integrity and worker health</text>
+<rect x="40" y="934.8000000000002" width="380" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="950.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">step_duration_seconds (histogram)</text>
+<rect x="420" y="934.8000000000002" width="480" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="427.0" y="950.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">—</text>
+<rect x="900" y="934.8000000000002" width="620" height="25.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="950.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">replay + model + tools per step; growth over a run&#x27;s life shows context cost</text>
+<rect x="28" y="1100" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="48.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">durable source</text>
+<rect x="258" y="1100" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="278.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">process / API</text>
+<rect x="488" y="1100" width="14" height="12" rx="3" fill="#f3f4f6" stroke="#6e7781" stroke-width="1"/>
+<text x="508.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">operator question</text>
+<rect x="718" y="1100" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="738.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">alerting</text>
+</svg>

@@ -1,0 +1,58 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: agentorch
+  namespace: argocd
+  finalizers:
+    # Without this, deleting the Application leaves every resource orphaned in
+    # the cluster - which is how "we deleted the app but it is still running"
+    # happens.
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: agentorch
+
+  source:
+    # Point this at your fork. Argo needs a URL it can reach from inside the
+    # cluster; scripts/argocd-up.sh rewrites it for a local checkout.
+    repoURL: https://github.com/gaurasha/agent-orch-1.git
+    targetRevision: HEAD
+    path: deploy/k8s/overlays/local
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: agentorch
+
+  syncPolicy:
+    automated:
+      # prune: remove resources deleted from git. Without it, git stops being
+      # the source of truth the moment anyone deletes a file.
+      prune: true
+      # selfHeal: revert manual kubectl edits. This is the property that makes
+      # the cluster auditable - if it is not in git, it does not survive.
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      # The Namespace objects carry Pod Security labels, so Argo must not
+      # consider them "extra" and prune them.
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      # ServerSideApply avoids the last-applied-configuration annotation
+      # growing past etcd's limit on large resources.
+      - ServerSideApply=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+
+  # Postgres writes to its own PVC and the HPA writes replica counts. Telling
+  # Argo to ignore those stops it fighting the cluster in a permanent
+  # OutOfSync loop - a very common GitOps failure that trains people to ignore
+  # the sync status entirely.
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      name: agentd
+      jsonPointers:
+        - /spec/replicas

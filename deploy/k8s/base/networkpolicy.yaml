@@ -1,0 +1,199 @@
+# Network policy is where the "an agent cannot reach what it was not granted"
+# claim stops being a promise made by our own code and becomes something the
+# CNI enforces regardless of what our code does.
+#
+# NOTE: NetworkPolicy requires a CNI that implements it. kind's default (kindnet)
+# does NOT. deploy/kind/kind-config.yaml therefore disables the default CNI and
+# scripts/kind-up.sh installs Calico. Applying these policies to a cluster whose
+# CNI ignores them gives false assurance, which is worse than having none.
+
+# ---------------------------------------------------------------------------
+# Sandbox namespace: deny everything, in both directions.
+# ---------------------------------------------------------------------------
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sandbox-default-deny
+  namespace: agentorch-sandboxes
+spec:
+  podSelector: {}           # every pod in the namespace
+  policyTypes: [Ingress, Egress]
+  # No ingress and no egress rules at all => nothing in, nothing out.
+  # Not even DNS. A sandbox that needs to resolve a name needs the
+  # sandbox-egress-via-proxy policy below, which is applied only to the
+  # credential broker sandboxes.
+---
+# The credential broker sandbox is the ONLY sandbox with any egress, and even
+# then only to the egress proxy - never directly to the internet.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sandbox-broker-egress-via-proxy
+  namespace: agentorch-sandboxes
+spec:
+  podSelector:
+    matchLabels:
+      agentorch.io/sandbox-role: credential-broker
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: agentorch
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: egress-proxy
+      ports:
+        - protocol: TCP
+          port: 3128
+    # DNS, so the proxy's own name resolves. Restricted to kube-dns.
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+---
+# ---------------------------------------------------------------------------
+# Platform namespace
+# ---------------------------------------------------------------------------
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: platform-default-deny
+  namespace: agentorch
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+---
+# Agent workers may talk to exactly two things: Postgres and the tool gateway.
+#
+# This is what makes "authorization at the gateway cannot be bypassed" true.
+# A compromised worker cannot call a third-party API directly, because it has
+# no route to one.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: agentd-egress
+  namespace: agentorch
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: agentd
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: postgres
+      ports: [{protocol: TCP, port: 5432}]
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: toolgateway
+      ports: [{protocol: TCP, port: 8081}]
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+---
+# The tool gateway is the only component with egress to the outside world,
+# because it is the only component that makes tenant API calls.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: toolgateway-policy
+  namespace: agentorch
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: toolgateway
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: agentd
+      ports: [{protocol: TCP, port: 8081}]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: postgres
+      ports: [{protocol: TCP, port: 5432}]
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    # The API server, to create sandbox pods.
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              # Never the cloud instance metadata service. This is the single
+              # most valuable target on any cloud node and nothing here needs it.
+              - 169.254.169.254/32
+              # Nor the rest of link-local.
+              - 169.254.0.0/16
+      ports: [{protocol: TCP, port: 443}, {protocol: TCP, port: 6443}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: controlplane-policy
+  namespace: agentorch
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: controlplane
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - {}   # the console and API callers; put an Ingress/gateway in front in production
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: postgres
+      ports: [{protocol: TCP, port: 5432}]
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: postgres-ingress
+  namespace: agentorch
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values: [controlplane, agentd, toolgateway]
+      ports: [{protocol: TCP, port: 5432}]
+  egress: []   # the database initiates nothing

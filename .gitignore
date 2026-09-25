@@ -1,0 +1,21 @@
+# Build artefacts
+.make/
+ui/dist/
+ui/node_modules/
+*.test
+
+# Local state
+/var/
+*.log
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
+ui/tsconfig.tsbuildinfo
+
+# Stray build outputs
+backend/agentorch
+
+# python bytecode from the diagram generator
+__pycache__/

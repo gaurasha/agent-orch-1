@@ -1,0 +1,28 @@
+# Two namespaces, because they have completely different trust levels.
+#
+# agentorch        - the platform. Holds credentials, the database, the policy
+#                    engine. Pod Security "restricted".
+# agentorch-sandboxes - where untrusted, model-authored code runs. Nothing in
+#                    here is trusted with anything; it exists to be a blast
+#                    radius.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: agentorch
+  labels:
+    # Pod Security Admission, enforced. "restricted" forbids privilege
+    # escalation, host namespaces, and running as root - which is what we want
+    # for the platform itself.
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/warn: restricted
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: agentorch-sandboxes
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    agentorch.io/workload-class: untrusted

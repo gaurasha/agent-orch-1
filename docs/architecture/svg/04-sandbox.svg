@@ -1,0 +1,324 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1350" viewBox="0 0 1560 1350" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1350" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">04 · The agent sandbox — built from raw Linux primitives, layer by layer</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">What each layer removes, which syscall does it, the order that is load-bearing, and the three drivers that provide the same contract.</text>
+<rect x="40" y="86" width="760" height="900" rx="10" ry="10" fill="rgba(217,130,43,0.05)" stroke="#d9822b" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="765" height="22" rx="6" fill="#d9822b"/>
+<text x="434.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">LAYERS · outermost first · each removes one capability an attacker would need</text>
+<text x="52.0" y="112" font-size="11" fill="#d9822b" font-style="italic">internal/sandbox/{jail,init,cgroup,seccomp}_linux.go — no libcontainer, no runc, stdlib syscall only</text>
+<rect x="830" y="86" width="690" height="560" rx="10" ry="10" fill="rgba(47,111,191,0.045)" stroke="#2f6fbf" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="842" y="75" width="612" height="22" rx="6" fill="#2f6fbf"/>
+<text x="1147.8" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">LIFECYCLE · parent (gateway) ↔ child (re-exec&#x27;d self as init)</text>
+<text x="842.0" y="112" font-size="11" fill="#2f6fbf" font-style="italic">the jail is built INSIDE the new namespaces, which only exist after clone(2)</text>
+<rect x="830" y="672" width="690" height="314" rx="10" ry="10" fill="rgba(50,108,229,0.04)" stroke="#326ce5" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="842" y="661" width="573" height="22" rx="6" fill="#326ce5"/>
+<text x="1128.6" y="676.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">DRIVERS · one Spec, one Result, three isolation strengths</text>
+<text x="842.0" y="698" font-size="11" fill="#326ce5" font-style="italic">sandbox.New(name, cfg) picks one; the gateway never knows which</text>
+<path d="M 100.0 216.5 L 100.0 226.5" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 311.0 L 100.0 321.0" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 405.5 L 100.0 415.5" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 485.5 L 100.0 495.5" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 565.5 L 100.0 575.5" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 631.0 L 100.0 641.0" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 696.5 L 100.0 706.5" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 776.5 L 100.0 786.5" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 100.0 871.0 L 100.0 881.0" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 1010.0 204.0 L 1010.0 226.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1160.0 256.0 L 1200.0 256.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1010.0 286.0 L 1010.0 308.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1160.0 338.0 L 1200.0 338.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1345.0 286.0 L 1345.0 308.0" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 1010.0 368.0 L 1010.0 390.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1345.0 438.0 L 1345.0 469.0 L 1160.0 469.0" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 910.0 508.0 L 910.0 530.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<g filter="url(#shadow)">
+<rect x="70" y="132" width="700" height="84.5" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="132" width="5" height="84.5" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">0 · Resource limits — enforced by the PARENT, outside the jail</text>
+<text x="83.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cgroup v1/v2: cpu.max · memory.max (+ OOM detection via memory.events / oom_control) · pids.max</text>
+<text x="83.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">rlimits: NOFILE · NPROC · FSIZE · CORE=0   ·   wall-clock timer in the parent → SIGKILL the whole cgroup</text>
+<text x="83.0" y="198.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">stops: fork bombs (S9), memory bombs (S8), infinite loops (S7), disk filling — attacker cannot raise them</text>
+<g filter="url(#shadow)">
+<rect x="70" y="226.5" width="700" height="84.5" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="70" y="226.5" width="5" height="84.5" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="83.0" y="245.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">1 · User namespace — CLONE_NEWUSER</text>
+<text x="83.0" y="263.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">uid_map 0→0 (1) then 1→100000 (65535); setgroups=deny; inside-root is host uid 0 only for the one setup step</text>
+<text x="83.0" y="278.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the payload runs as uid 1000 → host uid 100999: an unprivileged nobody even if it escapes the mount ns</text>
+<text x="83.0" y="292.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">why uid 0 first: pivot_root, mount and capset need capabilities that only exist inside the userns</text>
+<g filter="url(#shadow)">
+<rect x="70" y="321.0" width="700" height="84.5" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="70" y="321.0" width="5" height="84.5" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="83.0" y="340.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">2 · Mount namespace — CLONE_NEWNS + pivot_root onto a tmpfs</text>
+<text x="83.0" y="358.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">MS_PRIVATE recursive (mounts never propagate back to the host) → tmpfs root → bind /usr,/bin,/lib read-only (2nd remount)</text>
+<text x="83.0" y="372.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">synthesised /etc (passwd, group, empty resolv.conf, files-only nsswitch) · fresh /proc · /dev nodes bound (no mknod in userns)</text>
+<text x="83.0" y="387.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">/work rw (nosuid,nodev re-applied) · /tmp rw · pivot_root then umount old root: NO mount references the host (S2, S3, S4)</text>
+<g filter="url(#shadow)">
+<rect x="70" y="415.5" width="700" height="70.0" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="70" y="415.5" width="5" height="70.0" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="83.0" y="434.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">3 · PID namespace — CLONE_NEWPID</text>
+<text x="83.0" y="452.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the payload is pid 1 of its own tree; it cannot see, signal or ptrace host processes or the broker sandbox</text>
+<text x="83.0" y="467.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">fresh /proc shows only this tree → /proc/&lt;pid&gt;/environ of the credentialed process is unreachable (S12)</text>
+<g filter="url(#shadow)">
+<rect x="70" y="495.5" width="700" height="70.0" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="70" y="495.5" width="5" height="70.0" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="83.0" y="514.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">4 · Network namespace — CLONE_NEWNET, left EMPTY</text>
+<text x="83.0" y="532.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no interface brought up, no address, no route: connect() fails with ENETUNREACH before any packet exists (S1)</text>
+<text x="83.0" y="547.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">not a firewall rule that could be misconfigured — there is nothing to route to; broker sandboxes get NetworkProxy instead</text>
+<g filter="url(#shadow)">
+<rect x="70" y="575.5" width="700" height="55.5" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="70" y="575.5" width="5" height="55.5" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="83.0" y="594.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">5 · UTS + IPC namespaces</text>
+<text x="83.0" y="612.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">hostname &#x27;sandbox&#x27; · own SysV IPC / POSIX mqueue — no shared-memory channel to other tenants&#x27; processes</text>
+<g filter="url(#shadow)">
+<rect x="70" y="641.0" width="700" height="55.5" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="70" y="641.0" width="5" height="55.5" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="83.0" y="660.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">6 · no_new_privs — prctl(PR_SET_NO_NEW_PRIVS)</text>
+<text x="83.0" y="678.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">first, because it is the precondition for an unprivileged seccomp install and it neuters setuid/fscaps forever</text>
+<g filter="url(#shadow)">
+<rect x="70" y="706.5" width="700" height="70.0" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="70" y="706.5" width="5" height="70.0" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="83.0" y="725.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">7 · Capability bounding set → ∅, then setuid(1000), then clear all sets</text>
+<text x="83.0" y="743.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">CAP_SETPCAP to drop the bounding set, CAP_SETUID/SETGID to switch — both still held as inside-uid 0</text>
+<text x="83.0" y="758.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">order matters: caps before uid → setgroups EPERM → glibc abort() → SIGABRT (bug B1). After: no execve can regain a cap (S5)</text>
+<g filter="url(#shadow)">
+<rect x="70" y="786.5" width="700" height="84.5" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="70" y="786.5" width="5" height="84.5" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="83.0" y="805.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">8 · seccomp-BPF denylist — hand-assembled filter, SECCOMP_MODE_FILTER</text>
+<text x="83.0" y="823.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">arch check (kill on foreign ABI) · x32 bit → KILL · clone3 → ENOSYS (forces the filterable clone path)</text>
+<text x="83.0" y="838.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">35 → EPERM: mount · pivot_root · chroot · unshare · setns · ptrace · *_module · kexec_* · bpf · keyctl · io_uring_* … + clone3 = 36 (S6)</text>
+<text x="83.0" y="852.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">installed LAST so the filter need not allow the privilege-dropping syscalls above</text>
+<g filter="url(#shadow)">
+<rect x="70" y="881.0" width="700" height="55.5" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="881.0" width="5" height="55.5" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="900.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">9 · execve(payload)</text>
+<text x="83.0" y="918.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">lookPathIn(argv[0]) using the sandbox PATH (/opt/agentorch/bin first) · env = SafeEnv(): PATH, HOME=/work, LANG, plus tool extras</text>
+<g filter="url(#shadow)">
+<rect x="860" y="130" width="300" height="74" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="860" y="130" width="5" height="74" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="873.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">parent · prepare</text>
+<text x="873.0" y="167.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Spec{argv, env, workspace, limits, network}</text>
+<text x="873.0" y="181.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">jailConfig JSON → fd 3 · sync pipe → fd 4</text>
+<text x="873.0" y="196.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cgroup created, limits written</text>
+<g filter="url(#shadow)">
+<rect x="860" y="226" width="300" height="60" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="860" y="226" width="5" height="60" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="873.0" y="245.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">parent · clone</text>
+<text x="873.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">/proc/self/exe as init with CLONE_NEWUSER|NS|PID|NET|UTS|IPC</text>
+<text x="873.0" y="277.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">write uid_map, gid_map, setgroups=deny</text>
+<g filter="url(#shadow)">
+<rect x="1200" y="226" width="290" height="60" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="1200" y="226" width="5" height="60" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="1213.0" y="245.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">child · blocks on fd 4</text>
+<text x="1213.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">MaybeRunInit() at the top of main()</text>
+<text x="1213.0" y="277.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">unbounded until released → does nothing</text>
+<g filter="url(#shadow)">
+<rect x="860" y="308" width="300" height="60" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="860" y="308" width="5" height="60" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="873.0" y="327.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">parent · confine, then release</text>
+<text x="873.0" y="345.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">add child pid to cgroup.procs</text>
+<text x="873.0" y="359.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">write 1 byte to the sync pipe</text>
+<g filter="url(#shadow)">
+<rect x="1200" y="308" width="290" height="130" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="1200" y="308" width="5" height="130" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="1213.0" y="327.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">child · builds the jail (layers 2–9)</text>
+<text x="1213.0" y="345.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">sethostname · buildRootfs · applyRlimits</text>
+<text x="1213.0" y="359.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no_new_privs → bounding set → setgroups/gid/uid</text>
+<text x="1213.0" y="374.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ clear caps → seccomp → execve</text>
+<text x="1213.0" y="388.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">setup failure: exit 125 + marker so the parent</text>
+<text x="1213.0" y="403.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">reports &#x27;our bug&#x27;, not &#x27;your script failed&#x27;</text>
+<text x="1213.0" y="417.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">payload writes to /work; stdout/stderr → pipes</text>
+<g filter="url(#shadow)">
+<rect x="860" y="390" width="300" height="118" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="860" y="390" width="5" height="118" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="873.0" y="409.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">parent · supervise</text>
+<text x="873.0" y="427.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">capWriter on stdout/stderr (MaxOutputBytes/2 each)</text>
+<text x="873.0" y="441.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">wall-clock context → on timeout killCgroup()</text>
+<text x="873.0" y="456.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">(every pid in the cgroup, not just the child)</text>
+<text x="873.0" y="470.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">OOMKilled from memory.events / oom_control</text>
+<text x="873.0" y="485.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">exit code classified · Result{…, Truncated, Driver}</text>
+<g filter="url(#shadow)">
+<rect x="860" y="530" width="630" height="90" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="860" y="530" width="5" height="90" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="873.0" y="549.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Result → gateway</text>
+<text x="873.0" y="567.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ExitCode · Stdout · Stderr · Truncated · OOMKilled · TimedOut · Duration · Driver</text>
+<text x="873.0" y="581.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">formatExecResult() renders it for the model; Scrub() removes any credential (cli path)</text>
+<text x="873.0" y="596.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">measured cold start: 8.4 ms median (namespace driver) — S11</text>
+<rect x="1159.0" y="246.0" width="42.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1180.0" y="258.0" font-size="10.5" fill="#2f6fbf" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">clone</text>
+<rect x="1215.0" y="450.0" width="90.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1260.0" y="462.0" font-size="10.5" fill="#d9822b" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">exit / output</text>
+<rect x="850" y="716" width="150" height="25.6" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="732.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Driver</text>
+<rect x="1000" y="716" width="170" height="25.6" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="732.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">namespace (PoC default)</text>
+<rect x="1170" y="716" width="170" height="25.6" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="732.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">docker / podman</text>
+<rect x="1340" y="716" width="160" height="25.6" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="732.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">kubernetes (production)</text>
+<rect x="850" y="741.6" width="150" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="757.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Isolation</text>
+<rect x="1000" y="741.6" width="170" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="757.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">all 6 namespaces + seccomp,</text>
+<text x="1007.0" y="771.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">shared host kernel</text>
+<rect x="1170" y="741.6" width="170" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="757.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">same flags via CLI,</text>
+<text x="1177.0" y="771.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">shared host kernel</text>
+<rect x="1340" y="741.6" width="160" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="757.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">pod + RuntimeClass gvisor:</text>
+<text x="1347.0" y="771.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">user-space kernel (runsc)</text>
+<rect x="850" y="780.8000000000001" width="150" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="796.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Kernel LPE →</text>
+<rect x="1000" y="780.8000000000001" width="170" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="796.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">host compromise</text>
+<rect x="1170" y="780.8000000000001" width="170" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="796.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">host compromise</text>
+<rect x="1340" y="780.8000000000001" width="160" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="796.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">gVisor sentry, not the host</text>
+<rect x="850" y="806.4000000000001" width="150" height="25.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="822.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Cold start</text>
+<rect x="1000" y="806.4000000000001" width="170" height="25.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="822.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">8.4 ms measured</text>
+<rect x="1170" y="806.4000000000001" width="170" height="25.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="822.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">≈300–800 ms</text>
+<rect x="1340" y="806.4000000000001" width="160" height="25.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="822.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">1–3 s (schedule + image)</text>
+<rect x="850" y="832.0000000000001" width="150" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="848.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Network</text>
+<rect x="1000" y="832.0000000000001" width="170" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="848.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">empty netns / host (broker)</text>
+<rect x="1170" y="832.0000000000001" width="170" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="848.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">--network none</text>
+<rect x="1340" y="832.0000000000001" width="160" height="25.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="848.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">NetworkPolicy default-deny</text>
+<rect x="850" y="857.6000000000001" width="150" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="873.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Where</text>
+<rect x="1000" y="857.6000000000001" width="170" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="873.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">laptop, CI, demo</text>
+<rect x="1170" y="857.6000000000001" width="170" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="873.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">laptop convenience</text>
+<rect x="1340" y="857.6000000000001" width="160" height="39.2" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="873.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tainted node pool, no SA</text>
+<text x="1347.0" y="887.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">token</text>
+<rect x="850" y="896.8000000000002" width="150" height="39.2" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="857.0" y="912.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Why it exists</text>
+<rect x="1000" y="896.8000000000002" width="170" height="39.2" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1007.0" y="912.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">measure the floor; prove the</text>
+<text x="1007.0" y="926.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">layers with no framework</text>
+<rect x="1170" y="896.8000000000002" width="170" height="39.2" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1177.0" y="912.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">dev parity with the PodSpec</text>
+<text x="1177.0" y="926.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">(one-to-one flag table)</text>
+<rect x="1340" y="896.8000000000002" width="160" height="39.2" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1347.0" y="912.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the security property the</text>
+<text x="1347.0" y="926.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">design actually promises</text>
+<rect x="40" y="1010" width="300" height="26.3" fill="#d9822b" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1026.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Failure inside the sandbox</text>
+<rect x="340" y="1010" width="400" height="26.3" fill="#d9822b" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1026.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Detection</text>
+<rect x="740" y="1010" width="400" height="26.3" fill="#d9822b" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1026.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Reaction</text>
+<rect x="1140" y="1010" width="380" height="26.3" fill="#d9822b" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1026.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Proof</text>
+<rect x="40" y="1036.28" width="300" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">fork bomb</text>
+<rect x="340" y="1036.28" width="400" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">pids.max reached → fork() EAGAIN</text>
+<rect x="740" y="1036.28" width="400" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">payload&#x27;s own forks fail; parent kills the cgroup at exit</text>
+<rect x="1140" y="1036.28" width="380" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestSandbox_ForkBombIsContained (os.fork loop, asserts refusal at</text>
+<text x="1147.0" y="1067.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">≈ pids.max)</text>
+<rect x="40" y="1076.84" width="300" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1093.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">memory bomb</text>
+<rect x="340" y="1076.84" width="400" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1093.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">memory.max → OOM killer; oom_kill counter read</text>
+<rect x="740" y="1076.84" width="400" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1093.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Result.OOMKilled=true; the model is told</text>
+<rect x="1140" y="1076.84" width="380" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1093.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestSandbox_MemoryLimitIsEnforced (reads oom_kill, not failcnt —</text>
+<text x="1147.0" y="1107.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">bug fix)</text>
+<rect x="40" y="1117.3999999999999" width="300" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1133.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">infinite loop / sleep</text>
+<rect x="340" y="1117.3999999999999" width="400" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1133.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">parent wall-clock context</text>
+<rect x="740" y="1117.3999999999999" width="400" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1133.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">killCgroup(): every pid, TimedOut=true</text>
+<rect x="1140" y="1117.3999999999999" width="380" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1133.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestSandbox_WallClockTimeoutIsEnforced</text>
+<rect x="40" y="1143.6799999999998" width="300" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1160.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">escape attempt (mount, ptrace, unshare…)</text>
+<rect x="340" y="1143.6799999999998" width="400" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1160.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">seccomp EPERM / clone3 ENOSYS / CapBnd=∅</text>
+<rect x="740" y="1143.6799999999998" width="400" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1160.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">syscall fails; nothing to log from inside</text>
+<rect x="1140" y="1143.6799999999998" width="380" height="40.6" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1160.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestSandbox_EscapeSyscallsAreBlocked +</text>
+<text x="1147.0" y="1174.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">RunsUnprivilegedWithNoCapabilities</text>
+<rect x="40" y="1184.2399999999998" width="300" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1200.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">network reach (exfiltration)</text>
+<rect x="340" y="1184.2399999999998" width="400" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1200.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">ENETUNREACH from connect()</text>
+<rect x="740" y="1184.2399999999998" width="400" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1200.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no packet is ever emitted</text>
+<rect x="1140" y="1184.2399999999998" width="380" height="40.6" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1200.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestSandbox_HasNoNetworkAccess (Python socket + host negative</text>
+<text x="1147.0" y="1215.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">control — bug B2)</text>
+<rect x="40" y="1224.7999999999997" width="300" height="26.3" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1241.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">output flood</text>
+<rect x="340" y="1224.7999999999997" width="400" height="26.3" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1241.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">capWriter hits MaxOutputBytes/2</text>
+<rect x="740" y="1224.7999999999997" width="400" height="26.3" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1241.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Truncated=true; the rest is dropped, not buffered</text>
+<rect x="1140" y="1224.7999999999997" width="380" height="26.3" fill="#fbfbfc" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1241.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestSandbox_OutputIsCapped</text>
+<rect x="40" y="1251.0799999999997" width="300" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1267.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">jail fails to build (our bug)</text>
+<rect x="340" y="1251.0799999999997" width="400" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1267.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">exit 125 + setup marker on stderr</text>
+<rect x="740" y="1251.0799999999997" width="400" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="747.0" y="1267.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">ErrSetup to the gateway → 502, not &#x27;your script failed&#x27;</text>
+<rect x="1140" y="1251.0799999999997" width="380" height="26.3" fill="#ffffff" stroke="#d9822b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1147.0" y="1267.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">exitcode.go</text>
+<rect x="28" y="1282" width="14" height="12" rx="3" fill="#fdf1e3" stroke="#d9822b" stroke-width="1"/>
+<text x="48.0" y="1292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">namespace layer</text>
+<rect x="258" y="1282" width="14" height="12" rx="3" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1"/>
+<text x="278.0" y="1292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">privilege-drop step</text>
+<rect x="488" y="1282" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="508.0" y="1292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">parent / platform code</text>
+<rect x="718" y="1282" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="738.0" y="1292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">result</text>
+<rect x="28" y="1300" width="14" height="12" rx="3" fill="#eaf0fc" stroke="#326ce5" stroke-width="1"/>
+<text x="48.0" y="1310.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Kubernetes</text>
+</svg>

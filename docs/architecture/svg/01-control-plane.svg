@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1100" viewBox="0 0 1500 1100" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1500" height="1100" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">01 · Control plane — the API server and console</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">Where identity and intent enter the system. Holds no credentials, executes nothing, never talks to a model or a tool.</text>
+<rect x="40" y="86" width="1420" height="118" rx="10" ry="10" fill="rgba(192,57,43,0.045)" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="93" height="22" rx="6" fill="#c0392b"/>
+<text x="98.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">CALLERS</text>
+<rect x="145.2" y="79" width="441" height="14" fill="#f7f8fa"/>
+<text x="155.2" y="90.5" font-size="11" fill="#c0392b" font-style="italic" text-anchor="start">everything here authenticates with a bearer API key; production swaps in OIDC</text>
+<rect x="40" y="250" width="940" height="640" rx="10" ry="10" fill="rgba(47,111,191,0.045)" stroke="#2f6fbf" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="239" width="804" height="22" rx="6" fill="#2f6fbf"/>
+<text x="453.8" y="254.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">CONTROL PLANE PROCESS · agentorch serve · :8080 · 2 replicas · PDB minAvailable=1</text>
+<text x="52.0" y="276" font-size="11" fill="#2f6fbf" font-style="italic">stateless — any replica answers any request; SSE clients reconnect and resume from the last seq</text>
+<rect x="1020" y="250" width="440" height="640" rx="10" ry="10" fill="rgba(46,139,87,0.05)" stroke="#2e8b57" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="1032" y="239" width="74" height="22" rx="6" fill="#2e8b57"/>
+<text x="1069.0" y="254.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">STATE</text>
+<text x="1032.0" y="276" font-size="11" fill="#2e8b57" font-style="italic">all reads and writes are tenant-scoped</text>
+<path d="M 170.0 188.0 L 170.0 300.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 500.0 188.0 L 500.0 216.0 L 270.0 216.0 L 270.0 300.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 915.0 188.0 L 915.0 228.0 L 370.0 228.0 L 370.0 300.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1275.0 188.0 L 1275.0 230.0 L 1470.0 230.0 L 1470.0 770.0 L 1240.0 770.0 L 1240.0 786.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 270.0 396.0 L 270.0 426.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 270.0 522.0 L 270.0 552.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 470.0 567.0 L 500.0 380.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 470.0 597.0 L 500.0 538.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 470.0 627.0 L 500.0 675.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 470.0 657.0 L 500.0 808.0" fill="none" stroke="#2f6fbf" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 950.0 380.0 L 1050.0 365.0" fill="none" stroke="#2e8b57" stroke-width="2"  marker-end="url(#arr-green)" />
+<path d="M 950.0 538.0 L 1050.0 425.0" fill="none" stroke="#2e8b57" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr-green)" />
+<path d="M 950.0 675.0 L 1050.0 485.0" fill="none" stroke="#2e8b57" stroke-width="2"  marker-end="url(#arr-green)" />
+<path d="M 950.0 808.0 L 1050.0 565.0" fill="none" stroke="#2e8b57" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr-green)" />
+<path d="M 950.0 838.0 L 1000.0 838.0 L 1000.0 708.0 L 1050.0 708.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<g filter="url(#shadow)">
+<rect x="70" y="114" width="300" height="74" rx="7" fill="#f0f0f0" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="70" y="114" width="5" height="74" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="83.0" y="133.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">CI / automation</text>
+<text x="83.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /v1/runs with agent_digest or agent_name</text>
+<text x="83.0" y="165.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">polls GET /v1/runs/{id} or streams events</text>
+<g filter="url(#shadow)">
+<rect x="410" y="114" width="300" height="74" rx="7" fill="#f0f0f0" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="410" y="114" width="5" height="74" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="423.0" y="133.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Human via the console</text>
+<text x="423.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">React SPA, served from the same binary</text>
+<text x="423.0" y="165.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">resume · approve · cancel · watch</text>
+<g filter="url(#shadow)">
+<rect x="750" y="114" width="330" height="74" rx="7" fill="#f0f0f0" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="750" y="114" width="5" height="74" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="763.0" y="133.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Platform operator</text>
+<text x="763.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">principal with Operator=true</text>
+<text x="763.0" y="165.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">may read ACROSS tenants (?tenant=) — never write on their behalf</text>
+<g filter="url(#shadow)">
+<rect x="1120" y="114" width="310" height="74" rx="7" fill="#f0f0f0" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="1120" y="114" width="5" height="74" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="1133.0" y="133.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Prometheus / probes</text>
+<text x="1133.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET /metrics (text exposition, hand-rolled)</text>
+<text x="1133.0" y="165.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET /healthz for readiness + liveness</text>
+<g filter="url(#shadow)">
+<rect x="70" y="300" width="400" height="96" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="300" width="5" height="96" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="319.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">1 · Authenticate + resolve principal</text>
+<text x="83.0" y="337.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Authorization: Bearer &lt;api-key&gt;  →  Principal{TenantID, User, Operator}</text>
+<text x="83.0" y="351.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">unknown key → 401 · the key table is in memory in the PoC</text>
+<text x="83.0" y="366.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">every handler receives the Principal; there is no ambient tenant</text>
+<g filter="url(#shadow)">
+<rect x="70" y="426" width="400" height="96" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="426" width="5" height="96" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="445.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">2 · Tenant scoping (the multi-tenancy boundary)</text>
+<text x="83.0" y="463.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">scope(p) = p.TenantID, or ?tenant= when p.Operator</text>
+<text x="83.0" y="477.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">every store call takes the tenant → rows of other tenants are unreachable</text>
+<text x="83.0" y="492.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a foreign run id returns 404 NOT 403: existence is itself information</text>
+<g filter="url(#shadow)">
+<rect x="70" y="552" width="400" height="150" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="552" width="5" height="150" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="571.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">3 · Route (net/http ServeMux, method-aware patterns)</text>
+<text x="83.0" y="589.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /v1/runs                 create (admission-controlled)</text>
+<text x="83.0" y="603.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET  /v1/runs · /v1/runs/{id}  list · get   (tenant-scoped)</text>
+<text x="83.0" y="618.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET  /v1/runs/{id}/events      full history (seq-ordered)</text>
+<text x="83.0" y="632.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET  /v1/runs/{id}/stream      SSE, live</text>
+<text x="83.0" y="647.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /v1/runs/{id}/{resume|approve|cancel}</text>
+<text x="83.0" y="661.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET  /v1/audit · /v1/quota · /v1/tools · /v1/overview</text>
+<text x="83.0" y="676.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">GET|POST /v1/agents            immutable definitions</text>
+<g filter="url(#shadow)">
+<rect x="70" y="732" width="400" height="58" rx="7" fill="#f3f4f6" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="70" y="732" width="5" height="58" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="83.0" y="751.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Static console</text>
+<text x="83.0" y="769.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">embedded Vite build served at / — one binary, one image, no CDN</text>
+<g filter="url(#shadow)">
+<rect x="500" y="300" width="450" height="160" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="500" y="300" width="5" height="160" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="513.0" y="319.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">createRun — admission control, then ONE transaction</text>
+<text x="513.0" y="337.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">resolve agent → definition; def.TenantID must equal the caller&#x27;s tenant (403)</text>
+<text x="513.0" y="351.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">CountActiveRuns(tenant) ≥ tenant.max_concurrent_runs → 429 + retry_after_seconds</text>
+<text x="513.0" y="366.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">pin def.Digest on the run: later edits to the agent cannot widen this run</text>
+<text x="513.0" y="380.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT runs(state=QUEUED, next_seq=1) + events(seq 0, RUN_CREATED) — one txn</text>
+<text x="513.0" y="395.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no worker is contacted: creating a run is writing a row</text>
+<text x="513.0" y="409.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">returns 201 with the run; the dispatcher will find it within one poll (100 ms)</text>
+<g filter="url(#shadow)">
+<rect x="500" y="484" width="450" height="108" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="500" y="484" width="5" height="108" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="513.0" y="503.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">streamRun — SSE built on the event log itself</text>
+<text x="513.0" y="521.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">poll ListEvents(run, since) every 400 ms; emit each event as `data:` JSON</text>
+<text x="513.0" y="535.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">since = last seq + 1 → a reconnecting client never sees a gap or a duplicate</text>
+<text x="513.0" y="550.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the console sees exactly the events the model&#x27;s context was rebuilt from</text>
+<text x="513.0" y="564.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no pub/sub, no fan-out service: Postgres is the bus (designed: LISTEN/NOTIFY)</text>
+<g filter="url(#shadow)">
+<rect x="500" y="616" width="450" height="118" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="500" y="616" width="5" height="118" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="513.0" y="635.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">resume · approve · cancel — AppendSystemEvents</text>
+<text x="513.0" y="653.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">precondition on state: resume needs WAITING_HUMAN, approve needs WAITING_APPROVAL</text>
+<text x="513.0" y="667.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">append HUMAN_RESUME / APPROVAL_GIVEN / RUN_FINISHED and flip state in one txn</text>
+<text x="513.0" y="682.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no fencing token: by construction no worker holds a lease on a parked run</text>
+<text x="513.0" y="696.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">approve re-queues the run; the worker retries the SAME idem key with Approved=true</text>
+<g filter="url(#shadow)">
+<rect x="500" y="758" width="450" height="100" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="500" y="758" width="5" height="100" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="513.0" y="777.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Read models</text>
+<text x="513.0" y="795.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">/v1/overview: runs by state, cost by tenant — from runs.usage, no separate ledger</text>
+<text x="513.0" y="809.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">/v1/quota: limiter.Snapshot() — guaranteed rate, tokens, throttled flag per tenant</text>
+<text x="513.0" y="824.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">/v1/audit: hash-chained records + VerifyChain on demand (operators see all tenants)</text>
+<text x="513.0" y="838.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">/v1/tools: Tool.MarshalJSON emits the model-facing schema ONLY — never the backend</text>
+<g filter="url(#shadow)">
+<rect x="1050" y="300" width="380" height="330" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="1050" y="300" width="5" height="330" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="1063.0" y="319.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">PostgreSQL</text>
+<text x="1063.0" y="337.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tenants          weight · tpm · max_concurrent_runs</text>
+<text x="1063.0" y="351.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agent_definitions digest PK (canonical JSON)</text>
+<text x="1063.0" y="366.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">runs             state · next_seq · lease_*</text>
+<text x="1063.0" y="380.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">events           (run_id, seq) append-only</text>
+<text x="1063.0" y="395.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">audit_log        (tenant_id, seq) hash chain</text>
+<text x="1063.0" y="409.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start"></text>
+<text x="1063.0" y="424.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idx_runs_tenant_state   ← CountActiveRuns</text>
+<text x="1063.0" y="438.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idx_runs_dispatch       ← workers, not the API</text>
+<text x="1063.0" y="453.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">events PK (run_id,seq)  ← SSE `since` scan</text>
+<text x="1063.0" y="467.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start"></text>
+<text x="1063.0" y="482.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the API never touches tool_calls:</text>
+<text x="1063.0" y="496.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the journal belongs to the gateway</text>
+<g filter="url(#shadow)">
+<rect x="1050" y="660" width="380" height="96" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="1050" y="660" width="5" height="96" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="1063.0" y="679.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Fairness limiter (in-process)</text>
+<text x="1063.0" y="697.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">read-only from the API: Snapshot() for /v1/quota</text>
+<text x="1063.0" y="711.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the API cannot reserve or settle — only workers do</text>
+<text x="1063.0" y="726.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">gap: per-replica view; Redis-backed in the multi-replica design</text>
+<g filter="url(#shadow)">
+<rect x="1050" y="786" width="380" height="72" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="1050" y="786" width="5" height="72" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="1063.0" y="805.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Metrics registry (in-process)</text>
+<text x="1063.0" y="823.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agentorch_runs{tenant,state} gauge moved on create/finish</text>
+<text x="1063.0" y="837.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">11 series total; rendered on demand by GET /metrics</text>
+<rect x="952.0" y="362.5" width="96.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1000.0" y="374.5" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">one INSERT txn</text>
+<rect x="943.0" y="471.5" width="114.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1000.0" y="483.5" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">ListEvents(since)</text>
+<rect x="937.0" y="570.0" width="126.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1000.0" y="582.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">append + state flip</text>
+<rect x="916.0" y="735.0" width="138.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="985.0" y="747.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">tenant-scoped SELECTs</text>
+<rect x="964.0" y="763.0" width="72.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1000.0" y="775.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">Snapshot()</text>
+<rect x="40" y="912" width="230" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="928.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Failure</text>
+<rect x="270" y="912" width="380" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="277.0" y="928.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Detected by</text>
+<rect x="650" y="912" width="390" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="657.0" y="928.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">What happens</text>
+<rect x="1040" y="912" width="420" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1047.0" y="928.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Invariant kept / trade-off</text>
+<rect x="40" y="938.28" width="230" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="954.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">API replica dies mid-request</text>
+<rect x="270" y="938.28" width="380" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="277.0" y="954.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">client gets a reset; k8s readiness /healthz</text>
+<rect x="650" y="938.28" width="390" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="657.0" y="954.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">retry hits the other replica; a half-done create is impossible (one</text>
+<text x="657.0" y="969.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">txn)</text>
+<rect x="1040" y="938.28" width="420" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1047.0" y="954.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no partial run rows · cost: clients must retry (no client idem key yet —</text>
+<text x="1047.0" y="969.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">gap)</text>
+<rect x="40" y="978.8399999999999" width="230" height="26.3" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="995.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">Postgres unreachable</text>
+<rect x="270" y="978.8399999999999" width="380" height="26.3" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="277.0" y="995.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">store error → 500/503 to the caller</text>
+<rect x="650" y="978.8399999999999" width="390" height="26.3" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="657.0" y="995.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">nothing is queued anywhere else, so nothing is lost or duplicated</text>
+<rect x="1040" y="978.8399999999999" width="420" height="26.3" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1047.0" y="995.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">the API is a thin projection of the DB; it has no state to reconcile</text>
+<rect x="40" y="1005.1199999999999" width="230" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1021.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">tenant floods POST /v1/runs</text>
+<rect x="270" y="1005.1199999999999" width="380" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="277.0" y="1021.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">CountActiveRuns ≥ max_concurrent_runs</text>
+<rect x="650" y="1005.1199999999999" width="390" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="657.0" y="1021.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">429 with retry_after_seconds; the queue never fills with unrunnable</text>
+<text x="657.0" y="1035.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">work</text>
+<rect x="1040" y="1005.1199999999999" width="420" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1047.0" y="1021.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a burst cannot consume the worker pool · trade-off: rejected work is the</text>
+<text x="1047.0" y="1035.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">tenant&#x27;s problem</text>
+<rect x="28" y="1050" width="14" height="12" rx="3" fill="#f0f0f0" stroke="#6e7781" stroke-width="1"/>
+<text x="48.0" y="1060.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">callers</text>
+<rect x="258" y="1050" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="278.0" y="1060.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">control-plane code</text>
+<rect x="488" y="1050" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="508.0" y="1060.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">durable state</text>
+<rect x="718" y="1050" width="14" height="12" rx="3" fill="#f3f4f6" stroke="#6e7781" stroke-width="1"/>
+<text x="738.0" y="1060.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">static assets</text>
+</svg>

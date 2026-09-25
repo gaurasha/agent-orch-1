@@ -1,0 +1,101 @@
+# Local (kind) overlay.
+#
+# The differences from base are all about a single-node cluster with no gVisor
+# and no cloud load balancer. Each one is a deliberate DOWNGRADE of a security
+# or availability property, and each is called out, because a local overlay
+# that silently weakens the model is how people ship a weaker model.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# No `namespace:` field: base already declares the namespace on every resource,
+# and setting it here would rewrite the Namespace objects themselves to the same
+# name, collapsing agentorch and agentorch-sandboxes into one.
+resources:
+  - ../../base
+
+patches:
+  # 1. Fewer replicas: one node, and PDBs with minAvailable:1 would otherwise
+  #    block drains on a single-node cluster.
+  - target: {kind: Deployment, name: controlplane}
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+  - target: {kind: Deployment, name: toolgateway}
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+  - target: {kind: Deployment, name: agentd}
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+
+  # 2. Expose the console on a NodePort, since kind has no LoadBalancer.
+  - target: {kind: Service, name: controlplane}
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: NodePort
+      - op: add
+        path: /spec/ports/0/nodePort
+        value: 30080
+
+  # 3. Smaller resource requests so everything fits on one kind node.
+  - target: {kind: StatefulSet, name: postgres}
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 50m
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 256Mi
+
+  # 4. A much smaller sandbox ceiling: a laptop is not a cluster.
+  - target: {kind: ResourceQuota, name: sandbox-ceiling}
+    patch: |-
+      - op: replace
+        path: /spec/hard/pods
+        value: "30"
+      - op: replace
+        path: /spec/hard/requests.cpu
+        value: "8"
+      - op: replace
+        path: /spec/hard/requests.memory
+        value: 8Gi
+      - op: replace
+        path: /spec/hard/limits.cpu
+        value: "8"
+      - op: replace
+        path: /spec/hard/limits.memory
+        value: 8Gi
+      - op: replace
+        path: /spec/hard/requests.ephemeral-storage
+        value: 20Gi
+
+  # 5. Local configuration overrides.
+  - target: {kind: ConfigMap, name: agentorch-config}
+    patch: |-
+      - op: replace
+        path: /data/AGENTORCH_LOG_LEVEL
+        value: debug
+      # SECURITY DOWNGRADE, DELIBERATE AND LOCAL ONLY:
+      #
+      # kind nodes run containerd without the gVisor (runsc) shim, so a
+      # RuntimeClass of "gvisor" would leave every sandbox pod Pending. Setting
+      # it empty falls back to the default runtime - which means sandboxes here
+      # share the host kernel and the strongest isolation layer is absent.
+      #
+      # Everything else still applies: no network, read-only rootfs, non-root,
+      # all capabilities dropped, seccomp, resource limits. This overlay is for
+      # developing the platform, NOT for running untrusted tenant code.
+      - op: replace
+        path: /data/AGENTORCH_RUNTIME_CLASS
+        value: ""
+
+images:
+  - name: agentorch/platform
+    newTag: dev
+  - name: agentorch/sandbox
+    newTag: dev

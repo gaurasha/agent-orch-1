@@ -1,0 +1,107 @@
+# Postgres for the demo cluster.
+#
+# HONEST LIMIT: this is a single-replica StatefulSet with no backups, no
+# failover and no connection pooler. It is fine for a kind cluster and is NOT a
+# production database. In production this should be a managed Postgres (RDS,
+# Cloud SQL, AlloyDB) or an operator-managed cluster (CloudNativePG), with
+# PITR, a read replica for the console, and PgBouncer in front - see
+# "What I cut" in DESIGN.md.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: agentorch-postgres
+  namespace: agentorch
+type: Opaque
+stringData:
+  # Demo credential. A real deployment sources this from External Secrets or
+  # the cloud provider's secret manager; it must never be in git.
+  POSTGRES_PASSWORD: agentorch-dev-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: postgres
+spec:
+  clusterIP: None
+  selector:
+    app.kubernetes.io/name: postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: postgres
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          env:
+            - name: POSTGRES_USER
+              value: agentorch
+            - name: POSTGRES_DB
+              value: agentorch
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: agentorch-postgres
+                  key: POSTGRES_PASSWORD
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: postgres
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false   # Postgres needs a writable datadir
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests: {cpu: 200m, memory: 512Mi}
+            limits:   {cpu: "2",  memory: 2Gi}
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "agentorch", "-d", "agentorch"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "agentorch", "-d", "agentorch"]
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi

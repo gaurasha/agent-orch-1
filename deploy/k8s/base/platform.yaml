@@ -1,0 +1,278 @@
+# The three platform services. All three are the SAME image with a different
+# --role, which keeps the build simple while still letting each one have its
+# own identity, network policy, scaling behaviour and blast radius.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: agentorch-signing
+  namespace: agentorch
+type: Opaque
+stringData:
+  # HMAC key for run-scoped tokens. Every replica MUST share it, or workers
+  # will mint tokens the gateway rejects.
+  #
+  # Demo value. Production: rotate this regularly, source it from a secret
+  # manager, and replace the whole mechanism with SPIFFE/SPIRE mTLS workload
+  # identity plus asymmetric run tokens (DEEP_DIVE.md "D7").
+  AGENTORCH_SECRET: change-me-in-production-this-is-a-demo-key-0123456789
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agentorch-config
+  namespace: agentorch
+data:
+  AGENTORCH_LOG_LEVEL: "info"
+  AGENTORCH_SANDBOX_DRIVER: "kubernetes"
+  AGENTORCH_SANDBOX_IMAGE: "agentorch/sandbox:dev"
+  AGENTORCH_RUNTIME_CLASS: "gvisor"
+  AGENTORCH_PROVIDER_TPM: "400000"
+  AGENTORCH_GATEWAY_URL: "http://toolgateway:8081"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: controlplane
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: controlplane
+spec:
+  selector:
+    app.kubernetes.io/name: controlplane
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controlplane
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: controlplane
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: controlplane
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: controlplane
+    spec:
+      serviceAccountName: agentorch-controlplane
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: controlplane
+          image: agentorch/platform:dev
+          args: ["serve", "--role=controlplane"]
+          envFrom:
+            - configMapRef: {name: agentorch-config}
+          env:
+            - name: AGENTORCH_DSN
+              value: postgres://agentorch:$(POSTGRES_PASSWORD)@postgres:5432/agentorch?sslmode=disable
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: agentorch-postgres, key: POSTGRES_PASSWORD}
+            - name: AGENTORCH_SECRET
+              valueFrom:
+                secretKeyRef: {name: agentorch-signing, key: AGENTORCH_SECRET}
+          ports: [{containerPort: 8080, name: http}]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits:   {cpu: "1",  memory: 512Mi}
+          readinessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: toolgateway
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: toolgateway
+spec:
+  selector:
+    app.kubernetes.io/name: toolgateway
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toolgateway
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: toolgateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: toolgateway
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: toolgateway
+    spec:
+      serviceAccountName: agentorch-toolgateway
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: toolgateway
+          image: agentorch/platform:dev
+          args: ["serve", "--role=gateway"]
+          envFrom:
+            - configMapRef: {name: agentorch-config}
+          env:
+            - name: AGENTORCH_DSN
+              value: postgres://agentorch:$(POSTGRES_PASSWORD)@postgres:5432/agentorch?sslmode=disable
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: agentorch-postgres, key: POSTGRES_PASSWORD}
+            - name: AGENTORCH_SECRET
+              valueFrom:
+                secretKeyRef: {name: agentorch-signing, key: AGENTORCH_SECRET}
+          ports: [{containerPort: 8081, name: http}]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          resources:
+            requests: {cpu: 200m, memory: 256Mi}
+            limits:   {cpu: "2",  memory: 1Gi}
+          readinessProbe:
+            httpGet: {path: /healthz, port: 8081}
+            initialDelaySeconds: 3
+            periodSeconds: 5
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agentd
+  namespace: agentorch
+  labels:
+    app.kubernetes.io/name: agentd
+spec:
+  # Workers are stateless and interchangeable, so this number is a pure
+  # throughput dial. It is NOT related to the number of agents: one worker
+  # handles many runs because a run is mostly waiting on I/O.
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: agentd
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: agentd
+    spec:
+      serviceAccountName: agentorch-agentd
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        seccompProfile:
+          type: RuntimeDefault
+      # A worker killed mid-step loses nothing: its lease lapses and another
+      # worker replays the event log. So we do not need a long drain, just
+      # enough to finish an in-flight commit.
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: agentd
+          image: agentorch/platform:dev
+          args: ["serve", "--role=worker", "--workers=8"]
+          envFrom:
+            - configMapRef: {name: agentorch-config}
+          env:
+            - name: AGENTORCH_DSN
+              value: postgres://agentorch:$(POSTGRES_PASSWORD)@postgres:5432/agentorch?sslmode=disable
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: agentorch-postgres, key: POSTGRES_PASSWORD}
+            - name: AGENTORCH_SECRET
+              valueFrom:
+                secretKeyRef: {name: agentorch-signing, key: AGENTORCH_SECRET}
+          ports: [{containerPort: 8080, name: http}]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          resources:
+            requests: {cpu: 200m, memory: 256Mi}
+            limits:   {cpu: "2",  memory: 1Gi}
+---
+# Scale workers on CPU. Queue depth would be a better signal (it is the thing
+# an operator actually cares about) and needs a custom metrics adapter; noted
+# in "What I cut".
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: agentd
+  namespace: agentorch
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: agentd
+  minReplicas: 2
+  maxReplicas: 40
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+  behavior:
+    scaleUp:
+      # Bursty traffic is the norm here (300 agents at 09:00), so scale up
+      # aggressively and down slowly.
+      stabilizationWindowSeconds: 30
+      policies: [{type: Percent, value: 100, periodSeconds: 30}]
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies: [{type: Percent, value: 25, periodSeconds: 60}]
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: controlplane
+  namespace: agentorch
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: controlplane
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: toolgateway
+  namespace: agentorch
+spec:
+  # The gateway is on the hot path for every tool call. Losing all replicas
+  # during a node drain would stall every agent in the fleet.
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: toolgateway

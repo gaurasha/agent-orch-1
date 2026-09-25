@@ -1,0 +1,265 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1330" viewBox="0 0 1560 1330" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1330" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">08 · Kubernetes topology — namespaces, NetworkPolicy, RBAC and the GitOps loop</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">What the cluster enforces regardless of what our code does. Every arrow here is a NetworkPolicy rule; anything not drawn is dropped by the CNI.</text>
+<rect x="40" y="86" width="1000" height="640" rx="10" ry="10" fill="rgba(50,108,229,0.04)" stroke="#326ce5" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="698" height="22" rx="6" fill="#326ce5"/>
+<text x="401.0" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">namespace agentorch · PSA restricted · default-deny in both directions</text>
+<text x="52.0" y="112" font-size="11" fill="#326ce5" font-style="italic">deploy/k8s/base/{platform,networkpolicy,rbac,postgres}.yaml · every pod: runAsNonRoot, RO rootfs, drop ALL, seccomp RuntimeDefault</text>
+<rect x="1080" y="86" width="440" height="640" rx="10" ry="10" fill="rgba(217,130,43,0.05)" stroke="#d9822b" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="1092" y="75" width="304" height="22" rx="6" fill="#d9822b"/>
+<text x="1244.2" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">namespace agentorch-sandboxes</text>
+<text x="1092.0" y="112" font-size="11" fill="#d9822b" font-style="italic">PSA restricted · RuntimeClass gvisor · tainted pool · quota · no SA token</text>
+<rect x="40" y="760" width="1480" height="240" rx="10" ry="10" fill="rgba(47,111,191,0.045)" stroke="#2f6fbf" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="749" width="784" height="22" rx="6" fill="#2f6fbf"/>
+<text x="444.2" y="764.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">GITOPS · deploy/argocd/{project,application}.yaml · scripts/argocd-{up,test}.sh</text>
+<text x="52.0" y="786" font-size="11" fill="#2f6fbf" font-style="italic">git is the only write path to the cluster; kubectl edits are reverted within one sync</text>
+<path d="M 200.0 192.0 L 200.0 226.0" fill="none" stroke="#326ce5" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 330.0 306.0 L 365.0 306.0 L 365.0 433.0 L 400.0 433.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 330.0 472.0 L 400.0 473.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 330.0 400.0 L 380.0 400.0 L 380.0 341.0 L 400.0 341.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 450.0 376.0 L 450.0 410.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 550.0 226.0 L 550.0 205.0 L 1060.0 205.0 L 1060.0 167.0 L 1110.0 167.0" fill="none" stroke="#326ce5" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr)" />
+<path d="M 700.0 321.0 L 770.0 299.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 1110.0 380.0 L 1045.0 380.0 L 1045.0 259.0 L 1010.0 259.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 700.0 361.0 L 890.0 361.0 L 890.0 388.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 300.0 516.0 L 300.0 535.0 L 740.0 535.0 L 740.0 595.0 L 770.0 595.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 370.0 881.0 L 410.0 881.0" fill="none" stroke="#326ce5" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 790.0 881.0 L 830.0 881.0" fill="none" stroke="#7a3fd1" stroke-width="1.6"  marker-end="url(#arr-purple)" />
+<g filter="url(#shadow)">
+<rect x="70" y="132" width="260" height="60" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="132" width="5" height="60" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Ingress / LB (yours)</text>
+<text x="83.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">TLS termination · OIDC in production</text>
+<text x="83.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ Service controlplane :8080</text>
+<g filter="url(#shadow)">
+<rect x="70" y="226" width="260" height="128" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="226" width="5" height="128" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="245.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">controlplane · Deployment ×2</text>
+<text x="83.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Service controlplane :8080</text>
+<text x="83.0" y="277.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SA: none mounted (automount=false)</text>
+<text x="83.0" y="292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ingress: {} (anything) — put an Ingress in front</text>
+<text x="83.0" y="306.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">egress: postgres:5432 · kube-dns:53</text>
+<text x="83.0" y="321.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">PDB minAvailable=1</text>
+<text x="83.0" y="335.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">readiness + liveness: GET /healthz</text>
+<g filter="url(#shadow)">
+<rect x="70" y="388" width="260" height="128" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="388" width="5" height="128" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="407.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">agentd · Deployment ×3 · HPA 2–40</text>
+<text x="83.0" y="425.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no Service (initiates only)</text>
+<text x="83.0" y="439.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SA: none mounted</text>
+<text x="83.0" y="454.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">egress: postgres:5432 · toolgateway:8081 · dns</text>
+<text x="83.0" y="468.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">NOTHING else — no internet, no API server</text>
+<text x="83.0" y="483.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">HPA cpu 70 % · up 100 %/30 s · down 25 %/60 s</text>
+<text x="83.0" y="497.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">graceful stop → fenced YieldRun</text>
+<g filter="url(#shadow)">
+<rect x="400" y="226" width="300" height="150" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="400" y="226" width="5" height="150" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="413.0" y="245.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">toolgateway · Deployment ×2</text>
+<text x="413.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Service toolgateway :8081</text>
+<text x="413.0" y="277.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SA agentorch-toolgateway (the ONLY SA)</text>
+<text x="413.0" y="292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ingress: from agentd:8081 only</text>
+<text x="413.0" y="306.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">egress: postgres · dns · 443/6443 to 0.0.0.0/0</text>
+<text x="413.0" y="321.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  EXCEPT 169.254.0.0/16 (cloud metadata)</text>
+<text x="413.0" y="335.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">PDB minAvailable=1 — on every tool call&#x27;s path</text>
+<g filter="url(#shadow)">
+<rect x="400" y="410" width="300" height="106" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="400" y="410" width="5" height="106" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="413.0" y="429.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">postgres · StatefulSet ×1</text>
+<text x="413.0" y="447.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Service postgres :5432</text>
+<text x="413.0" y="461.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ingress: from controlplane, agentd, toolgateway</text>
+<text x="413.0" y="476.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">egress: [] — the database initiates nothing</text>
+<text x="413.0" y="490.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">production: managed HA Postgres instead</text>
+<g filter="url(#shadow)">
+<rect x="770" y="226" width="240" height="106" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="770" y="226" width="5" height="106" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="783.0" y="245.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">egress-proxy (designed)</text>
+<text x="783.0" y="263.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Service :3128</text>
+<text x="783.0" y="277.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the broker sandbox&#x27;s only route out</text>
+<text x="783.0" y="292.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">per-run allowlist · CONNECT only</text>
+<text x="783.0" y="306.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">not in the PoC manifests yet</text>
+<g filter="url(#shadow)">
+<rect x="770" y="388" width="240" height="128" rx="7" fill="#eaf0fc" stroke="#326ce5" stroke-width="1.2"/>
+<rect x="770" y="388" width="5" height="128" rx="2.5" fill="#326ce5"/>
+</g>
+<text x="783.0" y="407.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">RBAC · Role sandbox-manager</text>
+<text x="783.0" y="425.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">namespace: agentorch-sandboxes</text>
+<text x="783.0" y="439.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">pods: create get list watch delete</text>
+<text x="783.0" y="454.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">pods/log: get</text>
+<text x="783.0" y="468.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">NOT: pods/exec · secrets · configmaps</text>
+<text x="783.0" y="483.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">     pods/portforward · cluster-*</text>
+<text x="783.0" y="497.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">bound to SA agentorch-toolgateway</text>
+<g filter="url(#shadow)">
+<rect x="70" y="550" width="630" height="70" rx="7" fill="#eaf0fc" stroke="#326ce5" stroke-width="1.2"/>
+<rect x="70" y="550" width="5" height="70" rx="2.5" fill="#326ce5"/>
+</g>
+<text x="83.0" y="569.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Secret agentorch-signing (AGENTORCH_SECRET) · Secret agentorch-postgres · ConfigMap agentorch-config</text>
+<text x="83.0" y="587.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the run-token HMAC key and the DB password are the only secrets in the cluster — tenant credentials NEVER live in etcd</text>
+<text x="83.0" y="601.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">envFrom configMapRef; secretKeyRef for the two secrets; ArgoCD manages the manifests, a sealed-secrets/ESO layer is the production step</text>
+<g filter="url(#shadow)">
+<rect x="770" y="550" width="240" height="70" rx="7" fill="#f3f4f6" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="770" y="550" width="5" height="70" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="783.0" y="569.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">kube-system · kube-dns</text>
+<text x="783.0" y="587.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">UDP/TCP 53, selected by label</text>
+<text x="783.0" y="601.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the only cross-namespace egress</text>
+<text x="783.0" y="616.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the platform pods are allowed</text>
+<g filter="url(#shadow)">
+<rect x="1110" y="132" width="380" height="150" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="1110" y="132" width="5" height="150" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="1123.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">sandbox pod (agent) · sbx-&lt;run&gt;-&lt;rand&gt;</text>
+<text x="1123.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">runtimeClassName: gvisor (handler runsc)</text>
+<text x="1123.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">NetworkPolicy sandbox-default-deny:</text>
+<text x="1123.0" y="198.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  podSelector {} · Ingress+Egress · no rules → nothing</text>
+<text x="1123.0" y="212.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  not even DNS</text>
+<text x="1123.0" y="227.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">created by toolgateway via the API server (RBAC above)</text>
+<text x="1123.0" y="241.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">pod-per-call: 1–3 s; the design warms per-run pods</text>
+<g filter="url(#shadow)">
+<rect x="1110" y="316" width="380" height="128" rx="7" fill="#fff7d6" stroke="#b8860b" stroke-width="1.2"/>
+<rect x="1110" y="316" width="5" height="128" rx="2.5" fill="#b8860b"/>
+</g>
+<text x="1123.0" y="335.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">sandbox pod (credential broker)</text>
+<text x="1123.0" y="353.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">label agentorch.io/sandbox-role=credential-broker</text>
+<text x="1123.0" y="367.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">NetworkPolicy sandbox-broker-egress-via-proxy:</text>
+<text x="1123.0" y="382.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  egress → agentorch/egress-proxy:3128</text>
+<text x="1123.0" y="396.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  egress → kube-system/kube-dns:53</text>
+<text x="1123.0" y="411.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  nothing else — the token can only go through the proxy</text>
+<g filter="url(#shadow)">
+<rect x="70" y="806" width="300" height="150" rx="7" fill="#f3f4f6" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="70" y="806" width="5" height="150" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="83.0" y="825.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">git · deploy/k8s/overlays/local</text>
+<text x="83.0" y="843.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">kustomize base + overlay</text>
+<text x="83.0" y="857.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">30 resources, validated by kubeconform</text>
+<text x="83.0" y="872.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  (30/30 in make k8s-validate)</text>
+<text x="83.0" y="886.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a change is a PR; a rollback is a revert</text>
+<text x="83.0" y="901.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">images pinned by tag (digest in prod)</text>
+<g filter="url(#shadow)">
+<rect x="410" y="806" width="380" height="150" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="410" y="806" width="5" height="150" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="423.0" y="825.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Argo CD Application agentorch</text>
+<text x="423.0" y="843.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">polls git / webhook → syncPolicy.automated: prune, selfHeal</text>
+<text x="423.0" y="857.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ignoreDifferences: HPA-managed replicas on agentd</text>
+<text x="423.0" y="872.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  (otherwise every scale event is &#x27;drift&#x27;)</text>
+<text x="423.0" y="886.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">CreateNamespace=true · retry with backoff</text>
+<text x="423.0" y="901.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">health: Deployments Available, StatefulSet Ready</text>
+<g filter="url(#shadow)">
+<rect x="830" y="806" width="660" height="150" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="830" y="806" width="5" height="150" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="843.0" y="825.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Argo CD AppProject agentorch — the blast-radius fence for the deployer itself</text>
+<text x="843.0" y="843.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">sourceRepos: this repository only · destinations: agentorch, agentorch-sandboxes only</text>
+<text x="843.0" y="857.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">clusterResourceWhitelist: Namespace, RuntimeClass — the two cluster-scoped kinds we need, nothing else</text>
+<text x="843.0" y="872.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">namespaceResourceBlacklist: ClusterRole, ClusterRoleBinding — a manifest that tries to grant itself the cluster is refused at sync</text>
+<text x="843.0" y="886.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the deployer cannot be turned into cluster-admin by a malicious PR; argocd-test asserts selfHeal reverts an out-of-band `kubectl set image`</text>
+<rect x="344.0" y="308.0" width="42.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="365.0" y="320.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">:5432</text>
+<rect x="344.0" y="460.0" width="42.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="365.0" y="472.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">:5432</text>
+<rect x="162.0" y="362.0" width="276.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="300.0" y="374.0" font-size="10.5" fill="#7a3fd1" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">:8081 · the only ingress the gateway accepts</text>
+<rect x="459.0" y="383.0" width="42.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="480.0" y="395.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">:5432</text>
+<rect x="653.0" y="195.0" width="294.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="800.0" y="207.0" font-size="10.5" fill="#326ce5" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">API server :6443 · create / watch / delete pods</text>
+<rect x="1009.0" y="320.0" width="72.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="1045.0" y="332.0" font-size="10.5" fill="#c0392b" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">:3128 only</text>
+<rect x="762.0" y="351.0" width="36.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="780.0" y="363.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">uses</text>
+<rect x="505.0" y="525.0" width="30.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="520.0" y="537.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">:53</text>
+<rect x="1110" y="470" width="380" height="114" rx="6" fill="#ffffff" stroke="#d9822b" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1120.0" y="486.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#d9822b" text-anchor="start">Node pool + quota (runtimeclass.yaml, quota.yaml, namespaces.yaml)</text>
+<text x="1120.0" y="503.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">RuntimeClass scheduling: nodeSelector agentorch.io/workload=sandbox</text>
+<text x="1120.0" y="517.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">  + toleration for the NoSchedule taint → sandboxes land only there</text>
+<text x="1120.0" y="531.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">ResourceQuota sandbox-ceiling: hard cap on pods / cpu / memory per namespace</text>
+<text x="1120.0" y="545.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">LimitRange sandbox-limits: defaults + max per container → Guaranteed QoS</text>
+<text x="1120.0" y="559.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">PSA restricted: no privileged, no hostPath, no host namespaces, non-root</text>
+<text x="1120.0" y="573.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a successful escape lands on a node with no platform pods and no SA tokens</text>
+<rect x="40" y="1030" width="280" height="26.3" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1046.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Kubernetes-level failure</text>
+<rect x="320" y="1030" width="400" height="26.3" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="327.0" y="1046.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">What limits the damage</text>
+<rect x="720" y="1030" width="400" height="26.3" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1046.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">What you see</text>
+<rect x="1120" y="1030" width="400" height="26.3" fill="#326ce5" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1046.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Trade-off</text>
+<rect x="40" y="1056.28" width="280" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1072.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">node drain / rolling deploy</text>
+<rect x="320" y="1056.28" width="400" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="327.0" y="1072.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">PDB minAvailable=1 on controlplane and toolgateway; agentd yields</text>
+<text x="327.0" y="1087.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">fenced</text>
+<rect x="720" y="1056.28" width="400" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1072.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no tool call fails; SSE reconnects; runs continue on other pods</text>
+<rect x="1120" y="1056.28" width="400" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1072.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">drains wait for a second replica; single-replica dev clusters must</text>
+<text x="1127.0" y="1087.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">override the PDB</text>
+<rect x="40" y="1096.84" width="280" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1113.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">09:00 burst: 300 agents</text>
+<rect x="320" y="1096.84" width="400" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="327.0" y="1113.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">admission control 429 + HPA 100 %/30 s scale-up + Eligible() fairness</text>
+<rect x="720" y="1096.84" width="400" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1113.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">queue depth grows, per-tenant guarantees hold; workers scale to 40</text>
+<rect x="1120" y="1096.84" width="400" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1113.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">CPU-based HPA lags; the design adds a queue-depth metric (KEDA /</text>
+<text x="1127.0" y="1127.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">custom metrics)</text>
+<rect x="40" y="1137.3999999999999" width="280" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1153.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">sandbox escape (kernel LPE)</text>
+<rect x="320" y="1137.3999999999999" width="400" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="327.0" y="1153.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">gVisor RuntimeClass, tainted pool, no SA token, default-deny, quota</text>
+<rect x="720" y="1137.3999999999999" width="400" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1153.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a pod on a node with nothing to steal and nowhere to send it</text>
+<rect x="1120" y="1137.3999999999999" width="400" height="40.6" fill="#ffffff" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1153.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">gVisor: ~1–3 s starts, syscall overhead; not every workload runs</text>
+<text x="1127.0" y="1168.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">under runsc</text>
+<rect x="40" y="1177.9599999999998" width="280" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1194.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">CNI without NetworkPolicy support</text>
+<rect x="320" y="1177.9599999999998" width="400" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="327.0" y="1194.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">kind-up installs Calico; kind-test reads the policy, quota, taint and</text>
+<text x="327.0" y="1208.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">RBAC can-i back from the API server</text>
+<rect x="720" y="1177.9599999999998" width="400" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1194.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">the objects the claims depend on, verified on the live cluster</text>
+<rect x="1120" y="1177.9599999999998" width="400" height="40.6" fill="#fbfbfc" stroke="#326ce5" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1194.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">kindnet is faster to start; the safety claim is worth the extra</text>
+<text x="1127.0" y="1208.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">minute</text>
+<rect x="28" y="1262" width="14" height="12" rx="3" fill="#eaf0fc" stroke="#326ce5" stroke-width="1"/>
+<text x="48.0" y="1272.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Kubernetes object</text>
+<rect x="258" y="1262" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="278.0" y="1272.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">platform pod</text>
+<rect x="488" y="1262" width="14" height="12" rx="3" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1"/>
+<text x="508.0" y="1272.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">TCB / guard</text>
+<rect x="718" y="1262" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="738.0" y="1272.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">state</text>
+<rect x="28" y="1280" width="14" height="12" rx="3" fill="#fdf1e3" stroke="#d9822b" stroke-width="1"/>
+<text x="48.0" y="1290.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agent sandbox pod</text>
+<rect x="258" y="1280" width="14" height="12" rx="3" fill="#fff7d6" stroke="#b8860b" stroke-width="1"/>
+<text x="278.0" y="1290.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">broker sandbox pod</text>
+<rect x="488" y="1280" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="508.0" y="1290.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">outside</text>
+<rect x="718" y="1280" width="14" height="12" rx="3" fill="#f3f4f6" stroke="#6e7781" stroke-width="1"/>
+<text x="738.0" y="1290.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">shared</text>
+</svg>

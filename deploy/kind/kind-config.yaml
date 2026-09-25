@@ -1,0 +1,46 @@
+# A kind cluster shaped like the production topology, so the manifests that
+# work here are the manifests that work there.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: agentorch
+
+networking:
+  # kindnet does NOT implement NetworkPolicy. Leaving it in place would mean
+  # every NetworkPolicy in deploy/k8s/base silently does nothing, and the demo
+  # would "prove" an isolation property that was not being enforced. So we
+  # disable the default CNI and scripts/kind-up.sh installs Calico, which does.
+  disableDefaultCNI: true
+  podSubnet: "192.168.0.0/16"   # Calico's default expectation
+
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      - containerPort: 30080   # the operator console
+        hostPort: 8080
+        protocol: TCP
+
+  # A dedicated node for untrusted workloads, labelled and tainted exactly as
+  # the production sandbox pool is. Even without gVisor locally, this keeps the
+  # scheduling model honest: sandbox pods never land next to the control plane.
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "agentorch.io/workload=sandbox"
+            register-with-taints: "agentorch.io/workload=sandbox:NoSchedule"
+
+  - role: worker
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "agentorch.io/workload=platform"
