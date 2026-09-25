@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1230" viewBox="0 0 1560 1230" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1230" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">07 · State and failover — six tables, four transactions, every failure converges on the same row</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">Postgres is the queue, the lock service, the event store, the idempotency journal and the audit log. That is a deliberate choice, and this is what it buys.</text>
+<rect x="40" y="86" width="900" height="560" rx="10" ry="10" fill="rgba(46,139,87,0.05)" stroke="#2e8b57" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="352" height="22" rx="6" fill="#2e8b57"/>
+<text x="228.2" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">SCHEMA · internal/store/schema.sql</text>
+<text x="52.0" y="112" font-size="11" fill="#2e8b57" font-style="italic">append-only where it matters; every hot query has a partial index</text>
+<rect x="980" y="86" width="540" height="560" rx="10" ry="10" fill="rgba(122,63,209,0.06)" stroke="#7a3fd1" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="992" y="75" width="228" height="22" rx="6" fill="#7a3fd1"/>
+<text x="1105.8" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">THE FOUR TRANSACTIONS</text>
+<text x="992.0" y="112" font-size="11" fill="#7a3fd1" font-style="italic">each is one BEGIN…COMMIT; none spans a network call</text>
+<rect x="40" y="680" width="1480" height="260" rx="10" ry="10" fill="rgba(192,57,43,0.045)" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="669" width="612" height="22" rx="6" fill="#c0392b"/>
+<text x="357.8" y="684.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">FAILOVER · what breaks, how it is noticed, where it converges</text>
+<text x="52.0" y="706" font-size="11" fill="#c0392b" font-style="italic">there is exactly one recovery path: the row&#x27;s lease expires and the reaper re-queues it; everything else is a special case of that</text>
+<path d="M 200.0 250.0 L 200.0 222.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 360.0 176.0 L 330.0 176.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 360.0 276.0 L 345.0 276.0 L 345.0 296.0 L 330.0 296.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 690.0 190.0 L 660.0 190.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 690.0 338.0 L 660.0 336.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 565.0 370.0 L 510.0 342.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<g filter="url(#shadow)">
+<rect x="70" y="130" width="260" height="92" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="130" width="5" height="92" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">tenants</text>
+<text x="83.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">id PK · name</text>
+<text x="83.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">weight &gt;0 · tokens_per_minute &gt;0</text>
+<text x="83.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">max_concurrent_runs &gt;0</text>
+<g filter="url(#shadow)">
+<rect x="70" y="250" width="260" height="92" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="250" width="5" height="92" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="269.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">agent_definitions</text>
+<text x="83.0" y="287.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">digest PK  = sha256(canonical JSON)</text>
+<text x="83.0" y="301.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tenant_id FK · name · spec JSONB</text>
+<text x="83.0" y="316.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">immutable: ON CONFLICT DO NOTHING</text>
+<g filter="url(#shadow)">
+<rect x="360" y="130" width="300" height="212" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="360" y="130" width="5" height="212" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="373.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">runs — the row</text>
+<text x="373.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">id PK · tenant_id FK · def_digest</text>
+<text x="373.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">state · status_reason · priority</text>
+<text x="373.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">next_seq   ← OCC version</text>
+<text x="373.0" y="210.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">step · budget JSONB · usage JSONB</text>
+<text x="373.0" y="225.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">lease_owner · lease_expires_at</text>
+<text x="373.0" y="239.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">wake_at · created_at · updated_at</text>
+<text x="373.0" y="254.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start"></text>
+<text x="373.0" y="268.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idx_runs_dispatch (priority DESC, created_at)</text>
+<text x="373.0" y="283.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">   WHERE state=&#x27;QUEUED&#x27;   ← the queue</text>
+<text x="373.0" y="297.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idx_runs_lease (lease_expires_at)</text>
+<text x="373.0" y="312.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">   WHERE lease_owner IS NOT NULL ← reaper</text>
+<g filter="url(#shadow)">
+<rect x="690" y="130" width="230" height="120" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="690" y="130" width="5" height="120" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="703.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">events — the agent</text>
+<text x="703.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">run_id FK · seq</text>
+<text x="703.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">PK (run_id, seq)</text>
+<text x="703.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">type · payload JSONB</text>
+<text x="703.0" y="210.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">created_at</text>
+<text x="703.0" y="225.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start"></text>
+<text x="703.0" y="239.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no UPDATE/DELETE path exists</text>
+<text x="703.0" y="254.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">dotted lines = foreign keys</text>
+<g filter="url(#shadow)">
+<rect x="690" y="278" width="230" height="120" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="690" y="278" width="5" height="120" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="703.0" y="297.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">tool_calls — the journal</text>
+<text x="703.0" y="315.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idem_key PK  run:step:i</text>
+<text x="703.0" y="329.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">run_id (no FK: outlives runs)</text>
+<text x="703.0" y="344.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tenant_id · tool · args_hash</text>
+<text x="703.0" y="358.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">state · result · is_error</text>
+<text x="703.0" y="373.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">started_at · finished_at</text>
+<text x="703.0" y="387.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idx (started_at) WHERE IN_FLIGHT</text>
+<g filter="url(#shadow)">
+<rect x="70" y="370" width="590" height="130" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="370" width="5" height="130" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="389.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">audit_log — the tenant hash chain</text>
+<text x="83.0" y="407.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">PK (tenant_id, seq) · ts (µs) · run_id · agent_name · triggering_user · tool · decision · reason</text>
+<text x="83.0" y="421.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">args_redacted JSONB · result_meta JSONB · prev_hash · hash</text>
+<text x="83.0" y="436.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">hash = sha256(prev_hash ‖ canonical(record))     genesis prev_hash for seq 1</text>
+<text x="83.0" y="450.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idx_audit_run (run_id, seq) · idx_audit_tenant_ts (tenant_id, ts) ← &#x27;everything agent X ran last Tuesday&#x27;</text>
+<text x="83.0" y="465.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">VerifyChain(records) recomputes and reports the first broken seq</text>
+<g filter="url(#shadow)">
+<rect x="1010" y="130" width="480" height="96" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="1010" y="130" width="5" height="96" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="1023.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">AcquireLease(worker, ttl, eligible)</text>
+<text x="1023.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SELECT id FROM runs WHERE state=&#x27;QUEUED&#x27; AND wake_at≤now()</text>
+<text x="1023.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  AND tenant_id = ANY($eligible)</text>
+<text x="1023.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  ORDER BY priority DESC, created_at FOR UPDATE SKIP LOCKED LIMIT 1;</text>
+<text x="1023.0" y="210.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">UPDATE runs SET state=&#x27;RUNNING&#x27;, lease_owner=$w, lease_expires_at=now()+ttl</text>
+<g filter="url(#shadow)">
+<rect x="1010" y="250" width="480" height="110" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="1010" y="250" width="5" height="110" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="1023.0" y="269.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Commit(run, worker, expectedNextSeq, events, update)</text>
+<text x="1023.0" y="287.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SELECT next_seq, lease_owner, lease_expires_at FROM runs WHERE id=$1 FOR UPDATE;</text>
+<text x="1023.0" y="301.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">owner≠worker OR expired    → ROLLBACK ErrLeaseLost   (fence)</text>
+<text x="1023.0" y="316.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">next_seq ≠ expected        → ROLLBACK ErrConflict    (stale replay)</text>
+<text x="1023.0" y="330.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT events (run_id, seq, type, payload) × n;</text>
+<text x="1023.0" y="345.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">UPDATE runs SET next_seq=seq+n, step, usage, [state], [lease NULL], [wake_at]</text>
+<g filter="url(#shadow)">
+<rect x="1010" y="384" width="480" height="96" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="1010" y="384" width="5" height="96" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="1023.0" y="403.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">BeginToolCall / FinishToolCall</text>
+<text x="1023.0" y="421.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT tool_calls(idem_key,…,&#x27;IN_FLIGHT&#x27;) ON CONFLICT DO NOTHING;</text>
+<text x="1023.0" y="435.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SELECT * FROM tool_calls WHERE idem_key=$1   → fresh? existing?</text>
+<text x="1023.0" y="450.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">… side effect happens outside any transaction …</text>
+<text x="1023.0" y="464.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">UPDATE tool_calls SET state, result, is_error, finished_at WHERE idem_key=$1</text>
+<g filter="url(#shadow)">
+<rect x="1010" y="504" width="480" height="110" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="1010" y="504" width="5" height="110" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="1023.0" y="523.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">AppendAudit(record)</text>
+<text x="1023.0" y="541.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SELECT seq, hash FROM audit_log WHERE tenant_id=$1</text>
+<text x="1023.0" y="555.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  ORDER BY seq DESC LIMIT 1 FOR UPDATE;      ← serialises one tenant&#x27;s chain</text>
+<text x="1023.0" y="570.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">rec.ts = now().Truncate(µs); rec.prev_hash = last.hash (or genesis)</text>
+<text x="1023.0" y="584.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">rec.hash = sha256(prev ‖ canonical(rec));</text>
+<text x="1023.0" y="599.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT audit_log(…, prev_hash, hash)</text>
+<rect x="70" y="520" width="850" height="72" rx="6" fill="#ffffff" stroke="#2e8b57" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="80.0" y="536.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2e8b57" text-anchor="start">Why one database and not five systems</text>
+<text x="80.0" y="553.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">the lease, the event append, the state flip and the usage update happen in ONE transaction — there is no window where two of them disagree</text>
+<text x="80.0" y="567.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a broker + a KV lock + an event store + a cache would each add a consistency seam that the fencing argument would have to cross</text>
+<text x="80.0" y="581.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">cost: write throughput is one Postgres primary (measured 102 → 5 394 runs/s from 2 → 24 workers on a 4-core VM with a stubbed model; 10k tool calls/min needs partitioning + tiering)</text>
+<rect x="60" y="722" width="270" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="67.0" y="738.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Failure</text>
+<rect x="330" y="722" width="300" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="337.0" y="738.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Noticed by</text>
+<rect x="630" y="722" width="420" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="637.0" y="738.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Recovery</text>
+<rect x="1050" y="722" width="240" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1057.0" y="738.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Lost</text>
+<rect x="1290" y="722" width="210" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1297.0" y="738.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Bound</text>
+<rect x="60" y="747.6" width="270" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="67.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">agentd SIGKILL mid-step</text>
+<rect x="330" y="747.6" width="300" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="337.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">lease stops renewing</text>
+<rect x="630" y="747.6" width="420" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="637.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">reaper: RUNNING+expired → QUEUED; another worker replays the log; idem keys</text>
+<text x="637.0" y="777.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">make tool calls exactly-once</text>
+<rect x="1050" y="747.6" width="240" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1057.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the in-memory partial step (never written)</text>
+<rect x="1290" y="747.6" width="210" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1297.0" y="763.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">≤ TTL 30 s + reaper 5 s</text>
+<rect x="60" y="786.8000000000001" width="270" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="67.0" y="802.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">agentd SIGTERM (rolling deploy)</text>
+<rect x="330" y="786.8000000000001" width="300" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="337.0" y="802.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">ctx cancelled</text>
+<rect x="630" y="786.8000000000001" width="420" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="637.0" y="802.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">deferred fenced YieldRun → QUEUED immediately;</text>
+<text x="637.0" y="816.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">TestDurability_RollingDeployLosesNoWork</text>
+<rect x="1050" y="786.8000000000001" width="240" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1057.0" y="802.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">nothing</text>
+<rect x="1290" y="786.8000000000001" width="210" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1297.0" y="802.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">≈ 0 s</text>
+<rect x="60" y="826.0000000000001" width="270" height="25.6" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="67.0" y="842.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">agentd paused (GC / partition)</text>
+<rect x="330" y="826.0000000000001" width="300" height="25.6" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="337.0" y="842.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">its own Commit</text>
+<rect x="630" y="826.0000000000001" width="420" height="25.6" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="637.0" y="842.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">fence: owner≠me → ErrLeaseLost → abandon; the replacement&#x27;s writes stand</text>
+<rect x="1050" y="826.0000000000001" width="240" height="25.6" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1057.0" y="842.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">nothing; no duplicate side effect</text>
+<rect x="1290" y="826.0000000000001" width="210" height="25.6" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1297.0" y="842.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">at Commit time</text>
+<rect x="60" y="851.6000000000001" width="270" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="67.0" y="867.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">gateway dies mid tool call</text>
+<rect x="330" y="851.6000000000001" width="300" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="337.0" y="867.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">tool_calls row stays IN_FLIGHT</text>
+<rect x="630" y="851.6000000000001" width="420" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="637.0" y="867.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">reaper (stuck_after) → FAILED &#x27;MAY OR MAY NOT have taken effect&#x27;; the model</text>
+<text x="637.0" y="881.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">is told the truth</text>
+<rect x="1050" y="851.6000000000001" width="240" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1057.0" y="867.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">certainty about one side effect</text>
+<rect x="1290" y="851.6000000000001" width="210" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1297.0" y="867.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">stuck_after</text>
+<rect x="60" y="890.8000000000002" width="270" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="67.0" y="906.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Postgres primary failover</text>
+<rect x="330" y="890.8000000000002" width="300" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="337.0" y="906.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">every client&#x27;s txn aborts</text>
+<rect x="630" y="890.8000000000002" width="420" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="637.0" y="906.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">managed HA promotes a replica; leases are judged by DB now(), so expiry math</text>
+<text x="637.0" y="920.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">survives; clients reconnect and retry</text>
+<rect x="1050" y="890.8000000000002" width="240" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1057.0" y="906.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">uncommitted txns only (by definition)</text>
+<rect x="1290" y="890.8000000000002" width="210" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1297.0" y="906.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">provider RTO (~30–60 s)</text>
+<rect x="40" y="960" width="370" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="976.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Designed, not built</text>
+<rect x="410" y="960" width="560" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="417.0" y="976.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Why the design needs it</text>
+<rect x="970" y="960" width="550" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="977.0" y="976.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">What the PoC does instead</text>
+<rect x="40" y="985.6" width="370" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1001.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">object storage checkpoints of /work at tool-call boundaries</text>
+<rect x="410" y="985.6" width="560" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="417.0" y="1001.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">a replacement worker on another node must see the same files, not just the same log</text>
+<rect x="970" y="985.6" width="550" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="977.0" y="1001.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">single-node bind mount; WorkspaceManager owns the path</text>
+<rect x="40" y="1011.2" width="370" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1027.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">cold tiering of events/audit partitions to Parquet</text>
+<rect x="410" y="1011.2" width="560" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="417.0" y="1027.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">10k tool calls/min ≈ 4 audit rows/s/tenant forever; hot Postgres should hold days, not years</text>
+<rect x="970" y="1011.2" width="550" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="977.0" y="1027.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">one table each; indexes keep the hot queries small</text>
+<rect x="40" y="1036.8" width="370" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">LISTEN/NOTIFY or a read replica for the console</text>
+<rect x="410" y="1036.8" width="560" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="417.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">SSE polling every 400 ms × N open consoles is a read load the primary should not carry</text>
+<rect x="970" y="1036.8" width="550" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="977.0" y="1052.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">poll ListEvents(since) on the primary</text>
+<rect x="40" y="1062.3999999999999" width="370" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1078.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Redis-backed limiter buckets</text>
+<rect x="410" y="1062.3999999999999" width="560" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="417.0" y="1078.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">N gateway/worker replicas each admit independently today</text>
+<rect x="970" y="1062.3999999999999" width="550" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="977.0" y="1078.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">per-process buckets, documented as a gap</text>
+<rect x="28" y="1180" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="48.0" y="1190.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">table / durable</text>
+<rect x="258" y="1180" width="14" height="12" rx="3" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1"/>
+<text x="278.0" y="1190.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">transaction</text>
+<rect x="488" y="1180" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="508.0" y="1190.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">failure</text>
+</svg>

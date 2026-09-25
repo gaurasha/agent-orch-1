@@ -1,0 +1,285 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1150" viewBox="0 0 1560 1150" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1150" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">06 · The model plane and fairness — one choke point for the most expensive resource</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">llm.Gateway.Complete() is the only code path to a provider. It reserves quota before the call, retries with full jitter, settles against real usage, and never fails a run for a provider outage.</text>
+<rect x="40" y="86" width="560" height="720" rx="10" ry="10" fill="rgba(47,111,191,0.045)" stroke="#2f6fbf" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="400" height="22" rx="6" fill="#2f6fbf"/>
+<text x="252.2" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">MODEL GATEWAY · internal/llm/gateway.go</text>
+<text x="52.0" y="112" font-size="11" fill="#2f6fbf" font-style="italic">called by a worker&#x27;s step(); returns a Response or an error the worker turns into a requeue</text>
+<rect x="640" y="86" width="880" height="720" rx="10" ry="10" fill="rgba(46,139,87,0.05)" stroke="#2e8b57" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="652" y="75" width="477" height="22" rx="6" fill="#2e8b57"/>
+<text x="890.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">FAIRNESS LIMITER · internal/fairness/limiter.go</text>
+<text x="652.0" y="112" font-size="11" fill="#2e8b57" font-style="italic">weighted max-min fairness = one token bucket per tenant + one shared spare bucket</text>
+<path d="M 320.0 204.0 L 320.0 228.0" fill="none" stroke="#2f6fbf" stroke-width="2"  marker-end="url(#arr)" />
+<path d="M 320.0 302.0 L 320.0 326.0" fill="none" stroke="#2f6fbf" stroke-width="2"  marker-end="url(#arr)" />
+<path d="M 320.0 476.0 L 320.0 500.0" fill="none" stroke="#2f6fbf" stroke-width="2"  marker-end="url(#arr)" />
+<path d="M 320.0 574.0 L 320.0 598.0" fill="none" stroke="#2f6fbf" stroke-width="2"  marker-end="url(#arr)" />
+<path d="M 70.0 441.0 L 56.0 441.0 L 56.0 721.0 L 70.0 721.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 570.0 265.0 L 630.0 265.0 L 630.0 338.0 L 670.0 338.0" fill="none" stroke="#2e8b57" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr-green)" />
+<path d="M 570.0 537.0 L 620.0 537.0 L 620.0 476.0 L 670.0 476.0" fill="none" stroke="#2e8b57" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr-green)" />
+<g filter="url(#shadow)">
+<rect x="70" y="130" width="500" height="74" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="130" width="5" height="74" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Complete(tenant, priority, req)</text>
+<text x="83.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">req = {model, system, messages (Rebuild), tools: SchemasFor(def.Tools), max_tokens}</text>
+<text x="83.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">est = EstimateTokens(req)  // character-count heuristic over system+messages+tools, + output</text>
+<g filter="url(#shadow)">
+<rect x="70" y="228" width="500" height="74" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="228" width="5" height="74" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="247.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">1 · limiter.Reserve(tenant, priority, est)</text>
+<text x="83.0" y="265.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ok=false → return ErrQuotaUnavailable immediately — the worker requeues the run with wake_at = now+2 s</text>
+<text x="83.0" y="279.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the worker&#x27;s goroutine is free within microseconds; it leases some other tenant&#x27;s run</text>
+<g filter="url(#shadow)">
+<rect x="70" y="326" width="500" height="150" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="326" width="5" height="150" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="345.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">2 · for attempt in 1..3</text>
+<text x="83.0" y="363.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">resp, err = primary.Complete(ctx, req)                 (per-call ctx timeout)</text>
+<text x="83.0" y="377.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">success → break</text>
+<text x="83.0" y="392.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">not retryable (4xx other than 429) → break with the error</text>
+<text x="83.0" y="406.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">attempt == 3 and fallback configured and retryable → try fallback provider instead</text>
+<text x="83.0" y="421.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">backoff = 250 ms × 2^(attempt−1);  sleep = rand(0, backoff)   ← FULL jitter</text>
+<text x="83.0" y="435.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  (AWS &#x27;Exponential Backoff And Jitter&#x27;: full jitter minimises retry collisions</text>
+<text x="83.0" y="450.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">   across 500 agents hitting the same 429 at the same second)</text>
+<text x="83.0" y="464.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">log: tenant, attempt, backoff_ms, err</text>
+<g filter="url(#shadow)">
+<rect x="70" y="500" width="500" height="74" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="500" width="5" height="74" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="519.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">3 · limiter.Settle(reservation, actualTokens) — exactly once</text>
+<text x="83.0" y="537.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">over-estimate → tokens refunded to the tenant&#x27;s bucket · under-estimate → charged, may go negative</text>
+<text x="83.0" y="551.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Reservation.settled guards double settlement; a failed call settles with 0 (full refund)</text>
+<g filter="url(#shadow)">
+<rect x="70" y="598" width="500" height="74" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="598" width="5" height="74" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="617.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">4 · account + return</text>
+<text x="83.0" y="635.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">metrics.ModelCall(tenant, model, in, out, costUSD) — cost from the price table in code</text>
+<text x="83.0" y="649.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Response{content, tool_calls, stop_reason, tokens, cost} → the worker writes MODEL_RESPONSE</text>
+<g filter="url(#shadow)">
+<rect x="70" y="696" width="500" height="90" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="696" width="5" height="90" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="715.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">after 3 failures → error to the worker</text>
+<text x="83.0" y="733.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the worker does NOT fail the run: requeue with wake_at = now+10 s, status_reason &#x27;model provider unavailable&#x27;</text>
+<text x="83.0" y="747.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">durability means an outage is a delay, not a loss; the event log has no partial step</text>
+<text x="83.0" y="762.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">budget check happens BEFORE the call, so a retry storm can never overspend a run</text>
+<g filter="url(#shadow)">
+<rect x="670" y="130" width="400" height="118" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="670" y="130" width="5" height="118" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="683.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">bucket — one per tenant</text>
+<text x="683.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">rate     = provider_rate × w_i / Σw   (tok/s)</text>
+<text x="683.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">         min(rate, tenant.tokens_per_minute/60)</text>
+<text x="683.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">capacity = rate × burstSeconds</text>
+<text x="683.0" y="210.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">refill(now): tokens = min(cap, tokens + rate×Δt)</text>
+<text x="683.0" y="225.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">take(n) / give(n)  · tokens may go NEGATIVE (deficit)</text>
+<g filter="url(#shadow)">
+<rect x="1100" y="130" width="390" height="118" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="1100" y="130" width="5" height="118" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="1113.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">spare — one shared bucket</text>
+<text x="1113.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">rate = provider_rate − Σ allocated shares</text>
+<text x="1113.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">(only what plan caps leave unclaimed)</text>
+<text x="1113.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">starts EMPTY: capacity is spare only</text>
+<text x="1113.0" y="210.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">once it has actually gone unused</text>
+<text x="1113.0" y="225.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">any tenant may borrow from it after its own bucket</text>
+<g filter="url(#shadow)">
+<rect x="670" y="272" width="400" height="132" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="272" width="5" height="132" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="291.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Reserve(tenant, pri, need)</text>
+<text x="683.0" y="309.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">b = buckets[tenant]; unknown tenant → false (fail closed)</text>
+<text x="683.0" y="323.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">floor = pri == interactive ? 0 : 0.20 × b.capacity</text>
+<text x="683.0" y="338.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">if b.tokens − need ≥ floor: b.tokens −= need → ok</text>
+<text x="683.0" y="352.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">elif spare.take(need):                      → ok</text>
+<text x="683.0" y="367.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">else → false  (caller must NOT block)</text>
+<text x="683.0" y="381.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">inFlight[tenant]++ for the operator view</text>
+<g filter="url(#shadow)">
+<rect x="1100" y="272" width="390" height="132" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="1100" y="272" width="5" height="132" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="1113.0" y="291.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Eligible(typical=2000) → []tenant</text>
+<text x="1113.0" y="309.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">for each bucket: refill(now)</text>
+<text x="1113.0" y="323.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  if tokens − typical ≥ 0.20×cap</text>
+<text x="1113.0" y="338.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  or spare.tokens ≥ typical → eligible</text>
+<text x="1113.0" y="352.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">sorted; passed to AcquireLease as $1</text>
+<text x="1113.0" y="367.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">→ WHERE tenant_id = ANY($1)</text>
+<text x="1113.0" y="381.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">backpressure = NOT scheduling, never a blocked worker</text>
+<g filter="url(#shadow)">
+<rect x="670" y="428" width="400" height="96" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="428" width="5" height="96" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="447.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Settle(r, actual)</text>
+<text x="683.0" y="465.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">delta = r.Estimated − actual</text>
+<text x="683.0" y="479.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">delta &gt; 0 → b.give(delta)       (refund)</text>
+<text x="683.0" y="494.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">delta &lt; 0 → b.tokens += delta   (charge; deficit)</text>
+<text x="683.0" y="508.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a tenant in deficit waits until refill catches up</text>
+<g filter="url(#shadow)">
+<rect x="1100" y="428" width="390" height="96" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="1100" y="428" width="5" height="96" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="1113.0" y="447.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Snapshot() → /v1/quota</text>
+<text x="1113.0" y="465.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">per tenant: weight, guaranteed tok/s,</text>
+<text x="1113.0" y="479.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  tokens, capacity, in_flight,</text>
+<text x="1113.0" y="494.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  throttled = tokens ≤ 20%·cap &amp;&amp; spare empty</text>
+<text x="1113.0" y="508.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SpareTokens() for the shared pool gauge</text>
+<rect x="670" y="720" width="820" height="86" rx="6" fill="#ffffff" stroke="#2f6fbf" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="680.0" y="736.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2f6fbf" text-anchor="start">Why max-min with weights, and not a global bucket or fixed quotas</text>
+<text x="680.0" y="753.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a global bucket lets one tenant&#x27;s 300-agent burst starve everyone (first come, first served) · fixed quotas waste idle capacity</text>
+<text x="680.0" y="767.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">weighted max-min: every tenant is GUARANTEED its share and may BORROW what others leave idle; guarantees always sum to the provider rate</text>
+<text x="680.0" y="781.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">tests: TestFairness_GuaranteesSumToProviderCapacity · _NoisyTenantCannotStarveQuietTenant · _WeightsAllocateProportionally</text>
+<text x="680.0" y="795.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">       _InteractiveReserveProtectsHumanBlockingWork · _SettleRefundsOverEstimate · _SettleChargesUnderEstimate · _UnknownTenantFailsClosed</text>
+<rect x="670" y="548" width="130" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="677.0" y="564.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Worked example</text>
+<rect x="800" y="548" width="100" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="807.0" y="564.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">weight</text>
+<rect x="900" y="548" width="110" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="564.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">plan tpm</text>
+<rect x="1010" y="548" width="150" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1017.0" y="564.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">guaranteed</text>
+<rect x="1160" y="548" width="140" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1167.0" y="564.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">idle → spare?</text>
+<rect x="1300" y="548" width="160" height="25.6" fill="#2e8b57" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1307.0" y="564.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">interactive floor</text>
+<rect x="670" y="573.6" width="130" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="677.0" y="589.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">provider: 1000 tok/s</text>
+<rect x="800" y="573.6" width="100" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="807.0" y="589.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<rect x="900" y="573.6" width="110" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="589.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<rect x="1010" y="573.6" width="150" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1017.0" y="589.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<rect x="1160" y="573.6" width="140" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1167.0" y="589.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<rect x="1300" y="573.6" width="160" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1307.0" y="589.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<rect x="670" y="599.2" width="130" height="39.2" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="677.0" y="615.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">acme</text>
+<rect x="800" y="599.2" width="100" height="39.2" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="807.0" y="615.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">2</text>
+<rect x="900" y="599.2" width="110" height="39.2" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="615.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">∞</text>
+<rect x="1010" y="599.2" width="150" height="39.2" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1017.0" y="615.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">500 tok/s</text>
+<rect x="1160" y="599.2" width="140" height="39.2" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1167.0" y="615.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">no (share fully</text>
+<text x="1167.0" y="628.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">claimed)</text>
+<rect x="1300" y="599.2" width="160" height="39.2" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1307.0" y="615.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">100 tok/s held back</text>
+<rect x="670" y="638.4000000000001" width="130" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="677.0" y="654.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">beta</text>
+<rect x="800" y="638.4000000000001" width="100" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="807.0" y="654.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">1</text>
+<rect x="900" y="638.4000000000001" width="110" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="654.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">∞</text>
+<rect x="1010" y="638.4000000000001" width="150" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1017.0" y="654.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">250 tok/s</text>
+<rect x="1160" y="638.4000000000001" width="140" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1167.0" y="654.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">no</text>
+<rect x="1300" y="638.4000000000001" width="160" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1307.0" y="654.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">50 tok/s</text>
+<rect x="670" y="664.0000000000001" width="130" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="677.0" y="680.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">gamma</text>
+<rect x="800" y="664.0000000000001" width="100" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="807.0" y="680.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">1</text>
+<rect x="900" y="664.0000000000001" width="110" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="680.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">6 000</text>
+<rect x="1010" y="664.0000000000001" width="150" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1017.0" y="680.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">min(250, 100) = 100</text>
+<rect x="1160" y="664.0000000000001" width="140" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1167.0" y="680.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">150 tok/s → spare</text>
+<rect x="1300" y="664.0000000000001" width="160" height="25.6" fill="#fbfbfc" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1307.0" y="680.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">20 tok/s</text>
+<rect x="670" y="689.6000000000001" width="130" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="677.0" y="705.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">Σ</text>
+<rect x="800" y="689.6000000000001" width="100" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="807.0" y="705.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">4</text>
+<rect x="900" y="689.6000000000001" width="110" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="907.0" y="705.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<rect x="1010" y="689.6000000000001" width="150" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1017.0" y="705.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">850 allocated</text>
+<rect x="1160" y="689.6000000000001" width="140" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1167.0" y="705.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">spare rate 150 tok/s</text>
+<rect x="1300" y="689.6000000000001" width="160" height="25.6" fill="#ffffff" stroke="#2e8b57" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1307.0" y="705.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">burst = rate × burstSeconds</text>
+<rect x="40" y="830" width="300" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="846.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Failure / condition</text>
+<rect x="340" y="830" width="340" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="846.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Detection</text>
+<rect x="680" y="830" width="420" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="687.0" y="846.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Reaction</text>
+<rect x="1100" y="830" width="440" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1107.0" y="846.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Trade-off · gap</text>
+<rect x="40" y="856.28" width="300" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="872.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">provider 429 / 5xx / timeout</text>
+<rect x="340" y="856.28" width="340" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="872.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">error class from the provider adapter</text>
+<rect x="680" y="856.28" width="420" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="687.0" y="872.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">≤3 attempts, full-jitter backoff, fallback on the last; then requeue +10</text>
+<text x="687.0" y="887.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">s</text>
+<rect x="1100" y="856.28" width="440" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1107.0" y="872.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a run&#x27;s first step waits out the outage; nothing is lost, nothing is</text>
+<text x="1107.0" y="887.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">duplicated (no side effect in a model call)</text>
+<rect x="40" y="896.8399999999999" width="300" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="913.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">tenant out of quota</text>
+<rect x="340" y="896.8399999999999" width="340" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="913.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Reserve() false · Eligible() omits the tenant</text>
+<rect x="680" y="896.8399999999999" width="420" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="687.0" y="913.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">run requeued +2 s or simply not leased; workers serve other tenants</text>
+<rect x="1100" y="896.8399999999999" width="440" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1107.0" y="913.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">interactive work can dip into the 20 % reserve; batch cannot — batch latency</text>
+<text x="1107.0" y="927.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">grows first, by design</text>
+<rect x="40" y="937.3999999999999" width="300" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="953.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">estimate badly wrong</text>
+<rect x="340" y="937.3999999999999" width="340" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="953.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Settle() delta</text>
+<rect x="680" y="937.3999999999999" width="420" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="687.0" y="953.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">refund or charge; deficits allowed so the tenant self-corrects next</text>
+<text x="687.0" y="968.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">refill</text>
+<rect x="1100" y="937.3999999999999" width="440" height="40.6" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1107.0" y="953.9" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a huge under-estimate lets one call overshoot its share once — bounded by</text>
+<text x="1107.0" y="968.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">max_tokens</text>
+<rect x="40" y="977.9599999999998" width="300" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="994.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">limiter process restarts / N replicas</text>
+<rect x="340" y="977.9599999999998" width="340" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="994.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">—</text>
+<rect x="680" y="977.9599999999998" width="420" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="687.0" y="994.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">buckets rebuilt from tenants table on start; each replica admits</text>
+<text x="687.0" y="1008.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">independently</text>
+<rect x="1100" y="977.9599999999998" width="440" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1107.0" y="994.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">N replicas ⇒ up to N× over-admission — the documented reason Redis is in the</text>
+<text x="1107.0" y="1008.7" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">multi-replica design</text>
+<rect x="40" y="1018.5199999999998" width="300" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1035.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">unknown tenant</text>
+<rect x="340" y="1018.5199999999998" width="340" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1035.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no bucket</text>
+<rect x="680" y="1018.5199999999998" width="420" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="687.0" y="1035.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Reserve() false: fail closed</text>
+<rect x="1100" y="1018.5199999999998" width="440" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1107.0" y="1035.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a misconfigured tenant gets NO model access rather than unlimited access</text>
+<rect x="28" y="1100" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="48.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">gateway / limiter code</text>
+<rect x="258" y="1100" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="278.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">quota state</text>
+<rect x="488" y="1100" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="508.0" y="1110.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">failure path</text>
+</svg>

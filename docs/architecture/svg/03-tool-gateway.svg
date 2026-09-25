@@ -1,0 +1,290 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1440" viewBox="0 0 1560 1440" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1440" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">03 · Tool gateway — the single choke point, stage by stage</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">gateway.process(): every stage can refuse; a credential is minted only after the decision; every call leaves two audit records.</text>
+<rect x="40" y="86" width="660" height="1150" rx="10" ry="10" fill="rgba(122,63,209,0.06)" stroke="#7a3fd1" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="448" height="22" rx="6" fill="#7a3fd1"/>
+<text x="276.2" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">gateway.process() · :8081 · 2 replicas · PDB</text>
+<text x="52.0" y="112" font-size="11" fill="#7a3fd1" font-style="italic">inside the TCB: the only code that can reach a credential or a sandbox</text>
+<rect x="720" y="86" width="360" height="1150" rx="10" ry="10" fill="rgba(192,57,43,0.045)" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="732" y="75" width="324" height="22" rx="6" fill="#c0392b"/>
+<text x="893.8" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">REFUSALS · fail closed, audited</text>
+<text x="732.0" y="112" font-size="11" fill="#c0392b" font-style="italic">HTTP status → what the agent is told</text>
+<rect x="1100" y="86" width="420" height="1150" rx="10" ry="10" fill="rgba(110,119,129,0.05)" stroke="#6e7781" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="1112" y="75" width="141" height="22" rx="6" fill="#6e7781"/>
+<text x="1182.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">DESIGN NOTES</text>
+<text x="1112.0" y="112" font-size="11" fill="#6e7781" font-style="italic">the invariants each stage protects</text>
+<path d="M 370.0 216.0 L 370.0 246.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 370.0 332.0 L 370.0 362.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 370.0 570.0 L 370.0 600.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 370.0 696.0 L 370.0 726.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 370.0 788.0 L 370.0 818.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 370.0 996.0 L 370.0 1026.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 370.0 1122.0 L 370.0 1152.0" fill="none" stroke="#7a3fd1" stroke-width="2"  marker-end="url(#arr-purple)" />
+<path d="M 670.0 173.0 L 740.0 155.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 670.0 289.0 L 740.0 289.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 670.0 466.0 L 740.0 466.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 670.0 648.0 L 740.0 648.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 670.0 757.0 L 740.0 757.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 670.0 907.0 L 740.0 907.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<path d="M 670.0 1074.0 L 740.0 1074.0" fill="none" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr-red)" />
+<g filter="url(#shadow)">
+<rect x="70" y="130" width="600" height="86" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="130" width="5" height="86" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">0 · Request arrives</text>
+<text x="83.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /v1/toolcalls   Authorization: Bearer &lt;run JWT&gt;</text>
+<text x="83.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">{tool, args, idem_key, approved}</text>
+<text x="83.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">JWT: HS256 · sub=run_id · tenant · aud=tool-gateway · exp ≤ 5 min</text>
+<g filter="url(#shadow)">
+<rect x="70" y="246" width="600" height="86" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="70" y="246" width="5" height="86" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="83.0" y="265.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">1 · Verify the token, then RELOAD the truth from the store</text>
+<text x="83.0" y="283.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">jwtmini.Verify(secret, token, aud) → claims  (signature · expiry · audience)</text>
+<text x="83.0" y="297.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">run = GetRun(claims.sub) · run.TenantID must equal claims.tenant</text>
+<text x="83.0" y="312.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">def = GetDefinition(run.DefDigest) — the PINNED definition, not the latest</text>
+<g filter="url(#shadow)">
+<rect x="70" y="362" width="600" height="208" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="70" y="362" width="5" height="208" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="83.0" y="381.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">2 · Decide — authz.Evaluate, in this exact order</text>
+<text x="83.0" y="399.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">run.terminal        cancelled/finished runs cannot act through a straggler</text>
+<text x="83.0" y="413.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">budget.exhausted    tokens · cost · wall-clock · steps · tool calls</text>
+<text x="83.0" y="428.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tool.unknown        hallucinated or probing for an internal tool</text>
+<text x="83.0" y="442.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tool.not_granted    def.Spec.Tools must list it  (capability check)</text>
+<text x="83.0" y="457.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">args.missing        schema-required arguments present</text>
+<text x="83.0" y="471.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">params.*            host allowlist · argv allowlist · denied patterns</text>
+<text x="83.0" y="486.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">                    bad_url · bad_scheme · ssrf (link-local, private, .internal)</text>
+<text x="83.0" y="500.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">approval.required   Dangerous tool or RequiresApproval, and not yet approved</text>
+<text x="83.0" y="515.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">args.invalid        tool.ValidateArgs — types, only for granted tools</text>
+<text x="83.0" y="529.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">                                          → default.granted</text>
+<g filter="url(#shadow)">
+<rect x="70" y="600" width="600" height="96" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="600" width="5" height="96" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="619.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">3 · Reserve the idempotency key BEFORE anything observable</text>
+<text x="83.0" y="637.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">idem = req.idem_key  (worker sends run:step:i)  else run:step:sha256(args)[:16]</text>
+<text x="83.0" y="651.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT tool_calls(idem_key, …, state=&#x27;IN_FLIGHT&#x27;) ON CONFLICT DO NOTHING</text>
+<text x="83.0" y="666.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">not fresh → replayResponse: IN_FLIGHT → 409 · DONE/FAILED → 200 Replayed=true</text>
+<text x="83.0" y="680.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">journal write failed → refuse to execute (503)</text>
+<g filter="url(#shadow)">
+<rect x="70" y="726" width="600" height="62" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="726" width="5" height="62" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="745.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">4 · audit(pre) — &#x27;we are about to do this&#x27;</text>
+<text x="83.0" y="763.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">record {phase:pre, idem_key, args_sha256, rule} in the tenant&#x27;s hash chain</text>
+<text x="83.0" y="777.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">if the process dies during the call, the intent is already on record</text>
+<g filter="url(#shadow)">
+<rect x="70" y="818" width="600" height="178" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="70" y="818" width="5" height="178" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="83.0" y="837.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">5 · Execute by backend kind (tools.Invoker)</text>
+<text x="83.0" y="855.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">exec  → agent sandbox · argv + workspace · NO network · NO credential (exec.bash, exec.python, doc.convert)</text>
+<text x="83.0" y="869.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">fs    → fs.read / fs.write / fs.list on the run&#x27;s workspace, path-validated, no sandbox</text>
+<text x="83.0" y="884.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">http  → mint(CredRef, 60 s) → the GATEWAY makes the request with the header → revoke</text>
+<text x="83.0" y="898.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cli   → mint(github/token, 60 s) → BROKER sandbox with GH_TOKEN env → Scrub(stdout) → revoke</text>
+<text x="83.0" y="913.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start"></text>
+<text x="83.0" y="927.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cap output (MaxOutputBytes, split stdout/stderr) · Truncated flag · wall-clock in the parent</text>
+<text x="83.0" y="942.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the credential exists for one call: ≤ 60 s, revoked in a defer that runs on every path</text>
+<g filter="url(#shadow)">
+<rect x="70" y="1026" width="600" height="96" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="1026" width="5" height="96" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="1045.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">6 · Record the outcome, then audit(post)</text>
+<text x="83.0" y="1063.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">infrastructure error → tool_calls.state=FAILED, is_error; if UnsafeRetry the agent is told</text>
+<text x="83.0" y="1077.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  &#x27;MAY OR MAY NOT have taken effect — verify before retrying&#x27; (never a blind retry)</text>
+<text x="83.0" y="1092.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">else → DONE or FAILED(is_error) with the capped content</text>
+<text x="83.0" y="1106.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">audit(post): {phase:post, idem_key, is_error, result_bytes, truncated, driver, exit_code…}</text>
+<g filter="url(#shadow)">
+<rect x="70" y="1152" width="600" height="62" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="70" y="1152" width="5" height="62" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="83.0" y="1171.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">7 · Respond</text>
+<text x="83.0" y="1189.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">200 {result, is_error, decision:ALLOW, truncated}</text>
+<text x="83.0" y="1203.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the worker appends TOOL_RESULT (or TOOL_DENIED) to the run&#x27;s event log</text>
+<g filter="url(#shadow)">
+<rect x="740" y="130" width="320" height="50" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="130" width="5" height="50" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">401 · invalid or expired run token</text>
+<text x="753.0" y="167.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the worker&#x27;s JWT is ≤ 5 min; it re-signs per call</text>
+<g filter="url(#shadow)">
+<rect x="740" y="246" width="320" height="86" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="246" width="5" height="86" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="265.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">404 unknown run · 403 mismatch · 424 no def</text>
+<text x="753.0" y="283.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">404 not 403: a foreign run id must look like nothing</text>
+<text x="753.0" y="297.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">403 tenant mismatch is logged as a possible attack</text>
+<text x="753.0" y="312.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">424: the pinned digest must exist — never fall back to &#x27;latest&#x27;</text>
+<g filter="url(#shadow)">
+<rect x="740" y="362" width="320" height="208" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="362" width="5" height="208" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="381.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">403 DENY · 202 NEEDS_APPROVAL</text>
+<text x="753.0" y="399.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">every deny is audited with {rule, args_sha256}</text>
+<text x="753.0" y="413.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the agent is told: &#x27;Tool call refused: &lt;reason&gt;&#x27;</text>
+<text x="753.0" y="428.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  → the model sees the reason and can re-plan</text>
+<text x="753.0" y="442.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  → the worker records TOOL_DENIED in the log</text>
+<text x="753.0" y="457.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">NEEDS_APPROVAL: 202; the worker parks the run as</text>
+<text x="753.0" y="471.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  WAITING_APPROVAL; the human approves; the run</text>
+<text x="753.0" y="486.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  re-queues and the SAME idem key is retried</text>
+<text x="753.0" y="500.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  with approved=true (the journal has no row yet:</text>
+<text x="753.0" y="515.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  approval happens before stage 3)</text>
+<text x="753.0" y="529.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">budget.exhausted also fails the run at the worker</text>
+<text x="753.0" y="544.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the demo&#x27;s prompt-injection scenario exercises 4</text>
+<text x="753.0" y="558.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">of these rules in one run (safety proof S14)</text>
+<g filter="url(#shadow)">
+<rect x="740" y="600" width="320" height="96" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="600" width="5" height="96" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="619.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">409 IN_FLIGHT · 200 REPLAYED · 503</text>
+<text x="753.0" y="637.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">409: another worker (or our former self) is mid-call;</text>
+<text x="753.0" y="651.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  the worker reports &#x27;in progress&#x27; — never duplicates</text>
+<text x="753.0" y="666.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">200 Replayed: recorded result, side effect NOT repeated</text>
+<text x="753.0" y="680.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">503: cannot journal → refuse; nothing observable happened</text>
+<g filter="url(#shadow)">
+<rect x="740" y="726" width="320" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="726" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="745.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">500 · workspace unavailable</text>
+<text x="753.0" y="763.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">tool_calls row finished as FAILED before returning</text>
+<text x="753.0" y="777.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">audit(pre) already written → the attempt is on record</text>
+<g filter="url(#shadow)">
+<rect x="740" y="818" width="320" height="178" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="818" width="5" height="178" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="837.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">502 · platform could not complete it</text>
+<text x="753.0" y="855.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">sandbox setup failure (exit 125 + marker) vs payload failure</text>
+<text x="753.0" y="869.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  are told apart so the agent is not blamed for our bug</text>
+<text x="753.0" y="884.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">UnsafeRetry tools (http.post): &#x27;MAY OR MAY NOT have</text>
+<text x="753.0" y="898.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  taken effect&#x27; — the model must verify state first</text>
+<text x="753.0" y="913.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the credential is still revoked (defer) and the post</text>
+<text x="753.0" y="927.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  audit record says ERROR with the cause</text>
+<text x="753.0" y="942.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">gateway crash mid-call: no post record, row stays</text>
+<text x="753.0" y="956.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  IN_FLIGHT → reaper marks FAILED &#x27;outcome unknown&#x27;</text>
+<text x="753.0" y="971.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  after stuck_after; the run is told the truth</text>
+<g filter="url(#shadow)">
+<rect x="740" y="1026" width="320" height="96" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="740" y="1026" width="5" height="96" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="753.0" y="1045.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">200 with is_error / truncated</text>
+<text x="753.0" y="1063.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a tool&#x27;s own failure (exit≠0, 4xx) is a normal result</text>
+<text x="753.0" y="1077.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">truncated=true tells the model the output was capped</text>
+<text x="753.0" y="1092.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">denied CLI arguments never reach the broker sandbox:</text>
+<text x="753.0" y="1106.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  policy ran at stage 2, before any mint</text>
+<rect x="1120" y="130" width="380" height="142" rx="6" fill="#ffffff" stroke="#7a3fd1" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="146.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#7a3fd1" text-anchor="start">Why this order</text>
+<text x="1130.0" y="163.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">decide → reserve → audit → mint → execute:</text>
+<text x="1130.0" y="177.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a DENIED call never mints a credential;</text>
+<text x="1130.0" y="191.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a REPEATED call never repeats a side effect;</text>
+<text x="1130.0" y="205.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">an ABANDONED call is never silent.</text>
+<text x="1130.0" y="219.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start"></text>
+<text x="1130.0" y="233.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">The registry&#x27;s MarshalJSON emits the schema</text>
+<text x="1130.0" y="247.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">only, so the model never sees Backend{}</text>
+<text x="1130.0" y="261.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">(binary, CredRef, timeouts, Dangerous).</text>
+<rect x="1120" y="290" width="380" height="114" rx="6" fill="#ffffff" stroke="#7a3fd1" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="306.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#7a3fd1" text-anchor="start">Where the request&#x27;s claims are NOT trusted</text>
+<text x="1130.0" y="323.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">tenant: taken from the stored run, not the token</text>
+<text x="1130.0" y="337.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">tool grants: from the pinned definition digest</text>
+<text x="1130.0" y="351.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">args: validated against the tool&#x27;s schema</text>
+<text x="1130.0" y="365.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">idem key: accepted, but scoped by run in the store</text>
+<text x="1130.0" y="379.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">approved flag: only honoured after the human&#x27;s</text>
+<text x="1130.0" y="393.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">APPROVAL_GIVEN event re-queued the run</text>
+<rect x="1120" y="430" width="380" height="114" rx="6" fill="#ffffff" stroke="#2f6fbf" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="446.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2f6fbf" text-anchor="start">Parameter policy examples (from the demo agent)</text>
+<text x="1130.0" y="463.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">http.get   allowed_hosts: [api.github.com]</text>
+<text x="1130.0" y="477.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">github.cli argv[0] allowlist: [pr, issue, repo]</text>
+<text x="1130.0" y="491.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">           denied_arg_patterns: [&#x27;auth token&#x27;]</text>
+<text x="1130.0" y="505.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">http.post  Dangerous → WAITING_APPROVAL</text>
+<text x="1130.0" y="519.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">exec.*     no params policy — the sandbox IS</text>
+<text x="1130.0" y="533.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">           the policy (no network, ro root)</text>
+<rect x="1120" y="570" width="380" height="114" rx="6" fill="#ffffff" stroke="#2e8b57" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="586.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#2e8b57" text-anchor="start">Two records per allowed call</text>
+<text x="1130.0" y="603.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">pre  : intent, before the side effect</text>
+<text x="1130.0" y="617.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">post : outcome, after it</text>
+<text x="1130.0" y="631.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">A denial writes exactly one record.</text>
+<text x="1130.0" y="645.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Chain: hash = sha256(prev_hash ‖ canonical(rec))</text>
+<text x="1130.0" y="659.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">ts truncated to µs (Postgres resolution);</text>
+<text x="1130.0" y="673.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">VerifyChain recomputes the whole tenant chain.</text>
+<rect x="1120" y="700" width="380" height="100" rx="6" fill="#ffffff" stroke="#d9822b" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="716.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#d9822b" text-anchor="start">Exec path details</text>
+<text x="1130.0" y="733.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">namespace driver: 8.4 ms cold start</text>
+<text x="1130.0" y="747.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">workspace /work bind-mounted rw</text>
+<text x="1130.0" y="761.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">stdout/stderr capped at MaxOutputBytes/2 each</text>
+<text x="1130.0" y="775.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">exit 126/127 vs jail-setup failure told apart</text>
+<text x="1130.0" y="789.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">cgroup killed on timeout — not just the child</text>
+<rect x="1120" y="830" width="380" height="100" rx="6" fill="#ffffff" stroke="#b8860b" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="846.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#b8860b" text-anchor="start">CLI path details</text>
+<text x="1130.0" y="863.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">our own binary bound at /opt/agentorch/bin/gh</text>
+<text x="1130.0" y="877.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">dispatch on argv[0] (busybox pattern)</text>
+<text x="1130.0" y="891.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">separate pid + user ns from the agent sandbox</text>
+<text x="1130.0" y="905.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">GH_TOKEN visible to that process only</text>
+<text x="1130.0" y="919.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">PoC gap: broker sandbox uses the host netns</text>
+<rect x="1120" y="960" width="380" height="86" rx="6" fill="#ffffff" stroke="#6e7781" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1130.0" y="976.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6e7781" text-anchor="start">What the gateway does NOT do</text>
+<text x="1130.0" y="993.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no retries of tool calls (the agent decides)</text>
+<text x="1130.0" y="1007.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no streaming of tool output (capped, returned whole)</text>
+<text x="1130.0" y="1021.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no per-tenant network egress today (designed: proxy)</text>
+<text x="1130.0" y="1035.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">no cross-replica idempotency cache — Postgres is it</text>
+<rect x="40" y="1256" width="330" height="26.3" fill="#7a3fd1" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1272.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Trade-off taken</text>
+<rect x="370" y="1256" width="380" height="26.3" fill="#7a3fd1" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1272.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Because</text>
+<rect x="750" y="1256" width="380" height="26.3" fill="#7a3fd1" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="757.0" y="1272.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Cost</text>
+<rect x="1130" y="1256" width="390" height="26.3" fill="#7a3fd1" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1137.0" y="1272.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Where it is argued</text>
+<rect x="40" y="1282.28" width="330" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1298.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">One gateway process type, on the hot path</text>
+<rect x="370" y="1282.28" width="380" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1298.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">authorization must be un-bypassable; a library can be skipped</text>
+<rect x="750" y="1282.28" width="380" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="757.0" y="1298.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">+1 network hop per tool call (≈1 ms in-cluster); PDB + 2 replicas</text>
+<rect x="1130" y="1282.28" width="390" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1137.0" y="1298.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">DEEP_DIVE D5 · reasoning/05-authorization</text>
+<rect x="40" y="1308.56" width="330" height="26.3" fill="#fbfbfc" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1325.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">Deny-by-default + allowlists over a detector</text>
+<rect x="370" y="1308.56" width="380" height="26.3" fill="#fbfbfc" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1325.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">prompt injection cannot be reliably detected; it can be contained</text>
+<rect x="750" y="1308.56" width="380" height="26.3" fill="#fbfbfc" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="757.0" y="1325.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">agents need explicit grants; onboarding a tool is a policy change</text>
+<rect x="1130" y="1308.56" width="390" height="26.3" fill="#fbfbfc" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1137.0" y="1325.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">docs/01-concepts/08 · reasoning/10</text>
+<rect x="40" y="1334.84" width="330" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1351.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">Idempotency journal in Postgres, not in memory</text>
+<rect x="370" y="1334.84" width="380" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1351.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">a replacement worker on another node must see the same journal</text>
+<rect x="750" y="1334.84" width="380" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="757.0" y="1351.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">one INSERT per call; ~5 % of tool-call latency</text>
+<rect x="1130" y="1334.84" width="390" height="26.3" fill="#ffffff" stroke="#7a3fd1" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1137.0" y="1351.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">benchmarks §2 exactly-once check</text>
+<rect x="28" y="1372" width="14" height="12" rx="3" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1"/>
+<text x="48.0" y="1382.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">TCB code</text>
+<rect x="258" y="1372" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="278.0" y="1382.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">durable write</text>
+<rect x="488" y="1372" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="508.0" y="1382.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">trusted code</text>
+<rect x="718" y="1372" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="738.0" y="1382.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">refusal / failure path</text>
+<rect x="28" y="1390" width="14" height="12" rx="3" fill="#fdf1e3" stroke="#d9822b" stroke-width="1"/>
+<text x="48.0" y="1400.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">agent sandbox</text>
+<rect x="258" y="1390" width="14" height="12" rx="3" fill="#fff7d6" stroke="#b8860b" stroke-width="1"/>
+<text x="278.0" y="1400.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">broker sandbox</text>
+</svg>

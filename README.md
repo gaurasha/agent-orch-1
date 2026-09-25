@@ -15,7 +15,9 @@ make demo-docker # macOS / Windows / no root
 | **[DEEP_DIVE.md](DEEP_DIVE.md)** | Every decision with its alternatives, the case *for* what I rejected, industry precedent and links. |
 | **[TUTORIAL.md](TUTORIAL.md)** | The whole system from first principles: what a container actually is, why durability is hard, why credentials cannot touch the agent. |
 | **[AI_LOG.md](AI_LOG.md)** | How I used AI, where I overrode it, and where it was better than me. |
-| **[docs/](docs/)** | **The full documentation set** — 35 documents, ~54k words. Every concept from first principles, with reading paths by role. |
+| **[docs/](docs/)** | **The full documentation set** — 64 documents, ~98k words. Every concept from first principles, with reading paths by role. |
+| **[docs/architecture/](docs/architecture/README.md)** | **Eleven generated architecture diagrams** — one overall picture and ten focused dives (control plane, scheduling, gateway, sandbox, credentials, model plane, state, Kubernetes, failure map, observability), each with services, boundaries, data flow, failure handling, optimisations and trade-offs. |
+| **[docs/reasoning/](docs/reasoning/README.md)** | **Why it is built this way** — sixteen first-principles documents; every alternative at every decision, production usage, documented incidents, evals and testing, state of the art, ~270 references. |
 
 ### Inside [`docs/`](docs/)
 
@@ -28,6 +30,8 @@ make demo-docker # macOS / Windows / no root
 | [04 — Evidence](docs/04-evidence/) | Benchmarks (and what they do **not** support) · safety proofs · **nine real bugs and what each taught** |
 | [05 — Reference](docs/05-reference/) | Glossary · syscall denylist · reading list · FAQ |
 | [Diagrams](docs/diagrams/) | System + trust boundaries · lifecycle · tool call path · sandbox layers |
+| [Architecture](docs/architecture/) | **Generated SVG diagrams** — overall + ten focused dives, each with a companion document (services · domain boundaries · data flow · failure handling · optimisations · trade-offs) |
+| [Reasoning](docs/reasoning/) | **First-principles rationale** — runtime model · isolation · durability · scheduling · authorization · credentials · fairness · audit · LLM integration · prompt injection · Kubernetes · language · evals & testing · industry learnings · state of the art |
 
 **Start here:** [`docs/README.md`](docs/README.md) has reading paths for
 "I have 20 minutes", "I am reviewing the security model", "I am going to operate

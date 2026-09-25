@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1290" viewBox="0 0 1560 1290" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1290" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">09 · Failure handling — every failure, the mechanism that absorbs it, and what is deliberately NOT handled</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">Left: what can break. Right: the seven mechanisms. An arrow means &#x27;this mechanism is what turns that failure into a delay instead of a loss or a duplicate&#x27;.</text>
+<rect x="40" y="86" width="620" height="900" rx="10" ry="10" fill="rgba(192,57,43,0.045)" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="573" height="22" rx="6" fill="#c0392b"/>
+<text x="338.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">FAILURES · ordered by how often they happen in production</text>
+<text x="52.0" y="112" font-size="11" fill="#c0392b" font-style="italic">each was either provoked by a test or reasoned about in DESIGN.md §failure modes</text>
+<rect x="900" y="86" width="620" height="900" rx="10" ry="10" fill="rgba(122,63,209,0.06)" stroke="#7a3fd1" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="912" y="75" width="516" height="22" rx="6" fill="#7a3fd1"/>
+<text x="1169.8" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">MECHANISMS · seven, all in the store or the gateway</text>
+<text x="912.0" y="112" font-size="11" fill="#7a3fd1" font-style="italic">none needs a coordinator, a broker, a heartbeat service or a cache</text>
+<path d="M 630.0 163.0 L 760.0 163.0 L 760.0 165.0 L 930.0 165.0" fill="none" stroke="#2e8b57" stroke-width="1.4"  marker-end="url(#arr-green)" />
+<path d="M 630.0 239.0 L 760.0 239.0 L 760.0 637.0 L 930.0 637.0" fill="none" stroke="#2f6fbf" stroke-width="1.4"  marker-end="url(#arr)" />
+<path d="M 630.0 239.0 L 767.0 239.0 L 767.0 183.0 L 930.0 183.0" fill="none" stroke="#2e8b57" stroke-width="1.4"  marker-end="url(#arr-green)" />
+<path d="M 630.0 315.0 L 760.0 315.0 L 760.0 265.0 L 930.0 265.0" fill="none" stroke="#2e8b57" stroke-width="1.4"  marker-end="url(#arr-green)" />
+<path d="M 630.0 315.0 L 760.0 315.0 L 760.0 510.0 L 930.0 510.0" fill="none" stroke="#7a3fd1" stroke-width="1.4"  marker-end="url(#arr-purple)" />
+<path d="M 630.0 391.0 L 760.0 391.0 L 760.0 401.0 L 930.0 401.0" fill="none" stroke="#7a3fd1" stroke-width="1.4"  marker-end="url(#arr-purple)" />
+<path d="M 630.0 391.0 L 767.0 391.0 L 767.0 283.0 L 930.0 283.0" fill="none" stroke="#2e8b57" stroke-width="1.4"  marker-end="url(#arr-green)" />
+<path d="M 630.0 467.0 L 767.0 467.0 L 767.0 528.0 L 930.0 528.0" fill="none" stroke="#7a3fd1" stroke-width="1.4"  marker-end="url(#arr-purple)" />
+<path d="M 630.0 543.0 L 774.0 543.0 L 774.0 546.0 L 930.0 546.0" fill="none" stroke="#7a3fd1" stroke-width="1.4"  marker-end="url(#arr-purple)" />
+<path d="M 630.0 543.0 L 774.0 543.0 L 774.0 301.0 L 930.0 301.0" fill="none" stroke="#2e8b57" stroke-width="1.4"  marker-end="url(#arr-green)" />
+<path d="M 630.0 619.0 L 767.0 619.0 L 767.0 655.0 L 930.0 655.0" fill="none" stroke="#2f6fbf" stroke-width="1.4"  marker-end="url(#arr)" />
+<path d="M 630.0 695.0 L 760.0 695.0 L 760.0 764.0 L 930.0 764.0" fill="none" stroke="#d9822b" stroke-width="1.4"  marker-end="url(#arr-orange)" />
+<path d="M 630.0 771.0 L 781.0 771.0 L 781.0 319.0 L 930.0 319.0" fill="none" stroke="#2e8b57" stroke-width="1.4"  marker-end="url(#arr-green)" />
+<path d="M 630.0 771.0 L 767.0 771.0 L 767.0 419.0 L 930.0 419.0" fill="none" stroke="#7a3fd1" stroke-width="1.4"  marker-end="url(#arr-purple)" />
+<path d="M 630.0 847.0 L 760.0 847.0 L 760.0 873.0 L 930.0 873.0" fill="none" stroke="#326ce5" stroke-width="1.4"  marker-end="url(#arr)" />
+<path d="M 630.0 923.0 L 767.0 923.0 L 767.0 891.0 L 930.0 891.0" fill="none" stroke="#326ce5" stroke-width="1.4"  marker-end="url(#arr)" />
+<g filter="url(#shadow)">
+<rect x="70" y="132" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="132" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">LLM provider 429 / 5xx / timeout</text>
+<rect x="570.4" y="139" width="51.6" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="596.2" y="150.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">hourly</text>
+<text x="83.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the largest external dependency; rate limits are normal, not exceptional</text>
+<g filter="url(#shadow)">
+<rect x="70" y="208" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="208" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="227.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">tenant burst (300 agents at 09:00)</text>
+<rect x="577.0" y="215" width="45.0" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="599.5" y="226.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">daily</text>
+<text x="83.0" y="245.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">one tenant&#x27;s demand exceeds its share and the queue</text>
+<g filter="url(#shadow)">
+<rect x="70" y="284" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="284" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="303.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">agentd pod killed mid-step (deploy, OOM, node loss)</text>
+<rect x="577.0" y="291" width="45.0" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="599.5" y="302.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">daily</text>
+<text x="83.0" y="321.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the in-memory step is lost; the lease is orphaned</text>
+<g filter="url(#shadow)">
+<rect x="70" y="360" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="360" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="379.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">worker paused: GC, SIGSTOP, network partition</text>
+<rect x="570.4" y="367" width="51.6" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="596.2" y="378.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">weekly</text>
+<text x="83.0" y="397.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a zombie that later tries to write stale history</text>
+<g filter="url(#shadow)">
+<rect x="70" y="436" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="436" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="455.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">tool call repeated (retry, replay, double-delivery)</text>
+<rect x="570.4" y="443" width="51.6" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="596.2" y="454.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">weekly</text>
+<text x="83.0" y="473.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the same run:step:i arrives twice at the gateway</text>
+<g filter="url(#shadow)">
+<rect x="70" y="512" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="512" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="531.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">gateway dies between side effect and journal write</text>
+<rect x="563.8" y="519" width="58.2" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="592.9" y="530.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">monthly</text>
+<text x="83.0" y="549.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">outcome genuinely unknown; MUST NOT be retried blindly</text>
+<g filter="url(#shadow)">
+<rect x="70" y="588" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="588" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="607.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">poison agent: loops on tool calls / tokens</text>
+<rect x="570.4" y="595" width="51.6" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="596.2" y="606.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">weekly</text>
+<text x="83.0" y="625.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a prompt-injected or buggy agent spending without limit</text>
+<g filter="url(#shadow)">
+<rect x="70" y="664" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="664" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="683.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">sandbox runaway: fork bomb, memory, infinite loop</text>
+<rect x="570.4" y="671" width="51.6" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="596.2" y="682.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">weekly</text>
+<text x="83.0" y="701.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">model-authored code doing what model-authored code does</text>
+<g filter="url(#shadow)">
+<rect x="70" y="740" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="740" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="759.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Postgres primary failover</text>
+<rect x="550.6" y="747" width="71.4" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="586.3" y="758.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">quarterly</text>
+<text x="83.0" y="777.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">every in-flight transaction aborts at once</text>
+<g filter="url(#shadow)">
+<rect x="70" y="816" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="816" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="835.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">control-plane pod restart during SSE</text>
+<rect x="577.0" y="823" width="45.0" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="599.5" y="834.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">daily</text>
+<text x="83.0" y="853.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">consoles lose their stream mid-run</text>
+<g filter="url(#shadow)">
+<rect x="70" y="892" width="560" height="62" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="70" y="892" width="5" height="62" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="83.0" y="911.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">bad manifest / kubectl edit / drift</text>
+<rect x="570.4" y="899" width="51.6" height="16" rx="8" fill="#c0392b" fill-opacity="0.15" stroke="#c0392b" stroke-width="0.8"/>
+<text x="596.2" y="910.5" font-size="9.5" font-weight="600" fill="#c0392b" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">weekly</text>
+<text x="83.0" y="929.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the running cluster no longer matches the reviewed state</text>
+<g filter="url(#shadow)">
+<rect x="930" y="132" width="560" height="84" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="930" y="132" width="5" height="84" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="943.0" y="151.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">requeue with wake_at (never FAILED)</text>
+<text x="943.0" y="169.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ErrQuotaUnavailable → +2 s · provider down → +10 s</text>
+<text x="943.0" y="183.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the run stays QUEUED; a delay, never a loss</text>
+<g filter="url(#shadow)">
+<rect x="930" y="250" width="560" height="84" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="930" y="250" width="5" height="84" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="943.0" y="269.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">lease TTL + reaper</text>
+<text x="943.0" y="287.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">RUNNING AND lease_expires_at &lt; now() → QUEUED</text>
+<text x="943.0" y="301.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">the ENTIRE failure detector; ≤ TTL 30 s + 5 s</text>
+<g filter="url(#shadow)">
+<rect x="930" y="368" width="560" height="84" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="930" y="368" width="5" height="84" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="943.0" y="387.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">fencing token in Commit</text>
+<text x="943.0" y="405.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">owner = me AND not expired AND next_seq = expected</text>
+<text x="943.0" y="419.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a stale writer gets ErrLeaseLost, writes nothing</text>
+<g filter="url(#shadow)">
+<rect x="930" y="486" width="560" height="84" rx="7" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1.2"/>
+<rect x="930" y="486" width="5" height="84" rx="2.5" fill="#7a3fd1"/>
+</g>
+<text x="943.0" y="505.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">idempotency journal (tool_calls)</text>
+<text x="943.0" y="523.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT ON CONFLICT DO NOTHING on run:step:i</text>
+<text x="943.0" y="537.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">IN_FLIGHT → 409 · DONE → replay · stuck → &#x27;unknown&#x27;</text>
+<g filter="url(#shadow)">
+<rect x="930" y="604" width="560" height="84" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="930" y="604" width="5" height="84" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="943.0" y="623.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">budgets + admission control</text>
+<text x="943.0" y="641.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Budget.ExceedsReason at worker AND gateway</text>
+<text x="943.0" y="655.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">max_concurrent_runs → 429 before the queue</text>
+<g filter="url(#shadow)">
+<rect x="930" y="722" width="560" height="84" rx="7" fill="#fdf1e3" stroke="#d9822b" stroke-width="1.2"/>
+<rect x="930" y="722" width="5" height="84" rx="2.5" fill="#d9822b"/>
+</g>
+<text x="943.0" y="741.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">sandbox limits enforced by the parent</text>
+<text x="943.0" y="759.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">cgroup cpu/mem/pids + rlimits + wall-clock</text>
+<text x="943.0" y="773.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">killCgroup: every pid, not just the child</text>
+<g filter="url(#shadow)">
+<rect x="930" y="840" width="560" height="84" rx="7" fill="#eaf0fc" stroke="#326ce5" stroke-width="1.2"/>
+<rect x="930" y="840" width="5" height="84" rx="2.5" fill="#326ce5"/>
+</g>
+<text x="943.0" y="859.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">replicas · PDB · HPA · GitOps selfHeal</text>
+<text x="943.0" y="877.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">2× controlplane, 2× gateway, PDB minAvailable=1</text>
+<text x="943.0" y="891.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">HPA 2–40 workers; Argo reverts drift, prunes extras</text>
+<rect x="40" y="1010" width="330" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1026.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">Deliberately NOT handled (and why)</text>
+<rect x="370" y="1010" width="560" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1026.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">What would happen</text>
+<rect x="930" y="1010" width="590" height="25.6" fill="#c0392b" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="937.0" y="1026.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="start">The production step, if it were needed</text>
+<rect x="40" y="1035.6" width="330" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1051.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">exactly-once for tools marked UnsafeRetry</text>
+<rect x="370" y="1035.6" width="560" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1051.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">the model is told &#x27;MAY OR MAY NOT have taken effect&#x27; and must verify before retrying</text>
+<rect x="930" y="1035.6" width="590" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="937.0" y="1051.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">end-to-end idempotency keys in the third-party API (Stripe-style) — not something the platform can promise</text>
+<text x="937.0" y="1065.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">on its own</text>
+<rect x="40" y="1074.8" width="330" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1090.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">loss of the Postgres primary AND its replicas</text>
+<rect x="370" y="1074.8" width="560" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1090.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">runs since the last backup are gone; the audit chain has a hole that VerifyChain reports</text>
+<rect x="930" y="1074.8" width="590" height="39.2" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="937.0" y="1090.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">PITR + cross-region replica; the design&#x27;s tiering to object storage makes cold history independent of the</text>
+<text x="937.0" y="1104.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">primary</text>
+<rect x="40" y="1114.0" width="330" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1130.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">a kernel LPE from inside a namespace sandbox</text>
+<rect x="370" y="1114.0" width="560" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1130.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">PoC: host compromise (namespace driver shares the kernel)</text>
+<rect x="930" y="1114.0" width="590" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="937.0" y="1130.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">production driver: gVisor RuntimeClass + tainted pool + no SA token + default-deny — the escape lands</text>
+<text x="937.0" y="1143.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">nowhere useful</text>
+<rect x="40" y="1153.2" width="330" height="25.6" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1169.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">multi-replica fairness</text>
+<rect x="370" y="1153.2" width="560" height="25.6" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1169.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">N replicas each admit a full share: up to N× over-admission of the provider budget</text>
+<rect x="930" y="1153.2" width="590" height="25.6" fill="#fbfbfc" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="937.0" y="1169.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">Redis-backed buckets with a local lease (the documented gap; interface already isolates the limiter)</text>
+<rect x="40" y="1178.8" width="330" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1194.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#1f2328" text-anchor="start">prompt-injection DETECTION</text>
+<rect x="370" y="1178.8" width="560" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="377.0" y="1194.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">we do not try: a clever injection is indistinguishable from a legitimate instruction</text>
+<rect x="930" y="1178.8" width="590" height="39.2" fill="#ffffff" stroke="#c0392b" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="937.0" y="1194.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">containment is the product: allowlists, no network, no credential in the sandbox, human approval for</text>
+<text x="937.0" y="1208.4" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="start">Dangerous tools</text>
+<rect x="28" y="1222" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="48.0" y="1232.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">failure</text>
+<rect x="258" y="1222" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="278.0" y="1232.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">store mechanism</text>
+<rect x="488" y="1222" width="14" height="12" rx="3" fill="#efe7fb" stroke="#7a3fd1" stroke-width="1"/>
+<text x="508.0" y="1232.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">gateway / fence</text>
+<rect x="718" y="1222" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="738.0" y="1232.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">policy</text>
+<rect x="28" y="1240" width="14" height="12" rx="3" fill="#fdf1e3" stroke="#d9822b" stroke-width="1"/>
+<text x="48.0" y="1250.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">sandbox</text>
+<rect x="258" y="1240" width="14" height="12" rx="3" fill="#eaf0fc" stroke="#326ce5" stroke-width="1"/>
+<text x="278.0" y="1250.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">Kubernetes</text>
+</svg>

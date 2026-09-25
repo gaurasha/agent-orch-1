@@ -1,0 +1,276 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1260" viewBox="0 0 1560 1260" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/></marker>
+  <marker id="arr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2328"/></marker>
+  <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0392b"/></marker>
+  <marker id="arr-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#7a3fd1"/></marker>
+  <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e8b57"/></marker>
+  <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d9822b"/></marker>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#000" flood-opacity="0.10"/></filter>
+</defs>
+<rect width="1560" height="1260" fill="#f7f8fa"/>
+<text x="28.0" y="36.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#1f2328" text-anchor="start">02 · Scheduling and the agent runtime — leases, replay, fenced commits</text>
+<text x="28.0" y="56.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#57606a" text-anchor="start">A run is a row plus an append-only log. Workers are stateless and interchangeable; the only failure detector is a lease that expires.</text>
+<rect x="40" y="86" width="560" height="560" rx="10" ry="10" fill="rgba(46,139,87,0.05)" stroke="#2e8b57" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="75" width="314" height="22" rx="6" fill="#2e8b57"/>
+<text x="209.0" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">RUN STATE MACHINE · runs.state</text>
+<rect x="366.0" y="79" width="133" height="14" fill="#f7f8fa"/>
+<text x="376.0" y="90.5" font-size="11" fill="#2e8b57" font-style="italic" text-anchor="start">one txn per transition</text>
+<rect x="640" y="86" width="880" height="560" rx="10" ry="10" fill="rgba(47,111,191,0.045)" stroke="#2f6fbf" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="652" y="75" width="429" height="22" rx="6" fill="#2f6fbf"/>
+<text x="866.6" y="90.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">ONE WORKER · agentd · stateless · HPA 2–40</text>
+<text x="652.0" y="112" font-size="11" fill="#2f6fbf" font-style="italic">tick every 100 ms; nothing in memory survives a step</text>
+<rect x="40" y="672" width="1480" height="372" rx="10" ry="10" fill="rgba(122,63,209,0.06)" stroke="#7a3fd1" stroke-width="1.4" stroke-dasharray="7 5"/>
+<rect x="52" y="661" width="736" height="22" rx="6" fill="#7a3fd1"/>
+<text x="420.2" y="676.5" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.4">WHY THE FENCE MATTERS · a paused worker must not overwrite its replacement</text>
+<text x="52.0" y="698" font-size="11" fill="#7a3fd1" font-style="italic">TestDurability_PartitionedWorkerIsFencedOut asserts this exact sequence against Postgres</text>
+<path d="M 160.0 748.0 L 1490.0 748.0" fill="none" stroke="#8c959f" stroke-width="1" stroke-dasharray="2 4" />
+<path d="M 160.0 846.0 L 1490.0 846.0" fill="none" stroke="#8c959f" stroke-width="1" stroke-dasharray="2 4" />
+<path d="M 160.0 916.0 L 1490.0 916.0" fill="none" stroke="#8c959f" stroke-width="1" stroke-dasharray="2 4" />
+<path d="M 160.0 986.0 L 1490.0 986.0" fill="none" stroke="#8c959f" stroke-width="1" stroke-dasharray="2 4" />
+<path d="M 220.0 742.0 L 220.0 754.0" fill="none" stroke="#2e8b57" stroke-width="2"  />
+<path d="M 360.0 742.0 L 360.0 754.0" fill="none" stroke="#1f2328" stroke-width="2"  />
+<path d="M 500.0 742.0 L 500.0 754.0" fill="none" stroke="#c0392b" stroke-width="2"  />
+<path d="M 500.0 748.0 L 1150.0 748.0" fill="none" stroke="#c0392b" stroke-width="2.2" stroke-dasharray="7 5" />
+<path d="M 560.0 840.0 L 560.0 852.0" fill="none" stroke="#d9822b" stroke-width="2"  />
+<path d="M 620.0 910.0 L 620.0 922.0" fill="none" stroke="#d9822b" stroke-width="2"  />
+<path d="M 720.0 980.0 L 720.0 992.0" fill="none" stroke="#2e8b57" stroke-width="2"  />
+<path d="M 860.0 980.0 L 860.0 992.0" fill="none" stroke="#1f2328" stroke-width="2"  />
+<path d="M 1000.0 980.0 L 1000.0 992.0" fill="none" stroke="#2e8b57" stroke-width="2"  />
+<path d="M 1150.0 742.0 L 1150.0 754.0" fill="none" stroke="#c0392b" stroke-width="2"  />
+<path d="M 1300.0 742.0 L 1300.0 754.0" fill="none" stroke="#1f2328" stroke-width="2"  />
+<path d="M 1300.0 980.0 L 1300.0 992.0" fill="none" stroke="#2e8b57" stroke-width="2"  />
+<path d="M 320.0 194.0 L 320.0 262.0" fill="none" stroke="#2e8b57" stroke-width="2"  marker-end="url(#arr-green)" />
+<path d="M 200.0 300.0 L 120.0 300.0 L 120.0 162.0 L 200.0 162.0" fill="none" stroke="#d9822b" stroke-width="1.6"  marker-end="url(#arr-orange)" />
+<path d="M 240.0 338.0 L 240.0 364.0 L 135.0 364.0 L 135.0 390.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 285.0 338.0 L 285.0 390.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 400.0 338.0 L 400.0 364.0 L 450.0 364.0 L 450.0 390.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 215.0 338.0 L 215.0 470.0 L 180.0 470.0 L 180.0 490.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 360.0 338.0 L 360.0 470.0 L 430.0 470.0 L 430.0 490.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 70.0 521.0 L 56.0 521.0 L 56.0 112.0 L 250.0 112.0 L 250.0 130.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr)" />
+<path d="M 540.0 521.0 L 580.0 521.0 L 580.0 112.0 L 390.0 112.0 L 390.0 130.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr)" />
+<path d="M 480.0 490.0 L 480.0 448.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arr)" />
+<path d="M 930.0 176.0 L 960.0 176.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 800.0 222.0 L 800.0 252.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 930.0 206.0 L 945.0 207.0 L 945.0 300.0 L 960.0 300.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 1225.0 428.0 L 1225.0 458.0" fill="none" stroke="#2e8b57" stroke-width="2"  marker-end="url(#arr-green)" />
+<path d="M 960.0 486.0 L 945.0 486.0 L 945.0 415.0 L 960.0 415.0" fill="none" stroke="#2e8b57" stroke-width="1.6"  marker-end="url(#arr-green)" />
+<path d="M 960.0 392.0 L 930.0 392.0" fill="none" stroke="#8c959f" stroke-width="1.6"  marker-end="url(#arr)" />
+<path d="M 800.0 438.0 L 800.0 468.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<path d="M 670.0 284.0 L 655.0 284.0 L 655.0 511.0 L 670.0 511.0" fill="none" stroke="#8c959f" stroke-width="1.6" stroke-dasharray="2 4" marker-end="url(#arr)" />
+<g filter="url(#shadow)">
+<rect x="200" y="130" width="240" height="64" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="200" y="130" width="5" height="64" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="213.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">QUEUED</text>
+<text x="213.0" y="167.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">wake_at NULL or ≤ now() · lease NULL</text>
+<text x="213.0" y="181.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">visible to AcquireLease</text>
+<g filter="url(#shadow)">
+<rect x="200" y="262" width="240" height="76" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="200" y="262" width="5" height="76" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="213.0" y="281.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">RUNNING</text>
+<text x="213.0" y="299.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">lease_owner = worker · lease_expires_at</text>
+<text x="213.0" y="313.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">invisible to the dispatcher</text>
+<g filter="url(#shadow)">
+<rect x="70" y="390" width="130" height="58" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="70" y="390" width="5" height="58" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="83.0" y="409.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">SUCCEEDED</text>
+<text x="83.0" y="427.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">model returned</text>
+<text x="83.0" y="441.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no tool calls</text>
+<g filter="url(#shadow)">
+<rect x="220" y="390" width="130" height="58" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="220" y="390" width="5" height="58" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="233.0" y="409.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">FAILED</text>
+<text x="233.0" y="427.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">budget exceeded</text>
+<text x="233.0" y="441.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">(only reason today)</text>
+<g filter="url(#shadow)">
+<rect x="370" y="390" width="160" height="58" rx="7" fill="#fbe9e9" stroke="#c0392b" stroke-width="1.2"/>
+<rect x="370" y="390" width="5" height="58" rx="2.5" fill="#c0392b"/>
+</g>
+<text x="383.0" y="409.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">CANCELLED</text>
+<text x="383.0" y="427.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /cancel</text>
+<text x="383.0" y="441.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">straggler denied at gw</text>
+<g filter="url(#shadow)">
+<rect x="70" y="490" width="220" height="62" rx="7" fill="#f0f0f0" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="70" y="490" width="5" height="62" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="83.0" y="509.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">WAITING_HUMAN</text>
+<text x="83.0" y="527.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">stop_reason human_input_required</text>
+<text x="83.0" y="541.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /resume → QUEUED</text>
+<g filter="url(#shadow)">
+<rect x="320" y="490" width="220" height="62" rx="7" fill="#f0f0f0" stroke="#6e7781" stroke-width="1.2"/>
+<rect x="320" y="490" width="5" height="62" rx="2.5" fill="#6e7781"/>
+</g>
+<text x="333.0" y="509.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">WAITING_APPROVAL</text>
+<text x="333.0" y="527.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">a Dangerous tool asked</text>
+<text x="333.0" y="541.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">POST /approve → QUEUED</text>
+<g filter="url(#shadow)">
+<rect x="670" y="130" width="260" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="130" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">tick()</text>
+<text x="683.0" y="167.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">eligible = limiter.Eligible(2000 tok)</text>
+<text x="683.0" y="181.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">none eligible → do nothing (not an error)</text>
+<text x="683.0" y="196.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">AcquireLease(worker, TTL 30 s, eligible)</text>
+<text x="683.0" y="210.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">ErrNotFound → sleep 100 ms</text>
+<g filter="url(#shadow)">
+<rect x="960" y="130" width="530" height="92" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="960" y="130" width="5" height="92" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="973.0" y="149.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">AcquireLease — the whole scheduler is one query</text>
+<text x="973.0" y="167.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SELECT id FROM runs WHERE state=&#x27;QUEUED&#x27; AND wake_at&lt;=now()</text>
+<text x="973.0" y="181.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  AND tenant_id = ANY($eligible)          -- fairness, pushed into SQL</text>
+<text x="973.0" y="196.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  ORDER BY priority DESC, created_at ASC   -- interactive &gt; normal &gt; batch</text>
+<text x="973.0" y="210.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">  FOR UPDATE SKIP LOCKED LIMIT 1;  UPDATE runs SET RUNNING, lease_owner, expires</text>
+<g filter="url(#shadow)">
+<rect x="670" y="252" width="260" height="64" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="252" width="5" height="64" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="271.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">heartbeat goroutine</text>
+<text x="683.0" y="289.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">RenewLease every TTL/3 (10 s)</text>
+<text x="683.0" y="303.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">0 rows updated → cancel our own ctx</text>
+<g filter="url(#shadow)">
+<rect x="960" y="252" width="530" height="176" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="960" y="252" width="5" height="176" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="973.0" y="271.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">step() — replay, think, act, commit</text>
+<text x="973.0" y="289.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">1 replay   events = ListEvents(run, 0) · def = GetDefinition(run.def_digest) · Rebuild(events)</text>
+<text x="973.0" y="303.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">2 budget   Budget.ExceedsReason(usage, elapsed) → FAILED before paying for another call</text>
+<text x="973.0" y="318.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">3 model    Complete(tenant, priority, {system, messages, SchemasFor(def.Tools)})</text>
+<text x="973.0" y="332.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">           ErrQuotaUnavailable → requeue wake_at+2 s · provider down → requeue +10 s</text>
+<text x="973.0" y="347.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">4 outcome  human_input_required → WAITING_HUMAN · no tool calls → SUCCEEDED</text>
+<text x="973.0" y="361.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">5 tools    for i, call: idem = run:step:i → gateway → TOOL_RESULT | TOOL_DENIED</text>
+<text x="973.0" y="376.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">           NeedsApproval → APPROVAL_NEEDED, park as WAITING_APPROVAL, stop</text>
+<text x="973.0" y="390.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">6 commit   Commit(run, worker, expectedNextSeq, events, {usage, step+1})</text>
+<g filter="url(#shadow)">
+<rect x="960" y="458" width="530" height="96" rx="7" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1.2"/>
+<rect x="960" y="458" width="5" height="96" rx="2.5" fill="#2e8b57"/>
+</g>
+<text x="973.0" y="477.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Commit — the fenced write (one transaction)</text>
+<text x="973.0" y="495.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SELECT next_seq, lease_owner, lease_expires_at FROM runs WHERE id=$1 FOR UPDATE</text>
+<text x="973.0" y="509.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">owner != me OR expired          → ErrLeaseLost  (abandon; someone else owns it)</text>
+<text x="973.0" y="524.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">next_seq != expected            → ErrConflict   (our replay is stale)</text>
+<text x="973.0" y="538.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">INSERT events(seq..) ; UPDATE runs SET next_seq, step, usage, state?, lease?</text>
+<g filter="url(#shadow)">
+<rect x="670" y="346" width="260" height="92" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="346" width="5" height="92" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="365.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">after 4 steps: yield</text>
+<text x="683.0" y="383.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">commit NOTE + state=QUEUED + release</text>
+<text x="683.0" y="397.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">so a long run cannot pin one worker</text>
+<text x="683.0" y="412.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">and the queue can rebalance</text>
+<g filter="url(#shadow)">
+<rect x="670" y="468" width="260" height="86" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="468" width="5" height="86" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="487.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">deferred, always</text>
+<text x="683.0" y="505.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">YieldRun(run, me): fenced UPDATE</text>
+<text x="683.0" y="519.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">WHERE lease_owner=me AND RUNNING</text>
+<text x="683.0" y="534.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">no-op if we no longer own it</text>
+<text x="683.0" y="548.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">SIGKILL → lease simply expires</text>
+<g filter="url(#shadow)">
+<rect x="670" y="578" width="820" height="52" rx="7" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1.2"/>
+<rect x="670" y="578" width="5" height="52" rx="2.5" fill="#2f6fbf"/>
+</g>
+<text x="683.0" y="597.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2328" text-anchor="start">Reaper (any replica, every 5 s) — the entire failure detector</text>
+<text x="683.0" y="615.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">RUNNING AND lease_expires_at &lt; now() → QUEUED  ·  IN_FLIGHT tool_calls older than stuck_after → FAILED &#x27;outcome unknown&#x27;</text>
+<rect x="346.0" y="218.0" width="168.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="430.0" y="230.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">AcquireLease · SKIP LOCKED</text>
+<rect x="30.0" y="214.0" width="180.0" height="34" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="120.0" y="226.0" font-size="10.5" fill="#d9822b" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">yield (4 steps) · quota wait</text>
+<text x="120.0" y="240.0" font-size="10.5" fill="#d9822b" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">outage · lease expired</text>
+<rect x="126.0" y="102.0" width="48.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="150.0" y="114.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">resume</text>
+<rect x="463.0" y="102.0" width="54.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="490.0" y="114.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">approve</text>
+<rect x="365.0" y="466.0" width="180.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="455.0" y="478.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">cancel from any parked state</text>
+<rect x="916.0" y="243.5" width="30.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="931.0" y="255.5" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">run</text>
+<rect x="836.0" y="442.0" width="108.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="890.0" y="454.0" font-size="10.5" fill="#2e8b57" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">ok → step++ (≤4)</text>
+<rect x="592.0" y="320.0" width="126.0" height="20" rx="4" fill="#f7f8fa" fill-opacity="0.94"/>
+<text x="655.0" y="332.0" font-size="10.5" fill="#57606a" text-anchor="middle" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">lease lost → cancel</text>
+<rect x="1000" y="842" width="500" height="72" rx="6" fill="#ffffff" stroke="#7a3fd1" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="1010.0" y="858.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#7a3fd1" text-anchor="start">Why not a heartbeat service or leader election</text>
+<text x="1010.0" y="875.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">the lease and the fence are the same row, checked in the same transaction as the write</text>
+<text x="1010.0" y="889.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">there is no window in which A believes it owns the run and B has already written</text>
+<text x="1010.0" y="903.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">A cannot even repeat B&#x27;s side effect: the gateway replays run:step:i from the journal</text>
+<rect x="40" y="1062" width="300" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1078.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Optimisation</text>
+<rect x="340" y="1062" width="380" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1078.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Mechanism</text>
+<rect x="720" y="1062" width="400" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1078.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Trade-off</text>
+<rect x="1120" y="1062" width="400" height="26.3" fill="#2f6fbf" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1078.5" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="start">Evidence</text>
+<rect x="40" y="1088.28" width="300" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1104.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">Backpressure without blocked workers</text>
+<rect x="340" y="1088.28" width="380" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1104.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">Eligible() → tenant_id = ANY($1) in the lease query</text>
+<rect x="720" y="1088.28" width="400" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1104.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">per-process view of quota; stale by ≤ one refill</text>
+<rect x="1120" y="1088.28" width="400" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1104.8" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">TestFairness_NoisyTenantCannotStarveQuietTenant</text>
+<rect x="40" y="1114.56" width="300" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1131.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">No poll storm on an idle queue</text>
+<rect x="340" y="1114.56" width="380" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1131.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">100 ms poll + partial index WHERE state=&#x27;QUEUED&#x27;</text>
+<rect x="720" y="1114.56" width="400" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1131.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">≤100 ms added latency to first step</text>
+<rect x="1120" y="1114.56" width="400" height="40.6" fill="#fbfbfc" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1131.1" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">500 agents, 16 workers, 1000 tool calls exactly once; p99 1–1.6 s</text>
+<text x="1127.0" y="1145.3" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">(benchmarks §2)</text>
+<rect x="40" y="1155.12" width="300" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="47.0" y="1171.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1f2328" text-anchor="start">Replay cost bounded per step</text>
+<rect x="340" y="1155.12" width="380" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="347.0" y="1171.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">4 steps per lease; context rebuilt from the log each step</text>
+<rect x="720" y="1155.12" width="400" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="727.0" y="1171.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">O(events) reads per step — checkpoints are designed, not built</text>
+<rect x="1120" y="1155.12" width="400" height="26.3" fill="#ffffff" stroke="#2f6fbf" stroke-opacity="0.45" stroke-width="0.8"/>
+<text x="1127.0" y="1171.6" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#1f2328" text-anchor="start">2→24 workers: 102 → 5 394 runs/s, nothing serialises (benchmarks §3)</text>
+<text x="70.0" y="752.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#1f2328" text-anchor="start">worker A</text>
+<text x="70.0" y="850.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#1f2328" text-anchor="start">Postgres</text>
+<text x="70.0" y="920.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#1f2328" text-anchor="start">reaper</text>
+<text x="70.0" y="990.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#1f2328" text-anchor="start">worker B</text>
+<text x="220.0" y="722.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">acquires lease</text>
+<text x="220.0" y="736.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">seq=5</text>
+<text x="360.0" y="722.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="middle">replays 0..4</text>
+<text x="360.0" y="736.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="middle">calls the model</text>
+<text x="500.0" y="722.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#c0392b" text-anchor="middle">STOP-THE-WORLD</text>
+<text x="500.0" y="736.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#c0392b" text-anchor="middle">(GC pause, partition, SIGSTOP)</text>
+<text x="560.0" y="820.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#d9822b" text-anchor="middle">lease_expires_at</text>
+<text x="560.0" y="834.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#d9822b" text-anchor="middle">passes (30 s)</text>
+<text x="620.0" y="890.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#d9822b" text-anchor="middle">RUNNING + expired</text>
+<text x="620.0" y="904.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#d9822b" text-anchor="middle">→ QUEUED</text>
+<text x="720.0" y="1006.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">acquires lease</text>
+<text x="720.0" y="1020.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">owner=B, seq=5</text>
+<text x="860.0" y="1006.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="middle">replays 0..4 → same</text>
+<text x="860.0" y="1020.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="middle">idem key run:step:0</text>
+<text x="1000.0" y="1006.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">Commit seq 5,6</text>
+<text x="1000.0" y="1020.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">ok → next_seq=7</text>
+<text x="1150.0" y="722.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#c0392b" text-anchor="middle">wakes up · Commit(seq 5)</text>
+<text x="1150.0" y="736.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#c0392b" text-anchor="middle">owner=B ≠ A → ErrLeaseLost</text>
+<text x="1300.0" y="722.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="middle">abandons the step</text>
+<text x="1300.0" y="736.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#1f2328" text-anchor="middle">no write happened</text>
+<text x="1300.0" y="1006.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">continues from 7</text>
+<text x="1300.0" y="1020.2" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10" font-weight="normal" fill="#2e8b57" text-anchor="middle">exactly-once tool effects</text>
+<rect x="28" y="1210" width="14" height="12" rx="3" fill="#e7f6ec" stroke="#2e8b57" stroke-width="1"/>
+<text x="48.0" y="1220.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">durable state / SQL</text>
+<rect x="258" y="1210" width="14" height="12" rx="3" fill="#eaf2fb" stroke="#2f6fbf" stroke-width="1"/>
+<text x="278.0" y="1220.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">worker code</text>
+<rect x="488" y="1210" width="14" height="12" rx="3" fill="#f0f0f0" stroke="#6e7781" stroke-width="1"/>
+<text x="508.0" y="1220.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">waits on a person</text>
+<rect x="718" y="1210" width="14" height="12" rx="3" fill="#fbe9e9" stroke="#c0392b" stroke-width="1"/>
+<text x="738.0" y="1220.0" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="10.5" font-weight="normal" fill="#57606a" text-anchor="start">terminal failure</text>
+</svg>

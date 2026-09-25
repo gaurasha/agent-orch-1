@@ -61,6 +61,7 @@ Read in order — each builds on the last:
 1. [DEEP_DIVE.md](../DEEP_DIVE.md) — 17 decisions with the case *for* what I rejected
 2. [FAQ](05-reference/04-faq.md)
 3. [Benchmarks §10](04-evidence/01-benchmarks.md) — what the numbers do **not** support
+4. [Reasoning](reasoning/README.md) — every alternative at every decision, with production usage, documented incidents and references
 
 ---
 
@@ -134,6 +135,50 @@ Read in order — each builds on the last:
 | [Agent lifecycle](diagrams/lifecycle.md) | State machine; one step in detail; failover |
 | [Tool call path](diagrams/toolcall.md) | The full sequence; what the agent sees at each step |
 | [Sandbox design](diagrams/sandbox.md) | Eight layers; the credential mechanism; compromise playbook |
+
+### [Architecture diagrams](architecture/)
+
+Eleven generated SVG diagrams, each with a companion document covering
+services, domain boundaries, data flow, failure handling, optimisations and
+trade-offs. Regenerate with `python3 docs/architecture/gen/build.py`.
+
+| | |
+|---|---|
+| [00 overall](architecture/00-overall.md) | Every component, all four trust zones, every data flow — and what is deliberately absent |
+| [01 control plane](architecture/01-control-plane.md) | Identity and intent enter here; holds no credentials, executes nothing |
+| [02 scheduling & runtime](architecture/02-scheduling-runtime.md) | A run is a row plus a log; lease, replay, fenced commit, yield; the fencing timeline |
+| [03 tool gateway](architecture/03-tool-gateway.md) | The single choke point, stage by stage, with every refusal |
+| [04 sandbox](architecture/04-sandbox.md) | The jail from raw Linux primitives, layer by layer; three drivers |
+| [05 credential plane](architecture/05-credential-plane.md) | How an agent uses a secret it can never read; the attacker table |
+| [06 model plane & fairness](architecture/06-model-plane.md) | Reserve/settle, jittered retries, weighted max-min with a worked example |
+| [07 state & failover](architecture/07-state-failover.md) | Six tables, four transactions, one recovery path |
+| [08 Kubernetes topology](architecture/08-network-topology.md) | Namespaces, NetworkPolicy, RBAC, RuntimeClass, GitOps |
+| [09 failure map](architecture/09-failure-map.md) | Eleven failures → seven mechanisms → what is not handled |
+| [10 observability](architecture/10-observability.md) | Four signals, one source of truth; the eleven metrics |
+
+### [Reasoning](reasoning/)
+
+Why it is built this way — for every decision, the exhaustive set of options,
+the case for each, production usage, documented incidents and references.
+
+| | |
+|---|---|
+| [Method](reasoning/00-method.md) | First principles, the decision template, evidence grades |
+| [Runtime model](reasoning/01-runtime-model.md) | Row + log + stateless workers vs process, pod, actor, workflow engine, durable objects |
+| [Isolation](reasoning/02-isolation.md) | Namespaces/seccomp and gVisor vs runc, microVMs, Wasm, remote sandbox vendors; CVEs |
+| [Durability substrate](reasoning/03-durability-substrate.md) | Postgres for everything vs Kafka, SQS, Redis, etcd, Temporal, distributed SQL |
+| [Scheduling](reasoning/04-scheduling.md) | Leases, fencing, replay, step budgets vs heartbeats, leader election, checkpoints |
+| [Authorization](reasoning/05-authorization.md) | A gateway on the hot path vs libraries, sidecars, OPA/Cedar, MCP permissions, capabilities |
+| [Credentials](reasoning/06-credentials.md) | Broker-minted tokens and two sandboxes vs env vars, files, vaults, proxies |
+| [Fairness](reasoning/07-fairness.md) | Weighted max-min with a spare pool vs FCFS, fixed quotas, DRF, rate-limit services |
+| [Audit](reasoning/08-audit.md) | A per-tenant hash chain vs plain tables, Merkle logs, ledgers, SIEM |
+| [LLM integration](reasoning/09-llm-integration.md) | One gateway, reserve/settle, full-jitter retries vs LLM proxies, SDK retries, streaming |
+| [Prompt injection](reasoning/10-prompt-injection.md) | Contain, don't detect — the trifecta, CaMeL, AgentDojo, incidents |
+| [Kubernetes](reasoning/11-kubernetes.md) | Integration depth; PSA, NetworkPolicy, RuntimeClass, RBAC; Argo CD vs alternatives |
+| [Language & dependencies](reasoning/12-language-and-dependencies.md) | Go, one binary, one module; the supply-chain argument |
+| [Evals & testing](reasoning/13-evals-and-testing.md) | Platform tests that assert mechanisms; agent evals, benchmarks, tools, statistics |
+| [Industry learnings](reasoning/14-industry-learnings.md) | Twenty-three documented incidents and the decision each informs |
+| [State of the art](reasoning/15-state-of-the-art.md) | What production agent infrastructure converges on in 2025–26 |
 
 ### Top-level
 

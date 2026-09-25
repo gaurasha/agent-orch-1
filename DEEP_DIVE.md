@@ -27,7 +27,7 @@ you can check the claim yourself.
 | [D11](#d11--agent-definition-and-versioning) | Agent definition and versioning |
 | [D12](#d12--audit-log-design) | Audit log design |
 | [D13](#d13--exactly-once-vs-at-least-once) | Exactly-once vs. at-least-once tool calls |
-| [D14](#d14--prompt-injection-posture) | Prompt injection: detect or contain |
+| [D14](#d14--prompt-injection-detect-or-contain) | Prompt injection: detect or contain |
 | [D15](#d15--observability) | Observability |
 | [D16](#d16--dependency-policy) | Dependency policy |
 | [D17](#d17--gitops-and-argo-cd) | GitOps and Argo CD |
